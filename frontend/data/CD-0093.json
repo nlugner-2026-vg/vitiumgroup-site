@@ -1,0 +1,41 @@
+{
+  "jobId": "CD-0093",
+  "assetType": "Channel Drain",
+  "location": "A553 Corridor",
+  "events": [
+    {
+      "type": "inspection",
+      "timestamp": "2026-04-28T10:02:00Z",
+      "note": "Silt accumulation visible along 1.2m section. Slow drainage.",
+      "evidence": [
+        "../evidence/CD0093_inspection_1.jpg"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "type": "clearance",
+      "timestamp": "2026-04-28T10:18:00Z",
+      "note": "Silt removed. Channel flushed. Flow restored.",
+      "evidence": [
+        "../evidence/CD0093_clearance_1.jpg"
+      ],
+      "confidence": "high"
+    },
+    {
+      "type": "verification",
+      "timestamp": "2026-04-28T10:27:00Z",
+      "note": "Channel drain operating at full capacity.",
+      "evidence": [
+        "../evidence/CD0093_verification_1.jpg"
+      ],
+      "confidence": "very-high"
+    },
+    {
+      "type": "sealed",
+      "timestamp": "2026-04-28T10:28:00Z",
+      "note": "VERITAS evidence pack sealed.",
+      "hash": "0xF7C1A9D3E4B8AA11C0F3D7E9B2A4F1",
+      "confidence": "absolute"
+    }
+  ]
+}

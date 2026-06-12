@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VITIUM VERITAS™ EVIDENCE CONSOLE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{margin:0;background:#111;font-family:"Segoe UI",sans-serif;color:#e0e0e0;}
+        .operator-bar{width:100%;background:#1b1b1b;color:#e0e0e0;padding:10px 24px 8px;box-sizing:border-box;}
+        .operator-bar-title{font-size:18px;font-weight:600;}
+        .operator-bar-operator{font-size:14px;color:#8fb3ff;}
+        .stripe-blue{width:100%;height:12px;background:#0057b7;}
+        .stripe-yellow{width:100%;height:10px;background:#ffcc00;}
+        .nav-bar{width:100%;background:#1a1a1a;border-bottom:1px solid #333;text-align:center;padding:10px 0;box-sizing:border-box;}
+        .nav-bar a{color:#fff;text-decoration:none;margin:0 24px;font-size:15px;}
+        .nav-bar a:hover{color:#9bb7ff;}
+        .title-emblem-block{text-align:center;margin-top:20px;}
+        .title-emblem-block .main-title{font-size:20px;font-weight:600;color:#fff;margin-bottom:12px;}
+        .title-emblem-block img{width:100px;height:100px;}
+        .content-wrapper{width:92%;margin:32px auto 40px;box-sizing:border-box;}
+        .panel{background:#1c1c1c;border:1px solid #333;border-radius:6px;padding:18px 20px;margin-bottom:20px;box-sizing:border-box;}
+        .panel h2{margin:0 0 10px;font-size:18px;color:#9bb7ff;}
+        .panel h3{margin:0 0 8px;font-size:15px;color:#d0d8ff;}
+        .panel p{margin:0 0 10px;font-size:14px;}
+        .evidence-layout{display:flex;gap:16px;}
+        .evidence-list-column{flex:1.1;}
+        .evidence-detail-column{flex:1.4;}
+        table{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px;}
+        th,td{border:1px solid #333;padding:6px 8px;text-align:left;}
+        th{background:#222;}
+        tr:nth-child(even){background:#181818;}
+        tr:hover{background:#252525;cursor:pointer;}
+        .badge{display:inline-block;padding:2px 6px;border-radius:3px;font-size:11px;}
+        .badge-pending{background:#665000;color:#ffec99;}
+        .badge-validated{background:#0f4d1f;color:#b6ffd0;}
+        .badge-flagged{background:#5b1111;color:#ffb3b3;}
+        .evidence-viewer{background:#101;border:1px solid #333;border-radius:4px;padding:10px;height:260px;box-sizing:border-box;margin-bottom:10px;display:flex;flex-direction:column;}
+        .evidence-viewer-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:12px;color:#aaa;}
+        .zoom-controls{display:flex;align-items:center;gap:6px;}
+        .zoom-label{font-size:12px;color:#ccc;min-width:80px;text-align:center;}
+        .evidence-viewer-body{flex:1;background:#050505;border:1px solid #222;border-radius:3px;overflow:auto;display:flex;align-items:center;justify-content:center;position:relative;}
+        .viewer-zoom-wrapper{transform-origin:top left;}
+        .viewer-zoom-wrapper iframe,.viewer-zoom-wrapper embed{width:100%;height:100%;border:none;}
+        .viewer-zoom-wrapper img{display:block;max-width:100%;height:auto;}
+        .evidence-meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;font-size:13px;margin-bottom:8px;}
+        .meta-label{color:#aaa;}
+        .meta-value{color:#e0e0e0;}
+        .chain-box,.ai-box{background:#101010;border:1px solid #333;border-radius:4px;padding:8px 10px;font-size:12px;margin-top:6px;}
+        .chain-entry{margin-bottom:4px;}
+        .ai-status{font-family:Consolas,monospace;font-size:12px;}
+        .ai-status-ok{color:#7dffb0;}
+        .ai-status-flag{color:#ffb37d;}
+        .audit-log{font-family:Consolas,monospace;font-size:12px;background:#101010;border:1px solid #333;border-radius:4px;padding:8px;height:180px;overflow-y:auto;box-sizing:border-box;}
+        button{background:#2f6fe4;color:#fff;border:none;border-radius:4px;padding:7px 12px;font-size:13px;cursor:pointer;margin-right:6px;}
+        button:hover{background:#3f7fff;}
+        button.secondary{background:#333;}
+        button.secondary:hover{background:#444;}
+        button.danger{background:#8b1e1e;}
+        button.danger:hover{background:#a52a2a;}
+        .button-row{margin-top:8px;}
+        .upload-row{display:flex;align-items:center;margin-bottom:12px;}
+        .upload-row span{font-size:13px;color:#bbb;margin-left:10px;}
+        .footer-bar{width:100%;background:#ff6a00;color:#111;text-align:center;padding:10px 16px;font-size:12px;font-weight:600;box-sizing:border-box;}
+        @media(max-width:900px){.evidence-layout{flex-direction:column;}.evidence-viewer{height:220px;}}
+    </style>
+</head>
+<body>
+    <div class="operator-bar">
+        <div class="operator-bar-title">VITIUM VERITAS™</div>
+        <div class="operator-bar-operator">Operator ID: OP‑2741 · Evidence Console</div>
+    </div>
+    <div class="stripe-blue"></div>
+    <div class="stripe-yellow"></div>
+    <div class="nav-bar">
+        <a href="dashboard_modular.html">HOME</a>
+        <a href="evidence.html">EVIDENCE</a>
+        <a href="#">ABOUT</a>
+    </div>
+    <div class="title-emblem-block">
+        <div class="main-title">EVIDENCE CAPTURE & ASSURANCE</div>
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" alt="VERITAS Emblem">
+    </div>
+
+    <div class="content-wrapper">
+        <div class="panel">
+            <h2>Current Assembly Batch</h2>
+            <p>Batch ID: <strong>AA‑24‑071</strong> · Line: <strong>North Assembly</strong> · Window: <strong>T+03:42</strong> · Evidence status: <strong>In Progress</strong></p>
+        </div>
+
+        <div class="upload-row">
+            <button type="button" onclick="triggerEvidenceUpload()">Upload Evidence</button>
+            <span>Attach new photo, video, sensor trace, or PDF record to this batch.</span>
+            <input type="file" id="evidenceUploadInput" accept=".pdf,.png,.jpg,.jpeg" style="display:none;">
+        </div>
+
+        <div class="evidence-layout">
+            <div class="panel evidence-list-column">
+                <h2>Evidence Items</h2>
+                <p style="font-size:13px;margin-bottom:6px;">Select an item to review, validate, or flag for further investigation.</p>
+                <table id="evidenceTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Station</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-id="EV‑4421">
+                            <td>EV‑4421</td>
+                            <td>Photo</td>
+                            <td>Frame Assembly</td>
+                            <td><span class="badge badge-pending">Pending</span></td>
+                        </tr>
+                        <tr data-id="EV‑4422">
+                            <td>EV‑4422</td>
+                            <td>Torque Log</td>
+                            <td>Module Prep</td>
+                            <td><span class="badge badge-validated">Validated</span></td>
+                        </tr>
+                        <tr data-id="EV‑4423">
+                            <td>EV‑4423</td>
+                            <td>Video</td>
+                            <td>Inspection</td>
+                            <td><span class="badge badge-pending">Pending</span></td>
+                        </tr>
+                        <tr data-id="EV‑4424">
+                            <td>EV‑4424</td>
+                            <td>Sensor Trace</td>
+                            <td>Load Test</td>
+                            <td><span class="badge badge-flagged">Flagged</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel evidence-detail-column">
+                <h2>Evidence Detail</h2>
+                <div class="evidence-viewer" id="evidenceViewer">
+                    <div class="evidence-viewer-header">
+                        <div id="viewerLabel">No evidence selected.</div>
+                        <div class="zoom-controls">
+                            <button type="button" class="secondary" onclick="zoomOut()">−</button>
+                            <span class="zoom-label" id="zoomLabel">Zoom: 100%</span>
+                            <button type="button" class="secondary" onclick="zoomIn()">+</button>
+                        </div>
+                    </div>
+                    <div class="evidence-viewer-body" id="evidenceViewerBody">
+                        <span style="color:#888;font-size:13px;">Choose an item from the list or upload new evidence.</span>
+                    </div>
+                </div>
+
+                <div class="evidence-meta-grid">
+                    <div><span class="meta-label">Evidence ID:</span> <span class="meta-value" id="metaId">—</span></div>
+                    <div><span class="meta-label">Type:</span> <span class="meta-value" id="metaType">—</span></div>
+                    <div><span class="meta-label">Station:</span> <span class="meta-value" id="metaStation">—</span></div>
+                    <div><span class="meta-label">Captured:</span> <span class="meta-value" id="metaCaptured">—</span></div>
+                    <div><span class="meta-label">Operator:</span> <span class="meta-value" id="metaOperator">—</span></div>
+                    <div><span class="meta-label">Status:</span> <span class="meta-value" id="metaStatus">—</span></div>
+                </div>
+
+                <div class="chain-box">
+                    <h3>Chain of Custody</h3>
+                    <div class="chain-entry" id="chainEntries">No evidence selected.</div>
+                </div>
+
+                <div class="ai-box">
+                    <h3>AI Anomaly Scan</h3>
+                    <div class="ai-status" id="aiStatus">Awaiting evidence selection.</div>
+                </div>
+
+                <div class="button-row">
+                    <button type="button" onclick="validateEvidence()">Validate</button>
+                    <button type="button" class="secondary" onclick="requestClarification()">Request Clarification</button>
+                    <button type="button" class="danger" onclick="flagEvidence()">Flag for Review</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Audit Log</h2>
+            <div class="audit-log" id="auditLog">
+                [12:37] Batch AA‑24‑071 evidence console opened by OP‑2741<br>
+                [12:39] Evidence EV‑4422 validated by QA‑Operator‑19<br>
+                [12:41] Automated integrity check completed for batch AA‑24‑071 (no discrepancies)<br>
+            </div>
+        </div>
+    </div>
+
+    <div class="stripe-blue"></div>
+    <div class="stripe-yellow"></div>
+    <div class="footer-bar">
+        VITIUM VERITAS™ — IMMUTABLE EVIDENCE‑GRADE DIGITAL ASSURANCE — ACCESS ATTEMPTS ARE LOGGED.
+    </div>
+
+    <script>
+        // --- In-memory evidence model (demo only) ---
+        const evidenceData={
+            "EV‑4421":{id:"EV‑4421",type:"Photo",station:"Frame Assembly",captured:"12:32",operator:"OP‑1834",status:"Pending",
+                chain:["12:32 Captured at Frame Assembly (OP‑1834)","12:33 Auto‑hash generated and stored","12:34 Linked to Batch AA‑24‑071"],
+                ai:{state:"ok",message:"No structural anomalies detected. Visual alignment within tolerance."},file:null},
+            "EV‑4422":{id:"EV‑4422",type:"Torque Log",station:"Module Prep",captured:"12:28",operator:"OP‑1720",status:"Validated",
+                chain:["12:28 Torque readings captured (OP‑1720)","12:29 Thresholds cross‑checked against spec","12:30 Validated by QA‑Operator‑19"],
+                ai:{state:"ok",message:"All torque values within specified range. No outliers detected."},file:null},
+            "EV‑4423":{id:"EV‑4423",type:"Video",station:"Inspection",captured:"12:35",operator:"OP‑1902",status:"Pending",
+                chain:["12:35 Inspection video captured (OP‑1902)","12:36 Frame sampling queued for AI review"],
+                ai:{state:"flag",message:"Minor motion irregularity detected at timestamp 00:14. Recommend human review."},file:null},
+            "EV‑4424":{id:"EV‑4424",type:"Sensor Trace",station:"Load Test",captured:"12:31",operator:"OP‑1677",status:"Flagged",
+                chain:["12:31 Load test sensor trace recorded (OP‑1677)","12:32 AI anomaly scan flagged deviation","12:33 Escalated to QA queue"],
+                ai:{state:"flag",message:"Transient spike above expected load envelope. Escalation recommended."},file:null}
+        };
+        let nextEvidenceNumericId=4425;
+        let selectedEvidenceId=null;
+        let viewerZoomLevel=1.0;
+
+        function currentTime(){
+            const n=new Date();
+            const h=String(n.getHours()).padStart(2,"0");
+            const m=String(n.getMinutes()).padStart(2,"0");
+            return h+":"+m;
+        }
+
+        function appendLog(msg){
+            const log=document.getElementById("auditLog");
+            log.innerHTML+="["+currentTime()+"] "+msg+"<br>";
+            log.scrollTop=log.scrollHeight;
+        }
+
+        function updateZoomLabel(){
+            document.getElementById("zoomLabel").textContent="Zoom: "+Math.round(viewerZoomLevel*100)+"%";
+        }
+
+        function applyZoom(){
+            const body=document.getElementById("evidenceViewerBody");
+            const wrap=body.querySelector(".viewer-zoom-wrapper");
+            if(!wrap)return;
+            wrap.style.transform="scale("+viewerZoomLevel+")";
+        }
+
+        function zoomIn(){
+            viewerZoomLevel=Math.min(viewerZoomLevel+0.25,2.0);
+            applyZoom();updateZoomLabel();
+        }
+
+        function zoomOut(){
+            viewerZoomLevel=Math.max(viewerZoomLevel-0.25,0.5);
+            applyZoom();updateZoomLabel();
+        }
+
+        function renderEvidenceViewer(data){
+            const label=document.getElementById("viewerLabel");
+            const body=document.getElementById("evidenceViewerBody");
+            viewerZoomLevel=1.0;updateZoomLabel();
+            if(!data){
+                label.textContent="No evidence selected.";
+                body.innerHTML='<span style="color:#888;font-size:13px;">Choose an item from the list or upload new evidence.</span>';
+                return;
+            }
+            label.textContent=data.type+" from "+data.station;
+            if(!data.file){
+                body.innerHTML='<span style="color:#888;font-size:13px;">No attached media. This item is represented as a log or structured record.</span>';
+                return;
+            }
+            const wrap=document.createElement("div");
+            wrap.className="viewer-zoom-wrapper";
+            if(data.file.kind==="pdf"){
+                const iframe=document.createElement("iframe");
+                iframe.src=data.file.url;
+                iframe.title=data.id+" PDF";
+                wrap.appendChild(iframe);
+            }else if(data.file.kind==="image"){
+                const img=document.createElement("img");
+                img.src=data.file.url;
+                img.alt=data.id+" image";
+                wrap.appendChild(img);
+            }else{
+                wrap.innerHTML='<span style="color:#888;font-size:13px;">Unsupported media type.</span>';
+            }
+            body.innerHTML="";
+            body.appendChild(wrap);
+            applyZoom();
+        }
+
+        function renderEvidenceDetail(id){
+            const d=evidenceData[id];
+            if(!d)return;
+            selectedEvidenceId=id;
+            renderEvidenceViewer(d);
+            document.getElementById("metaId").textContent=d.id;
+            document.getElementById("metaType").textContent=d.type;
+            document.getElementById("metaStation").textContent=d.station;
+            document.getElementById("metaCaptured").textContent=d.captured;
+            document.getElementById("metaOperator").textContent=d.operator;
+            document.getElementById("metaStatus").textContent=d.status;
+            const chainBox=document.getElementById("chainEntries");
+            chainBox.innerHTML="";
+            d.chain.forEach(e=>{
+                const div=document.createElement("div");
+                div.className="chain-entry";
+                div.textContent=e;
+                chainBox.appendChild(div);
+            });
+            const ai=document.getElementById("aiStatus");
+            ai.className="ai-status "+(d.ai.state==="ok"?"ai-status-ok":"ai-status-flag");
+            ai.textContent=d.ai.message;
+            appendLog("Evidence "+d.id+" opened by OP‑2741");
+        }
+
+        function bindEvidenceTable(){
+            document.querySelectorAll("#evidenceTable tbody tr").forEach(r=>{
+                r.addEventListener("click",()=>{
+                    const id=r.getAttribute("data-id");
+                    renderEvidenceDetail(id);
+                });
+            });
+        }
+
+        function updateTableStatusBadge(id,status){
+            document.querySelectorAll("#evidenceTable tbody tr").forEach(r=>{
+                if(r.getAttribute("data-id")===id){
+                    const cell=r.querySelector("td:last-child");
+                    if(!cell)return;
+                    if(status==="Validated")cell.innerHTML='<span class="badge badge-validated">Validated</span>';
+                    else if(status==="Flagged")cell.innerHTML='<span class="badge badge-flagged">Flagged</span>';
+                    else cell.innerHTML='<span class="badge badge-pending">Pending</span>';
+                }
+            });
+        }
+
+        function validateEvidence(){
+            if(!selectedEvidenceId){alert("Select an evidence item first.");return;}
+            const d=evidenceData[selectedEvidenceId];
+            if(d.status==="Validated"){appendLog("Evidence "+d.id+" re‑confirmed as VALIDATED by OP‑2741");return;}
+            d.status="Validated";
+            d.chain.push(currentTime()+" Validated by OP‑2741");
+            d.ai.state="ok";
+            d.ai.message="Human review completed. Evidence accepted.";
+            renderEvidenceDetail(selectedEvidenceId);
+            updateTableStatusBadge(selectedEvidenceId,"Validated");
+            appendLog("Evidence "+d.id+" marked VALIDATED by OP‑2741");
+        }
+
+        function requestClarification(){
+            if(!selectedEvidenceId){alert("Select an evidence item first.");return;}
+            const d=evidenceData[selectedEvidenceId];
+            d.chain.push(currentTime()+" Clarification requested by OP‑2741");
+            appendLog("Clarification requested on evidence "+d.id+" by OP‑2741");
+            renderEvidenceDetail(selectedEvidenceId);
+        }
+
+        function flagEvidence(){
+            if(!selectedEvidenceId){alert("Select an evidence item first.");return;}
+            const d=evidenceData[selectedEvidenceId];
+            d.status="Flagged";
+            d.chain.push(currentTime()+" Flagged for review by OP‑2741");
+            d.ai.state="flag";
+            d.ai.message="Flagged by human operator. Escalation queue updated.";
+            renderEvidenceDetail(selectedEvidenceId);
+            updateTableStatusBadge(selectedEvidenceId,"Flagged");
+            appendLog("Evidence "+d.id+" FLAGGED for review by OP‑2741");
+        }
+
+        function triggerEvidenceUpload(){
+            const input=document.getElementById("evidenceUploadInput");
+            input.value="";
+            input.click();
+        }
+
+        document.getElementById("evidenceUploadInput").addEventListener("change",handleEvidenceUpload);
+
+        function handleEvidenceUpload(e){
+            const file=e.target.files[0];
+            if(!file)return;
+            const url=URL.createObjectURL(file);
+            const mime=file.type||"";
+            let kind=null,typeLabel="Attachment";
+            if(mime==="application/pdf"||file.name.toLowerCase().endsWith(".pdf")){kind="pdf";typeLabel="PDF";}
+            else if(mime.startsWith("image/")||/\.(png|jpg|jpeg)$/i.test(file.name)){kind="image";typeLabel="Image";}
+            else{kind="unknown";typeLabel="Attachment";}
+            const num=nextEvidenceNumericId++;
+            const id="EV‑"+num;
+            const ev={
+                id:id,
+                type:typeLabel,
+                station:"Operator Upload",
+                captured:currentTime(),
+                operator:"OP‑2741",
+                status:"Pending",
+                chain:[
+                    currentTime()+" Uploaded by OP‑2741",
+                    currentTime()+" Auto‑hash generated and stored",
+                    currentTime()+" Linked to Batch AA‑24‑071"
+                ],
+                ai:{state:"ok",message:"Initial automated scan completed. No critical anomalies detected."},
+                file:{url:url,mime:mime,kind:kind,name:file.name}
+            };
+            evidenceData[id]=ev;
+            appendEvidenceRow(ev);
+            renderEvidenceDetail(id);
+            appendLog("New evidence "+id+" uploaded by OP‑2741 ("+file.name+")");
+        }
+
+        function appendEvidenceRow(d){
+            const tbody=document.querySelector("#evidenceTable tbody");
+            const r=document.createElement("tr");
+            r.setAttribute("data-id",d.id);
+            const c1=document.createElement("td");c1.textContent=d.id;
+            const c2=document.createElement("td");c2.textContent=d.type;
+            const c3=document.createElement("td");c3.textContent=d.station;
+            const c4=document.createElement("td");c4.innerHTML='<span class="badge badge-pending">Pending</span>';
+            r.appendChild(c1);r.appendChild(c2);r.appendChild(c3);r.appendChild(c4);
+            r.addEventListener("click",()=>renderEvidenceDetail(d.id));
+            tbody.appendChild(r);
+        }
+
+        document.addEventListener("DOMContentLoaded",()=>{
+            bindEvidenceTable();
+            updateZoomLabel();
+            const first=document.querySelector("#evidenceTable tbody tr");
+            if(first){renderEvidenceDetail(first.getAttribute("data-id"));}
+        });
+    </script>
+</body>

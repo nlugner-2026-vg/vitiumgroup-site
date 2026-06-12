@@ -1,0 +1,16 @@
+{
+    "assetType": "Inspection Chamber",
+    "location": "Wincham Industrial Estate",
+    "timeline": [
+        {
+            "timestamp": "2026-04-20 11:45",
+            "description": "Chamber cover reported loose by highways team."
+        }
+    ],
+    "evidence": [
+        {
+            "id": "EV-CH0021-01",
+            "file": "EV-CH0021-01.json"
+        }
+    ]
+}

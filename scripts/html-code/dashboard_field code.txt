@@ -1,0 +1,565 @@
+_field code:<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VERITAS IN THE FIELD – Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+    --sky-blue: #1A9CFF;
+    --deep-teal: #007C85;
+    --forest-green: #0E3B2E;
+    --panel-bg: #F7FCFF;
+    --panel-border: #C7E7FF;
+    --text-main: #0B1B24;
+    --text-muted: #5C6F80;
+    --accent-pill: #E3F3FF;
+    --radius-pill: 999px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --shadow-soft: 0 18px 45px rgba(0,0,0,0.18);
+    --transition-fast: 0.18s ease-out;
+}
+
+/* GLOBAL */
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background: radial-gradient(circle at top, #E9F6FF 0%, var(--sky-blue) 40%, var(--deep-teal) 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* SHELL */
+.app-shell {
+    width: 100%;
+    max-width: 1320px;
+    margin: 24px auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* HEADER */
+.app-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+/* V BADGE TOP-CENTRE */
+.v-badge-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.v-badge {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+        0 0 0 2px rgba(26,156,255,0.5),
+        0 0 40px rgba(26,156,255,0.6);
+    overflow: hidden;
+}
+.v-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* HEADER ROW: WIJ LEFT, ROLE/HELP RIGHT */
+.app-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wij-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+    overflow: hidden;
+}
+.wij-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.brand-text .title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.brand-text .subtitle {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* HEADER RIGHT */
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.role-pill {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(26,156,255,0.7);
+    background: var(--accent-pill);
+    color: var(--sky-blue);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.help-button,
+.support-button {
+    padding: 7px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.help-button {
+    border: 1px solid rgba(26,156,255,0.8);
+    background: #ffffff;
+    color: var(--sky-blue);
+}
+.help-button:hover {
+    background: #F0F7FF;
+    box-shadow: 0 10px 24px rgba(26,156,255,0.35);
+    transform: translateY(-1px);
+}
+
+.support-button {
+    border: 1px solid rgba(14,59,46,0.8);
+    background: #ffffff;
+    color: var(--forest-green);
+}
+.support-button:hover {
+    background: #ECF8F3;
+    box-shadow: 0 10px 24px rgba(14,59,46,0.25);
+    transform: translateY(-1px);
+}
+
+/* NAVIGATION */
+.nav-bar {
+    margin-top: 4px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    background: rgba(255,255,255,0.85);
+    color: var(--text-main);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.nav-item:hover {
+    border-color: var(--sky-blue);
+    background: #F3F9FF;
+    box-shadow: 0 6px 14px rgba(26,156,255,0.18);
+    transform: translateY(-1px);
+}
+.nav-item.active {
+    border-color: var(--sky-blue);
+    background: #E6F3FF;
+    color: var(--sky-blue);
+}
+
+/* NOTIFICATION BANNER */
+.notification-banner {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    background: #E6F3FF;
+    border: 1px solid var(--sky-blue);
+    color: var(--text-main);
+    font-size: 12px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.notification-banner span {
+    font-weight: 500;
+}
+.notification-banner button {
+    border: none;
+    background: transparent;
+    color: var(--sky-blue);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+}
+
+/* GRID */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 16px;
+}
+@media (max-width: 960px) {
+    .main-grid { grid-template-columns: 1fr; }
+}
+
+/* PANELS */
+.panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: var(--shadow-soft);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.panel-title {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.refresh-button {
+    border: none;
+    background: transparent;
+    color: var(--sky-blue);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+}
+
+/* WORK LIST */
+#workList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.work-item {
+    background: #FFFFFF;
+    border: 1px solid #D5E7F7;
+    border-radius: var(--radius-md);
+    padding: 10px;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.work-item:hover {
+    border-color: var(--sky-blue);
+    background: #F3F9FF;
+    box-shadow: 0 8px 18px rgba(26,156,255,0.18);
+    transform: translateY(-1px);
+}
+.work-item.active {
+    border-color: var(--sky-blue);
+    background: #E6F3FF;
+    box-shadow: 0 10px 22px rgba(26,156,255,0.25);
+}
+.work-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+.work-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* TASK DETAILS */
+.task-section {
+    background: #FFFFFF;
+    border: 1px solid #D5E7F7;
+    border-radius: var(--radius-md);
+    padding: 10px;
+    margin-bottom: 12px;
+}
+.task-section-title {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+#taskDetails {
+    font-size: 13px;
+}
+
+/* INPUTS */
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    border: 1px solid #C3D9EB;
+    background: #F9FCFF;
+    color: var(--text-main);
+    font-size: 13px;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+textarea::placeholder {
+    color: #9AA9B8;
+}
+textarea:focus,
+select:focus {
+    border-color: var(--sky-blue);
+    box-shadow: 0 0 0 1px rgba(26,156,255,0.4);
+    background: #FFFFFF;
+}
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* BUTTONS */
+.button-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid #C3D9EB;
+    background: #FFFFFF;
+    color: var(--text-main);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+}
+.btn:hover {
+    border-color: var(--sky-blue);
+    background: #F3F9FF;
+    box-shadow: 0 8px 18px rgba(26,156,255,0.18);
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    border-color: var(--sky-blue);
+    background: linear-gradient(135deg, #FFFFFF, #E6F3FF);
+    color: var(--sky-blue);
+    font-weight: 600;
+}
+.btn-primary:hover {
+    box-shadow: 0 10px 24px rgba(26,156,255,0.3);
+}
+</style>
+</head>
+
+<body>
+<div class="app-shell">
+
+    <!-- HEADER -->
+    <header class="app-header">
+
+        <!-- V badge top-centre -->
+        <div class="v-badge-wrapper">
+            <div class="v-badge">
+                <img src="../assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" alt="VERITAS logo">
+            </div>
+        </div>
+
+        <!-- Row: WIJ left, title/subtitle, role/help right -->
+        <div class="app-header-row">
+            <div class="header-left">
+                <div class="wij-logo">
+                    <img src="../assets/logos/WIJ-logo-150x150.webp" alt="WIJ logo">
+                </div>
+                <div class="brand-text">
+                    <div class="title">VERITAS IN THE FIELD</div>
+                    <div class="subtitle">Immutable truth from the field</div>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="role-pill">Field Operator</div>
+                <div class="header-actions">
+                    <button class="help-button" id="helpButton">Help</button>
+                    <button class="support-button" id="supportButton">Support</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <button class="nav-item" data-nav="home">Home</button>
+            <button class="nav-item active" data-nav="my-work">My Work</button>
+            <button class="nav-item" data-nav="new-work">New Work Order</button>
+            <button class="nav-item" data-nav="edit-work">Edit Work Order</button>
+            <button class="nav-item" data-nav="evidence">Evidence</button>
+            <button class="nav-item" data-nav="help">Help</button>
+            <button class="nav-item" data-nav="support">Support</button>
+        </nav>
+
+        <!-- Notification -->
+        <div class="notification-banner" id="notificationBanner">
+            <span id="notificationText">New work schedule received.</span>
+            <button id="notificationDismiss">Dismiss</button>
+        </div>
+    </header>
+
+    <!-- MAIN GRID -->
+    <main class="main-grid">
+
+        <!-- LEFT: WORK LIST -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">My Work Today</div>
+                <button class="refresh-button" id="refreshButton">Refresh</button>
+            </div>
+            <div id="workList"></div>
+        </section>
+
+        <!-- RIGHT: TASK DETAILS -->
+        <section class="panel">
+            <div class="panel-header">
+                <div class="panel-title">Task Details</div>
+            </div>
+
+            <div class="task-section">
+                <div class="task-section-title">Details</div>
+                <div id="taskDetails">Select a task from the left.</div>
+            </div>
+
+            <div class="task-section">
+                <div class="task-section-title">Status</div>
+                <select id="taskStatus">
+                    <option value="open">Open</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+            <div class="task-section">
+                <div class="task-section-title">Notes</div>
+                <textarea id="taskNotes" placeholder="Short, factual notes…"></textarea>
+            </div>
+
+            <div class="button-row">
+                <button class="btn" id="btnExport">Export</button>
+                <button class="btn btn-primary" id="btnSubmit">Submit</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+const tasks = [
+    { id: 1, title: "Burst main – High Street", details: "Assess damage, isolate section, and support repair crew." },
+    { id: 2, title: "Low pressure – Oakfield Estate", details: "Check valves, PRV settings, and confirm telemetry on site." },
+    { id: 3, title: "Valve exercise – Reservoir Road", details: "Routine valve exercise and condition check." }
+];
+
+let nextTaskId = 4;
+
+const workList = document.getElementById("workList");
+const taskDetails = document.getElementById("taskDetails");
+const taskStatus = document.getElementById("taskStatus");
+const taskNotes = document.getElementById("taskNotes");
+const helpButton = document.getElementById("helpButton");
+const supportButton = document.getElementById("supportButton");
+const refreshButton = document.getElementById("refreshButton");
+const notificationBanner = document.getElementById("notificationBanner");
+const notificationText = document.getElementById("notificationText");
+const notificationDismiss = document.getElementById("notificationDismiss");
+
+let activeTask = null;
+
+function renderTasks() {
+    workList.innerHTML = "";
+    tasks.forEach(task => {
+        const div = document.createElement("div");
+        div.className = "work-item";
+        div.dataset.taskId = task.id;
+        div.innerHTML = `
+            <div class="work-title">${task.title}</div>
+            <div class="work-meta">Tap to view details</div>
+        `;
+        div.onclick = () => selectTask(task, div);
+        workList.appendChild(div);
+    });
+}
+
+function selectTask(task, element) {
+    activeTask = task;
+    document.querySelectorAll(".work-item").forEach(i => i.classList.remove("active"));
+    element.classList.add("active");
+    taskDetails.textContent = task.details;
+}
+
+document.getElementById("btnSubmit").onclick = () => {
+    if (!activeTask) {
+        alert("Select a task first.");
+        return;
+    }
+
+    const payload = {
+        task: activeTask,
+        status: taskStatus.value,
+        notes: taskNotes.value
+    };
+
+    console.log("SUBMIT (demo):", payload);
+    alert("Update submitted (demo).");
+};
+
+document.getElementById("btnExport").onclick = () => {
+    if (!activeTask) {
+        alert("Select a task first.");
+        return;

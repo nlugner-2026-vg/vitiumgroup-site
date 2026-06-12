@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vitium Veritas™ Admin Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5.3.3 (same as dashboard.html for consistency) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --vv-bg: #0b1628;
+      --vv-surface: #0b1628;
+      --vv-border-subtle: #1f2937;
+      --vv-text-main: #e5e7eb;
+      --vv-text-muted: #9ca3af;
+
+      /* Admin specific colours */
+      --vv-admin-nav: #ff8000;      /* McLaren Orange */
+      --vv-admin-nav-hover: #e67300;/* Darker McLaren Orange for hover and active states */
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--vv-bg);
+      color: var(--vv-text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vv-page {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: var(--vv-bg);
+    }
+
+    /* HEADER (brand + operator ID) */
+    .vv-header-top {
+      background: #7A7A7A;
+      text-align: center;
+      padding: 10px 0 6px;
+      border-bottom: 1px solid var(--vv-border-subtle);
+    }
+
+    .vv-header-top .vv-brand {
+      display: block;
+      color: #ffffff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+
+    .vv-header-top .vv-operator-id {
+      display: block;
+      color: #60a5fa;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    /* NAV BAR (McLaren Orange for admin) */
+    .vv-navbar {
+      background: var(--vv-admin-nav);
+      text-align: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--vv-border-subtle);
+    }
+
+    .vv-navbar .nav-link {
+      color: #ffffff !important;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 10px;
+    }
+
+    .vv-navbar .nav-link:hover,
+    .vv-navbar .nav-link:focus {
+      color: #ffffff !important;
+      text-decoration: underline;
+      background-color: transparent;
+    }
+
+    .vv-navbar .nav-link.active {
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .navbar-toggler-icon {
+      background-image: none;
+      width: 20px;
+      height: 2px;
+      box-shadow: 0 6px 0 0 #e5e7eb, 0 -6px 0 0 #e5e7eb;
+      background-color: #e5e7eb;
+    }
+
+    /* HEADER ROW (logos) */
+    .vv-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 200px;
+      width: 100%;
+      padding: 16px 0;
+      background: var(--vv-surface);
+    }
+
+    .vv-header-wij,
+    .vv-header-veritas {
+      height: 100px;
+    }
+
+    /* MAIN LAYOUT */
+    .vv-main {
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px 12px 40px;
+      position: relative;
+    }
+
+    /* ACCESS CARD (PIN unlock, same geometry as dashboard.html) */
+    .vv-card {
+      width: 100%;
+      max-width: 360px;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #cccccc;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      padding: 20px 18px;
+      color: #111111;
+    }
+
+    .vv-card-header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .vv-card-header p {
+      font-size: 0.8rem;
+      color: #333333;
+      margin: 0;
+    }
+
+    .vv-input {
+      width: 100%;
+      border: 1px solid #aaaaaa;
+      border-radius: 4px;
+      padding: 6px 8px;
+      margin: 10px 0 12px;
+      font-size: 0.9rem;
+    }
+
+    /* KEYPAD */
+    .vv-keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .vv-keypad button {
+      background: #0b3a6a;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 0;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .vv-keypad button:hover {
+      background: #0e4a8a;
+    }
+
+    .vv-btn-unlock {
+      width: 100%;
+      background: #333333;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 0;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .vv-btn-unlock:hover {
+      background: #222222;
+    }
+
+    /* ADMIN DASHBOARD LAYOUT (shown after successful PIN verification) */
+    .vv-admin-container {
+      display: none; /* Hidden until PIN is verified */
+      width: 100%;
+      max-width: 1200px;
+      color: var(--vv-text-main);
+    }
+
+    .vv-admin-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 2fr);
+      gap: 16px;
+    }
+
+    .vv-admin-section {
+      background: #111827;
+      border-radius: 8px;
+      border: 1px solid #1f2937;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .vv-admin-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .vv-admin-section-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .vv-admin-section-subtitle {
+      font-size: 0.75rem;
+      color: var(--vv-text-muted);
+    }
+
+    .vv-admin-badge {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+      color: #d1d5db;
+    }
+
+    .vv-admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 8px;
+    }
+
+    .vv-admin-table th,
+    .vv-admin-table td {
+      padding: 6px 4px;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .vv-admin-table th {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+    }
+
+    .vv-admin-pill {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .vv-admin-pill-role-admin {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fecaca;
+    }
+
+    .vv-admin-pill-role-office {
+      background: rgba(59, 130, 246, 0.15);
+      color: #bfdbfe;
+    }
+
+    .vv-admin-pill-status-active {
+      background: rgba(34, 197, 94, 0.15);
+      color: #bbf7d0;
+    }
+
+    .vv-admin-pill-status-locked {
+      background: rgba(249, 115, 22, 0.15);
+      color: #fed7aa;
+    }
+
+    .vv-admin-meta {
+      font-size: 0.75rem;
+      color: var(--vv-text-muted);
+      margin-top: 4px;
+    }
+
+    .vv-admin-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .vv-admin-btn {
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+      background: #111827;
+      color: #e5e7eb;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+    }
+
+    .vv-admin-btn:hover {
+      background: #1f2937;
+    }
+
+    .vv-admin-highlight {
+      color: #fbbf24;
+      font-weight: 500;
+    }
+
+    /* COPILOT ASSISTANCE PANEL (admin only, right side) */
+    .vv-copilot-toggle {
+      position: fixed;
+      right: 16px;
+      bottom: 80px;
+      z-index: 1040;
+    }
+
+    .vv-copilot-toggle button {
+      border-radius: 999px;
+      border: none;
+      background: var(--vv-admin-nav);
+      color: #111827;
+      font-size: 0.8rem;
+      padding: 8px 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      cursor: pointer;
+    }
+
+    .vv-copilot-toggle button:hover {
+      background: var(--vv-admin-nav-hover);
+    }
+
+    .vv-copilot-panel {
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 340px;
+      max-width: 80%;
+      background: #020617;
+      border-left: 1px solid #1f2937;
+      box-shadow: -4px 0 16px rgba(0,0,0,0.7);
+      transform: translateX(100%);
+      transition: transform 0.25s ease-out;
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vv-copilot-panel.open {
+      transform: translateX(0);
+    }
+
+    .vv-copilot-header {
+      padding: 12px 14px;
+      border-bottom: 1px solid #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vv-copilot-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .vv-copilot-subtitle {
+      font-size: 0.7rem;
+      color: var(--vv-text-muted);
+    }
+
+    .vv-copilot-close-btn {
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .vv-copilot-body {
+      flex: 1 1 auto;
+      padding: 10px 12px;
+      overflow-y: auto;
+      font-size: 0.8rem;
+      color: #e5e7eb;
+    }
+
+    .vv-copilot-footer {
+      padding: 8px 12px 10px;
+      border-top: 1px solid #1f2937;
+    }
+
+    .vv-copilot-input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      padding: 6px 10px;
+    }
+
+    .vv-copilot-input::placeholder {
+      color: #6b7280;
+    }
+
+    .vv-copilot-hint {
+      font-size: 0.7rem;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .vv-copilot-chip {
+      display: inline-block;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      margin: 2px 4px 2px 0;
+      cursor: pointer;
+      color: #d1d5db;
+    }
+
+    .vv-copilot-chip:hover {
+      background: #111827;
+    }
+
+    /* FOOTER */
+    .vv-footer {
+      flex-shrink: 0;
+      padding: 10px 16px 14px;
+      font-size: 0.7rem;
+      color: var(--vv-text-muted);
+      text-align: center;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      background: #0b1628;
+    }
+
+    /* RESPONSIVE ADJUSTMENTS */
+    @media (max-width: 768px) {
+      .vv-header-row {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .vv-admin-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="vv-page">
+
+  <!-- HEADER TOP -->
+  <div class="vv-header-top">
+    <span class="vv-brand">Vitium Veritas™</span>
+    <span class="vv-operator-id">Operator ID: OP 2741 · Admin Console</span>
+  </div>
+
+  <!-- NAV BAR (McLaren Orange) -->
+  <nav class="navbar navbar-expand-md vv-navbar">
+    <div class="container-fluid justify-content-center">
+      <button class="navbar-toggler text-light border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#vvNavbarAdmin">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="vvNavbarAdmin">
+        <ul class="navbar-nav mb-2 mb-md-0">
+          <!-- Admin scoped navigation items; links can later be wired to dedicated admin pages if required -->
+          <li class="nav-item"><a class="nav-link active" href="./dashboard_admin.html">Admin Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vv-admin-users">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vv-admin-system">System</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vv-admin-audit">Audit</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vv-admin-reports">Reports</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER ROW (logos) -->
+  <div class="vv-header-row">
+    <img src="assets/logos/WIJ-logo-150x150.webp" alt="Water Industry Journal Logo" class="vv-header-wij">
+    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" alt="Vitium Veritas Emblem" class="vv-header-veritas">
+  </div>
+
+  <!-- MAIN -->
+  <main class="vv-main">
+
+    <!-- PIN UNLOCK CARD (same pattern as dashboard.html, but for admin access) -->
+    <div class="vv-card" id="vv-admin-pin-card">
+      <div class="vv-card-header">
+        <p>Enter your administrator PIN to unlock the Vitium Veritas™ Admin Console</p>
+      </div>
+
+      <input
+        type="password"
+        id="vv-pin-input"
+        class="vv-input"
+        placeholder="Enter administrator PIN"
+        maxlength="6"
+        inputmode="numeric"
+        aria-label="Administrator PIN input">
+
+      <div class="vv-keypad">
+        <button type="button" data-key="1">1</button>
+        <button type="button" data-key="2">2</button>
+        <button type="button" data-key="3">3</button>
+
+        <button type="button" data-key="4">4</button>
+        <button type="button" data-key="5">5</button>
+        <button type="button" data-key="6">6</button>
+
+        <button type="button" data-key="7">7</button>
+        <button type="button" data-key="8">8</button>
+        <button type="button" data-key="9">9</button>
+
+        <button type="button" data-key="clear">C</button>
+        <button type="button" data-key="0">0</button>
+        <button type="button" data-key="back">←</button>
+      </div>
+
+      <button class="vv-btn-unlock" id="vv-unlock-btn">✓ Unlock Admin Console</button>
+    </div>
+
+    <!-- ADMIN DASHBOARD CONTENT (hidden until PIN is verified) -->
+    <section class="vv-admin-container" id="vv-admin-dashboard">
+
+      <div class="mb-3">
+        <div class="vv-admin-section-header">
+          <div>
+            <div class="vv-admin-section-title">Vitium Veritas™ Admin Overview</div>
+            <div class="vv-admin-section-subtitle">
+              Governance, configuration, and evidence grade audit controls for the Vitium Veritas™ platform.
+            </div>
+          </div>
+          <span class="vv-admin-badge">Admin Role · Zero Trust</span>
+        </div>
+        <div class="vv-admin-meta">
+          All actions performed in this console are recorded as part of the Vitium Veritas™ evidence trail.
+        </div>
+      </div>
+
+      <div class="vv-admin-grid">
+
+        <!-- USER MANAGEMENT -->
+        <section class="vv-admin-section" id="vv-admin-users">
+          <div class="vv-admin-section-header">
+            <div>
+              <div class="vv-admin-section-title">User Management</div>
+              <div class="vv-admin-section-subtitle">
+                Create, update, and deactivate operator accounts and assign roles.
+              </div>
+            </div>
+            <span class="vv-admin-badge">Access Control</span>
+          </div>
+
+          <table class="vv-admin-table" aria-label="User management table">
+            <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Role</th>
+              <th scope="col">Status</th>
+              <th scope="col">Last Activity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>OP 2741</td>
+              <td><span class="vv-admin-pill vv-admin-pill-role-admin">Admin</span></td>
+              <td><span class="vv-admin-pill vv-admin-pill-status-active">Active</span></td>
+              <td>Today · 09:42</td>
+            </tr>
+            <tr>
+              <td>OP 3112</td>
+              <td><span class="vv-admin-pill vv-admin-pill-role-office">Office</span></td>
+              <td><span class="vv-admin-pill vv-admin-pill-status-active">Active</span></td>
+              <td>Today · 08:17</td>
+            </tr>
+            <tr>
+              <td>OP 1984</td>
+              <td><span class="vv-admin-pill vv-admin-pill-role-office">Office</span></td>
+              <td><span class="vv-admin-pill vv-admin-pill-status-locked">Locked</span></td>
+              <td>Yesterday · 17:03</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="vv-admin-actions">
+            <button type="button" class="vv-admin-btn">Add User</button>
+            <button type="button" class="vv-admin-btn">Edit Selected</button>
+            <button type="button" class="vv-admin-btn">Lock Account</button>
+            <button type="button" class="vv-admin-btn">Export Users</button>
+          </div>
+
+          <div class="vv-admin-meta">
+            Role assignments and account status changes are written to the Vitium Veritas™ audit log.
+          </div>
+        </section>
+
+        <!-- SYSTEM CONFIGURATION -->
+        <section class="vv-admin-section" id="vv-admin-system">
+          <div class="vv-admin-section-header">
+            <div>
+              <div class="vv-admin-section-title">System Configuration</div>
+              <div class="vv-admin-section-subtitle">
+                Manage integrations, application programming interface keys, and data retention policies.
+              </div>
+            </div>
+            <span class="vv-admin-badge">Configuration</span>
+          </div>
+
+          <table class="vv-admin-table" aria-label="System configuration table">
+            <thead>
+            <tr>
+              <th scope="col">Setting</th>
+              <th scope="col">Current Value</th>
+              <th scope="col">Scope</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Evidence Retention</td>
+              <td>7 years (regulated)</td>
+              <td>Global</td>
+            </tr>
+            <tr>
+              <td>API Key Rotation</td>
+              <td>Every 90 days</td>
+              <td>Integrations</td>
+            </tr>
+            <tr>
+              <td>Time Synchronisation</td>
+              <td>Network Time Protocol locked</td>
+              <td>All Sites</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="vv-admin-actions">
+            <button type="button" class="vv-admin-btn">Edit Configuration</button>
+            <button type="button" class="vv-admin-btn">Rotate API Keys</button>
+            <button type="button" class="vv-admin-btn">Export Settings</button>
+          </div>
+
+          <div class="vv-admin-meta">
+            Configuration changes are versioned and can be reconstructed for regulatory review.
+          </div>
+        </section>
+
+        <!-- AUDIT AND LOGS -->
+        <section class="vv-admin-section" id="vv-admin-audit">
+          <div class="vv-admin-section-header">
+            <div>
+              <div class="vv-admin-section-title">Audit & Logs</div>
+              <div class="vv-admin-section-subtitle">
+                Review access attempts, configuration changes, and evidence grade event trails.
+              </div>
+            </div>
+            <span class="vv-admin-badge">Audit</span>
+          </div>
+
+          <table class="vv-admin-table" aria-label="Audit log table">
+            <thead>
+            <tr>
+              <th scope="col">Timestamp</th>
+              <th scope="col">Actor</th>
+              <th scope="col">Event</th>
+              <th scope="col">Outcome</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Today · 09:42</td>
+              <td>OP 2741</td>
+              <td>Admin console unlock</td>
+              <td><span class="vv-admin-pill vv-admin-pill-status-active">Success</span></td>
+            </tr>
+            <tr>
+              <td>Today · 09:15</td>
+              <td>OP 1984</td>
+              <td>Failed login attempts (x3)</td>
+              <td><span class="vv-admin-pill vv-admin-pill-status-locked">Account Locked</span></td>
+            </tr>
+            <tr>
+              <td>Yesterday · 17:03</td>
+              <td>OP 3112</td>
+              <td>Evidence retention policy viewed</td>
+              <td><span class="vv-admin-pill vv-admin-pill-status-active">Recorded</span></td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="vv-admin-actions">
+            <button type="button" class="vv-admin-btn">Filter Events</button>
+            <button type="button" class="vv-admin-btn">Export Audit Log</button>
+            <button type="button" class="vv-admin-btn">View Evidence Archive</button>
+          </div>
+
+          <div class="vv-admin-meta">
+            This log is part of the Vitium Veritas™ evidence archive and is immutable by design.
+          </div>
+        </section>
+
+        <!-- REPORTS AND ANALYTICS -->
+        <section class="vv-admin-section" id="vv-admin-reports">
+          <div class="vv-admin-section-header">
+            <div>
+              <div class="vv-admin-section-title">Reports & Analytics</div>
+              <div class="vv-admin-section-subtitle">
+                Generate compliance, performance, and access pattern reports for stakeholders.
+              </div>
+            </div>
+            <span class="vv-admin-badge">Reporting</span>
+          </div>
+
+          <table class="vv-admin-table" aria-label="Reports table">
+            <thead>
+            <tr>
+              <th scope="col">Report</th>
+              <th scope="col">Scope</th>
+              <th scope="col">Last Generated</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Access Attempts Summary</td>
+              <td>All Operators</td>
+              <td>Today · 08:30</td>
+            </tr>
+            <tr>
+              <td>Evidence Capture Health</td>
+              <td>All Sites</td>
+              <td>Yesterday · 16:10</td>
+            </tr>
+            <tr>
+              <td>Configuration Change Log</td>
+              <td>Admin Actions</td>
+              <td>Yesterday · 15:45</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="vv-admin-actions">
+            <button type="button" class="vv-admin-btn">Generate Report</button>
+            <button type="button" class="vv-admin-btn">Schedule Reports</button>
+            <button type="button" class="vv-admin-btn">Export as PDF</button>
+          </div>
+
+          <div class="vv-admin-meta">
+            Generated reports can be shared with regulators, partners, and internal governance boards.
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- COPILOT ASSISTANCE TOGGLE (admin only, appears only after unlock) -->
+    <div class="vv-copilot-toggle" id="vv-copilot-toggle" style="display:none;">
+      <button type="button" id="vv-copilot-open-btn">
+        Copilot · Admin
+      </button>
+    </div>
+
+    <!-- COPILOT ASSISTANCE PANEL (admin only) -->
+    <aside class="vv-copilot-panel" id="vv-copilot-panel" aria-label="Copilot assistance panel">
+      <div class="vv-copilot-header">
+        <div>
+          <div class="vv-copilot-title">Copilot Assistance</div>
+          <div class="vv-copilot-subtitle">
+            Contextual guidance for configuration, audit, and governance tasks.
+          </div>
+        </div>
+        <button type="button" class="vv-copilot-close-btn" id="vv-copilot-close-btn" aria-label="Close Copilot panel">×</button>
+      </div>
+
+      <div class="vv-copilot-body" id="vv-copilot-body">
+        <p>
+          This panel is reserved for administrator level Copilot assistance. In a live deployment, this would connect
+          to a secure Copilot endpoint with full audit logging and strict role based access control.
+        </p>
+        <p class="vv-admin-meta">
+          Example prompts:
+        </p>
+        <div>
+          <span class="vv-copilot-chip">Explain the current evidence retention policy</span>
+          <span class="vv-copilot-chip">Summarise the last 24 hours of access attempts</span>
+          <span class="vv-copilot-chip">List configuration changes made this week</span>
+        </div>
+      </div>
+
+      <div class="vv-copilot-footer">
+        <input
+          type="text"
+          class="vv-copilot-input"
+          id="vv-copilot-input"
+          placeholder="Ask Copilot about configuration, audit, or users…">
+        <div class="vv-copilot-hint">
+          In this demo, Copilot responses are not live. In production, all interactions would be recorded as evidence.
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="vv-footer">
+    Vitium Veritas™ · Evidence grade digital assurance · All admin actions and access attempts are recorded.
+  </footer>
+
+</div>
+
+<!-- Bootstrap bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/*
+  Vitium Veritas™ Admin Console Script
+  -----------------------------------
+  This script provides:
+  1. Administrator PIN verification for unlocking the admin console.
+  2. Keypad interaction for numeric input.
+  3. Conditional display of the admin dashboard after successful unlock.
+  4. Copilot assistance panel toggle behaviour (demo only, no live backend).
+*/
+
+(function () {
+  // Elements related to PIN unlock
+  const pinInput = document.getElementById('vv-pin-input');
+  const keypadButtons = document.querySelectorAll('.vv-keypad button');
+  const unlockButton = document.getElementById('vv-unlock-btn');
+  const adminPinCard = document.getElementById('vv-admin-pin-card');
+  const adminDashboard = document.getElementById('vv-admin-dashboard');
+
+  // Elements related to Copilot assistance
+  const copilotToggleContainer = document.getElementById('vv-copilot-toggle');
+  const copilotOpenButton = document.getElementById('vv-copilot-open-btn');
+  const copilotPanel = document.getElementById('vv-copilot-panel');
+  const copilotCloseButton = document.getElementById('vv-copilot-close-btn');
+  const copilotChips = document.querySelectorAll('.vv-copilot-chip');
+  const copilotInput = document.getElementById('vv-copilot-input');
+
+  /**
+   * Append a digit to the PIN input, respecting the maximum length.
+   * @param {string} digit
+   */
+  function appendDigit(digit) {
+    if (pinInput.value.length < pinInput.maxLength) {
+      pinInput.value += digit;
+    }
+  }
+
+  /**
+   * Remove the last character from the PIN input.
+   */
+  function backspace() {
+    pinInput.value = pinInput.value.slice(0, -1);
+  }
+
+  /**
+   * Clear the PIN input field.
+   */
+  function clearInput() {
+    pinInput.value = '';
+  }
+
+  /**
+   * Attempt to unlock the admin console using the current PIN value.
+   */
+  function unlock() {
+    const pin = pinInput.value;
+    verifyPIN(pin);
+  }
+
+  /**
+   * Verify the provided PIN.
+   * In this demo, the PIN is hard coded. In production, this must be validated server side.
+   * @param {string} pin
+   */
+  function verifyPIN(pin) {
+    // Demo PIN: 1937 (same as dashboard.html for consistency in the demo environment)
+    if (pin === '1937') {
+      // Hide the PIN card and reveal the admin dashboard
+      adminPinCard.style.display = 'none';
+      adminDashboard.style.display = 'block';
+
+      // Show Copilot toggle for admin only assistance
+      copilotToggleContainer.style.display = 'block';
+    } else {
+      alert('Invalid administrator PIN');
+    }
+  }
+
+  // Attach keypad button behaviour
+  keypadButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const key = btn.dataset.key;
+
+      if (key === 'back') {
+        backspace();
+        return;
+      }
+      if (key === 'clear') {
+        clearInput();
+        return;
+      }
+
+      appendDigit(key);
+    });
+  });
+
+  // Attach unlock button behaviour
+  unlockButton.addEventListener('click', function () {
+    unlock();
+  });
+
+  // Allow Enter key to trigger unlock
+  pinInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      unlock();
+    }
+  });
+
+  /**
+   * Open the Copilot assistance panel.
+   */
+  function openCopilotPanel() {
+    copilotPanel.classList.add('open');
+  }
+
+  /**
+   * Close the Copilot assistance panel.
+   */
+  function closeCopilotPanel() {
+    copilotPanel.classList.remove('open');
+  }
+
+  // Copilot toggle button behaviour
+  copilotOpenButton.addEventListener('click', function () {
+    openCopilotPanel();
+  });
+
+  // Copilot close button behaviour
+  copilotCloseButton.addEventListener('click', function () {
+    closeCopilotPanel();
+  });
+
+  // Allow clicking on example chips to populate the Copilot input
+  copilotChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      copilotInput.value = chip.textContent.trim();
+      copilotInput.focus();
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
