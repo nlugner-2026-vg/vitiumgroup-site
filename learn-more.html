@@ -3,74 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitium Group</title>
-    <link rel="stylesheet" href="frontend/styles.css">
+    <title>Learn More – Vitium Group</title>
+
+    <style>
+        /* === GLOBAL PAGE SETTINGS === */
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33;
+            color: #ffffff;
+            text-align: center;
+            padding-bottom: 70px; /* prevents footer overlap */
+        }
+
+        /* === GREY HEADER BAR === */
+        header {
+            background-color: #d9d9d9;
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        /* === ORANGE NAV BAR === */
+        nav {
+            background-color: #f57c00;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        /* === VERITAS EMBLEM === */
+        .logo-veritas {
+            width: 100px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* === SECTION HEADERS === */
+        h1, h2 {
+            color: #f57c00;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 8px;
+        }
+
+        /* === ORANGE DIVIDER === */
+        .divider {
+            width: 750px;
+            height: 1px;
+            background-color: #f57c00;
+            margin: 0 auto 15px auto;
+        }
+
+        /* === TEXT BLOCK === */
+        .text-block {
+            font-size: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #dcdcdc;
+        }
+
+        /* === VERTICAL CARDS === */
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #13294b;
+            border: 1px solid #f57c00;
+            border-radius: 6px;
+            width: 260px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .card h3 {
+            color: #f57c00;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .card p {
+            color: #dcdcdc;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* === CONTACT FORM === */
+        form {
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #f57c00;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #f57c00;
+            border-radius: 4px;
+            background-color: #13294b;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .btn-submit {
+            display: inline-block;
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #0090dd;
+            transform: translateY(-2px);
+        }
+
+        /* === FOOTER === */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f57c00;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- HEADER -->
-    <header class="vg-header">
-        <h1>Vitium Group</h1>
+    <header>
+        VITIUM GROUP
     </header>
 
-    <!-- NAV BAR -->
-    <nav class="vg-nav">
-        <a href="index.html" class="active">Home</a>
-        <a href="learn-more.html">Learn More</a>
-        <a href="contact.html">Contact</a>
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="/index.html">Home</a>
+        <a href="/frontend/about.html">About</a>
+        <a href="/frontend/operations.html">Operations</a>
+        <a href="/frontend/contact.html">Contact</a>
+        <a href="/frontend/console.html">System Access</a>
     </nav>
 
-    <!-- BRAND BLOCK -->
-    <section class="brand-block">
-        <img src="assets/veritas-emblem.png" alt="VERITAS Emblem" class="veritas-logo">
-        <h2>VERITAS</h2>
-        <p>Strategic Advisory & Signals</p>
-    </section>
+    <!-- MAIN CONTENT -->
+    <div class="container">
 
-    <!-- MISSION -->
-    <section class="content-section">
-        <h2>Mission</h2>
-        <p>To deliver operational truth, resilience, and clarity across critical sectors.</p>
-    </section>
+        <!-- VERITAS EMBLEM -->
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
-    <!-- VISION -->
-    <section class="content-section">
-        <h2>Vision</h2>
-        <p>To become the leading authority in evidence‑driven strategic advisory and infrastructure resilience.</p>
-    </section>
+        <!-- PAGE TITLE -->
+        <h1>Learn More</h1>
+        <div class="divider"></div>
 
-    <!-- WHY VERITAS EXISTS -->
-    <section class="content-section">
-        <h2>Why VERITAS Exists</h2>
-        <p>Because organisations need clarity, truth, and resilience in an increasingly complex world.</p>
-    </section>
+        <p class="text-block">
+            Explore the core verticals of Vitium Group — spanning resilience, infrastructure, governance, emergency services, and advanced operational intelligence.
+        </p>
 
-    <!-- WHAT VERITAS DOES -->
-    <section class="content-section">
-        <h2>What VERITAS Does</h2>
-        <p>We provide strategic advisory, operational assurance, and resilience engineering across multiple verticals.</p>
-    </section>
+        <!-- VERTICAL CARDS -->
+        <div class="cards">
 
-    <!-- CORE VALUES -->
-    <section class="content-section">
-        <h2>Core Values</h2>
-        <ul>
-            <li>Integrity</li>
-            <li>Evidence‑Driven</li>
-            <li>Operational Excellence</li>
-            <li>Resilience</li>
-        </ul>
-    </section>
+            <div class="card">
+                <h3>VERITAS – Strategic Advisory & Signals</h3>
+                <p>Truth‑driven intelligence, evidence governance, and operational clarity for complex environments.</p>
+            </div>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <a href="learn-more.html" class="btn-primary">Explore Our Work</a>
-    </section>
+            <div class="card">
+                <h3>IRaaS – Infrastructure Resilience</h3>
+                <p>End‑to‑end resilience engineering for critical infrastructure, utilities, and operational systems.</p>
+            </div>
+
+            <div class="card">
+                <h3>IRaaS‑WATER</h3>
+                <p>Water harvesting, storage, treatment, distribution, and emergency supply resilience.</p>
+            </div>
+
+            <div class="card">
+                <h3>Modular Housing / Assembly</h3>
+                <p>Rapid‑deployment modular systems for housing, emergency accommodation, and field operations.</p>
+            </div>
+
+            <div class="card">
+                <h3>SMR – Small Modular Reactors</h3>
+                <p>Next‑generation nuclear resilience, modelling, feasibility, and operational readiness.</p>
+            </div>
+
+            <div class="card">
+                <h3>Rail / Signalling / Transport</h3>
+                <p>Critical transport infrastructure, signalling integrity, and operational reliability.</p>
+            </div>
+
+            <div class="card">
+                <h3>Mining / Extraction / Heavy Industry</h3>
+                <p>High‑risk industrial environments requiring precision, resilience, and operational oversight.</p>
+            </div>
+
+            <div class="card">
+                <h3>No10 / Governance / Policy</h3>
+                <p>Strategic advisory for government, policy formation, and national‑level resilience.</p>
+            </div>
+
+            <div class="card">
+                <h3>NHS – Health Infrastructure</h3>
+                <p>Resilience, operational integrity, and infrastructure support for healthcare systems.</p>
+            </div>
+
+            <div class="card">
+                <h3>Emergency Services</h3>
+                <p>Police, Fire, and Ambulance operational resilience, evidence systems, and field integrity.</p>
+            </div>
+
+            <div class="card">
+                <h3>FIREWATCH</h3>
+                <p>Moorland, wildfire, and grid‑edge monitoring with real‑time evidence capture.</p>
+            </div>
+
+            <div class="card">
+                <h3>Other</h3>
+                <p>For requirements outside these verticals, contact us to discuss your specific needs.</p>
+            </div>
+
+        </div>
+
+        <!-- CONTACT FORM -->
+        <h2>Contact Us</h2>
+        <div class="divider"></div>
+
+        <form>
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="Your name">
+
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="you@example.com">
+
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="How can we help?"></textarea>
+
+            <button class="btn-submit" type="submit">Send Message</button>
+        </form>
+
+    </div>
 
     <!-- FOOTER -->
-    <footer class="vg-footer">
-        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    <footer>
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
     </footer>
 
 </body>
