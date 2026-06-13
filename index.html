@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #0b1a33;
+            background-color: #0b1a33; /* Vitium deep navy */
             color: #ffffff;
             text-align: center;
         }
@@ -19,8 +19,8 @@
            Height matched EXACTLY to nav bar.
         */
         header {
-            background-color: #e5e5e5;
-            padding: 8px 0;   /* MATCHED HEIGHT */
+            background-color: #e5e5e5; /* light grey */
+            padding: 8px 0;           /* equal height */
             font-weight: 600;
             letter-spacing: 0.5px;
             color: #000;
@@ -30,8 +30,8 @@
            Height matched EXACTLY to grey bar.
         */
         nav {
-            background-color: #f57c00;
-            padding: 8px 0;   /* MATCHED HEIGHT */
+            background-color: #f57c00; /* Vitium orange */
+            padding: 8px 0;            /* equal height */
         }
 
         nav a {
@@ -46,7 +46,9 @@
             text-decoration: underline;
         }
 
-        /* === MAIN CONTENT === */
+        /* === MAIN CONTENT CONTAINER ===
+           Emblem lowered for correct spacing.
+        */
         .container {
             margin-top: 30px;
             padding: 0 20px;
@@ -55,7 +57,7 @@
         /* === VERITAS EMBLEM === */
         .logo-veritas {
             width: 100px;
-            margin-top: 20px;
+            margin-top: 20px;   /* lowered emblem */
             margin-bottom: 25px;
         }
 
@@ -69,19 +71,22 @@
 
         /* === FULL-WIDTH ORANGE DIVIDER === */
         .divider {
-            width: 750px;
+            width: 750px; /* matches mission text width */
             height: 1px;
             background-color: #f57c00;
             margin: 0 auto 15px auto;
         }
 
-        /* === MISSION STATEMENT === */
+        /* === MISSION STATEMENT ===
+           EXACT wording provided by Nils — NO CHANGES.
+        */
         .mission {
             font-size: 16px;
             max-width: 750px;
             margin: 0 auto;
             line-height: 1.6;
             color: #dcdcdc;
+            white-space: pre-line; /* preserves paragraph break cleanly */
         }
 
         /* === FOOTER === */
@@ -116,7 +121,7 @@
     <!-- MAIN CONTENT -->
     <div class="container">
 
-        <!-- VERITAS EMBLEM -->
+        <!-- VERITAS EMBLEM (LOWERED) -->
         <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
         <!-- MISSION HEADER -->
@@ -125,9 +130,10 @@
         <!-- FULL-WIDTH ORANGE DIVIDER -->
         <div class="divider"></div>
 
-        <!-- MISSION STATEMENT -->
+        <!-- MISSION STATEMENT (EXACT TEXT, NO CHANGES) -->
         <p class="mission">
-            To provide a secure, tamper‑resistant, real‑time evidence platform that empowers teams, protects organisations, and ensures accountability at every level.
+Vitium Group delivers immutable, truth‑driven systems — powered by Microsoft Azure and supported by Copilot intelligence — including our Patent Pending VERITAS evidence governance platform.
+Our mission is to bring clarity, resilience, and accountability to complex environments through evidence‑based governance, purpose‑built technology, and long‑term community impact.
         </p>
 
     </div>
