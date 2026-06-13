@@ -6,71 +6,60 @@
     <title>Vitium Group</title>
 
     <style>
-        /* === GLOBAL PAGE SETTINGS ===
-           Deep navy background, white text, centered layout.
-           Font: Segoe UI for consistency with Microsoft ecosystem.
-        */
+        /* === GLOBAL PAGE SETTINGS === */
         body {
             margin: 0;
             font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #0b1a33; /* Vitium deep navy */
+            background-color: #0b1a33;
             color: #ffffff;
             text-align: center;
         }
 
-        /* === HEADER BAR ===
-           Orange bar only (no grey above).
-           Displays company name.
+        /* === GREY BAR ABOVE ORANGE MENU BAR ===
+           Height matched EXACTLY to nav bar.
         */
         header {
-            background-color: #f57c00; /* Vitium orange */
-            padding: 12px 0;
+            background-color: #e5e5e5;
+            padding: 8px 0;   /* MATCHED HEIGHT */
             font-weight: 600;
             letter-spacing: 0.5px;
+            color: #000;
         }
 
-        /* === NAVIGATION BAR ===
-           Same orange tone for continuity.
-           Simple horizontal links.
+        /* === ORANGE NAVIGATION BAR ===
+           Height matched EXACTLY to grey bar.
         */
         nav {
             background-color: #f57c00;
-            padding: 8px 0;
+            padding: 8px 0;   /* MATCHED HEIGHT */
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 20px;
+            margin: 0 18px;
             font-weight: 500;
+            font-size: 15px;
         }
 
         nav a:hover {
             text-decoration: underline;
         }
 
-        /* === MAIN CONTAINER ===
-           Controls vertical spacing below nav.
-           Emblem positioned close to orange bar.
-        */
+        /* === MAIN CONTENT === */
         .container {
-            margin-top: 10px; /* emblem sits ~10px below orange bar */
+            margin-top: 30px;
             padding: 0 20px;
         }
 
-        /* === VERITAS EMBLEM ===
-           Correct file reference and sizing.
-           Positioned high for visual hierarchy.
-        */
+        /* === VERITAS EMBLEM === */
         .logo-veritas {
             width: 100px;
-            margin-top: 10px;
+            margin-top: 20px;
             margin-bottom: 25px;
         }
 
-        /* === MISSION HEADER ===
-           Orange text, slightly smaller than main headline.
-        */
+        /* === MISSION HEADER === */
         h1 {
             font-size: 28px;
             letter-spacing: 1px;
@@ -78,20 +67,15 @@
             color: #f57c00;
         }
 
-        /* === ORANGE DIVIDER ===
-           Thin horizontal line under “MISSION” header.
-           Reinforces brand color and structure.
-        */
+        /* === FULL-WIDTH ORANGE DIVIDER === */
         .divider {
-            width: 280px;
+            width: 750px;
             height: 1px;
             background-color: #f57c00;
             margin: 0 auto 15px auto;
         }
 
-        /* === MISSION STATEMENT TEXT ===
-           Centered, readable, light grey tone for contrast.
-        */
+        /* === MISSION STATEMENT === */
         .mission {
             font-size: 16px;
             max-width: 750px;
@@ -100,9 +84,7 @@
             color: #dcdcdc;
         }
 
-        /* === FOOTER ===
-           Fixed at bottom, orange background, small text.
-        */
+        /* === FOOTER === */
         footer {
             position: fixed;
             bottom: 0;
@@ -117,12 +99,12 @@
 
 <body>
 
-    <!-- === HEADER SECTION === -->
+    <!-- GREY BAR ABOVE ORANGE MENU BAR -->
     <header>
         VITIUM GROUP
     </header>
 
-    <!-- === NAVIGATION LINKS === -->
+    <!-- ORANGE MENU BAR (HEIGHT MATCHED TO GREY BAR) -->
     <nav>
         <a href="/index.html">Home</a>
         <a href="/frontend/about.html">About</a>
@@ -131,16 +113,16 @@
         <a href="/frontend/console.html">System Access</a>
     </nav>
 
-    <!-- === MAIN CONTENT AREA === -->
+    <!-- MAIN CONTENT -->
     <div class="container">
 
-        <!-- CORRECT VERITAS EMBLEM (10px BELOW ORANGE BAR) -->
+        <!-- VERITAS EMBLEM -->
         <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
         <!-- MISSION HEADER -->
         <h1>MISSION</h1>
 
-        <!-- ORANGE DIVIDER LINE -->
+        <!-- FULL-WIDTH ORANGE DIVIDER -->
         <div class="divider"></div>
 
         <!-- MISSION STATEMENT -->
@@ -150,7 +132,7 @@
 
     </div>
 
-    <!-- === FOOTER SECTION === -->
+    <!-- FOOTER -->
     <footer>
         © 2026 Vitium Group. All rights reserved.
     </footer>
