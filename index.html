@@ -6,7 +6,7 @@
     <title>Vitium Group</title>
 
     <!-- ========================================================= -->
-    <!-- INLINE BRANDING + LAYOUT CSS (ORIGINAL WORKING VERSION)  -->
+    <!-- INLINE BRANDING + LAYOUT CSS -->
     <!-- ========================================================= -->
     <style>
         /* === GLOBAL PAGE SETTINGS === */
@@ -16,11 +16,12 @@
             background-color: #0b1a33; /* deep navy background */
             color: #ffffff;
             text-align: center;
+            padding-bottom: 70px; /* prevents footer overlap */
         }
 
         /* === GREY BAR ABOVE ORANGE MENU BAR === */
         header {
-            background-color: #d9d9d9; /* light grey */
+            background-color: #d9d9d9;
             height: 40px;
             line-height: 40px;
             font-weight: 600;
@@ -30,7 +31,7 @@
 
         /* === ORANGE MENU BAR === */
         nav {
-            background-color: #f57c00; /* VERITAS orange */
+            background-color: #f57c00;
             height: 40px;
             line-height: 40px;
         }
@@ -62,7 +63,7 @@
 
         /* === SECTION HEADERS === */
         h1, h2 {
-            color: #f57c00; /* VERITAS orange */
+            color: #f57c00;
             letter-spacing: 1px;
         }
 
@@ -107,6 +108,24 @@
         ul li::before {
             content: "• ";
             color: #f57c00;
+        }
+
+        /* === LEARN MORE BUTTON BELOW CORE VALUES === */
+        .learn-more {
+            display: inline-block;
+            margin-top: 40px;
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .learn-more:hover {
+            background-color: #0090dd;
+            transform: translateY(-2px);
         }
 
         /* === FOOTER === */
@@ -191,6 +210,9 @@
             <li>Precision</li>
             <li>Reliability</li>
         </ul>
+
+        <!-- LEARN MORE BUTTON BELOW CORE VALUES -->
+        <a href="/frontend/learn-more.html" class="learn-more">Learn More</a>
 
     </div>
 
