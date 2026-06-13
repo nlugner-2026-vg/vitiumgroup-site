@@ -10,28 +10,26 @@
         body {
             margin: 0;
             font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #0b1a33; /* Vitium deep navy */
+            background-color: #0b1a33;
             color: #ffffff;
             text-align: center;
         }
 
-        /* === GREY BAR ABOVE ORANGE MENU BAR ===
-           Height matched EXACTLY to nav bar.
-        */
+        /* === GREY BAR ABOVE ORANGE MENU BAR === */
         header {
-            background-color: #e5e5e5; /* light grey */
-            padding: 8px 0;           /* equal height */
+            background-color: #d9d9d9; /* grey tone matching VERITAS page */
+            height: 40px;
+            line-height: 40px;
             font-weight: 600;
             letter-spacing: 0.5px;
             color: #000;
         }
 
-        /* === ORANGE NAVIGATION BAR ===
-           Height matched EXACTLY to grey bar.
-        */
+        /* === ORANGE MENU BAR === */
         nav {
-            background-color: #f57c00; /* Vitium orange */
-            padding: 8px 0;            /* equal height */
+            background-color: #f57c00;
+            height: 40px;
+            line-height: 40px;
         }
 
         nav a {
@@ -46,9 +44,7 @@
             text-decoration: underline;
         }
 
-        /* === MAIN CONTENT CONTAINER ===
-           Emblem lowered for correct spacing.
-        */
+        /* === MAIN CONTAINER === */
         .container {
             margin-top: 30px;
             padding: 0 20px;
@@ -57,36 +53,57 @@
         /* === VERITAS EMBLEM === */
         .logo-veritas {
             width: 100px;
-            margin-top: 20px;   /* lowered emblem */
+            margin-top: 20px;
             margin-bottom: 25px;
         }
 
-        /* === MISSION HEADER === */
-        h1 {
-            font-size: 28px;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+        /* === SECTION HEADERS === */
+        h1, h2 {
             color: #f57c00;
+            letter-spacing: 1px;
         }
 
-        /* === FULL-WIDTH ORANGE DIVIDER === */
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 8px;
+        }
+
+        /* === ORANGE DIVIDER === */
         .divider {
-            width: 750px; /* matches mission text width */
+            width: 750px;
             height: 1px;
             background-color: #f57c00;
             margin: 0 auto 15px auto;
         }
 
-        /* === MISSION STATEMENT ===
-           EXACT wording provided by Nils — NO CHANGES.
-        */
-        .mission {
+        /* === TEXT BLOCKS === */
+        .text-block {
             font-size: 16px;
             max-width: 750px;
             margin: 0 auto;
             line-height: 1.6;
             color: #dcdcdc;
-            white-space: pre-line; /* preserves paragraph break cleanly */
+        }
+
+        /* === CORE VALUES LIST === */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 200px;
+            text-align: left;
+            color: #dcdcdc;
+        }
+
+        ul li::before {
+            content: "• ";
+            color: #f57c00;
         }
 
         /* === FOOTER === */
@@ -98,6 +115,7 @@
             padding: 10px 0;
             font-size: 13px;
             letter-spacing: 0.5px;
+            color: #fff;
         }
     </style>
 </head>
@@ -109,7 +127,7 @@
         VITIUM GROUP
     </header>
 
-    <!-- ORANGE MENU BAR (HEIGHT MATCHED TO GREY BAR) -->
+    <!-- ORANGE MENU BAR -->
     <nav>
         <a href="/index.html">Home</a>
         <a href="/frontend/about.html">About</a>
@@ -121,26 +139,54 @@
     <!-- MAIN CONTENT -->
     <div class="container">
 
-        <!-- VERITAS EMBLEM (LOWERED) -->
+        <!-- VERITAS EMBLEM -->
         <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
         <!-- MISSION HEADER -->
         <h1>MISSION</h1>
-
-        <!-- FULL-WIDTH ORANGE DIVIDER -->
         <div class="divider"></div>
-
-        <!-- MISSION STATEMENT (EXACT TEXT, NO CHANGES) -->
-        <p class="mission">
+        <p class="text-block">
 Vitium Group delivers immutable, truth‑driven systems — powered by Microsoft Azure and supported by Copilot intelligence — including our Patent Pending VERITAS evidence governance platform.
 Our mission is to bring clarity, resilience, and accountability to complex environments through evidence‑based governance, purpose‑built technology, and long‑term community impact.
         </p>
+
+        <!-- VISION -->
+        <h2>VISION</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            VERITAS is built on a simple principle: truth through data. A unified system that captures, verifies, and preserves operational evidence with absolute integrity.
+        </p>
+
+        <!-- WHY VERITAS EXISTS -->
+        <h2>WHY VERITAS EXISTS</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Because evidence should never be lost, altered, or questioned. VERITAS ensures that what happened is what is recorded — every time.
+        </p>
+
+        <!-- WHAT VERITAS DOES -->
+        <h2>WHAT VERITAS DOES</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            VERITAS captures field data, office data, and system‑level events into a single, immutable chain of custody. It provides dashboards for Admin, Office, Field, and Unified operations — all synchronised, all consistent.
+        </p>
+
+        <!-- CORE VALUES -->
+        <h2>CORE VALUES</h2>
+        <div class="divider"></div>
+        <ul>
+            <li>Integrity</li>
+            <li>Transparency</li>
+            <li>Accountability</li>
+            <li>Precision</li>
+            <li>Reliability</li>
+        </ul>
 
     </div>
 
     <!-- FOOTER -->
     <footer>
-        © 2026 Vitium Group. All rights reserved.
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
     </footer>
 
 </body>
