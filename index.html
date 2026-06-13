@@ -1,59 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-        Vitium Group - Root Landing Page
-        Purpose: Clean public entry point
-        Action: Directs users into frontend application
-    -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Vitium Group</title>
 
     <style>
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #eef2f5;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33; /* deep navy */
+            color: #ffffff;
             text-align: center;
         }
 
         header {
-            background: #ffffff;
-            padding: 20px;
-            border-bottom: 1px solid #ddd;
+            background-color: #f57c00; /* Vitium orange accent */
+            padding: 12px 0;
+            color: #fff;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        main {
-            padding: 80px 20px;
+        nav {
+            background-color: #f57c00;
+            padding: 8px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .logo {
+            margin-top: 30px;
         }
 
         h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-top: 20px;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #f57c00;
+            font-size: 18px;
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            width: 200px;
+            border: 1px solid #f57c00;
+            margin: 10px auto;
         }
 
         p {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            line-height: 1.5;
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 20px;
         }
 
-        a.button {
-            display: inline-block;
-            padding: 14px 28px;
-            background: #0078d4;
+        footer {
+            background-color: #f57c00;
             color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-
-        a.button:hover {
-            background: #005ea2;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -61,23 +81,57 @@
 <body>
 
 <header>
-    Vitium Group
+    VITIUM GROUP — Infrastructure. Resilience. Precision.
 </header>
 
-<main>
-    <h1>Infrastructure. Resilience. Precision.</h1>
+<nav>
+    <a href="#overview">Overview</a>
+    <a href="#operations">Operations</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="/frontend/console.html">System Access</a>
+</nav>
 
-    <p>
-        Vitium Group delivers resilient infrastructure solutions across critical sectors,
-        combining engineering capability with modular and digital systems.
-    </p>
+<div class="logo">
+    <img src="/assets/logos/vitium-mark.png" alt="Vitium Group Logo" width="80">
+</div>
 
-    <!-- ✅ THIS IS THE KEY LINE -->
-    <a href="frontend/index.html" class="button">Enter System</a>-->
+<h1>VITIUM GROUP</h1>
 
-</main>
+<h2 id="overview">OVERVIEW</h2>
+<hr>
+<p>
+Vitium Group provides resilient infrastructure solutions across critical sectors, combining engineering capability with modular and digital systems.  
+Our platforms are designed for precision, transparency, and operational integrity.
+</p>
+
+<h2 id="operations">OPERATIONS</h2>
+<hr>
+<p>
+We deliver structured digital frameworks that unify data, process, and technology.  
+Vitium systems are engineered to support enterprise, public, and industrial operations with clarity and control.
+</p>
+
+<h2 id="about">ABOUT</h2>
+<hr>
+<p>
+Founded on principles of reliability and discipline, Vitium Group builds infrastructure that organisations can trust.  
+Our mission is to strengthen operational resilience through clean, modular design and transparent engineering.
+</p>
+
+<h2 id="contact">CONTACT</h2>
+<hr>
+<p>
+Email: info@vitiumgroup.com<br>
+United Kingdom
+</p>
+
+<footer>
+    © 2026 Vitium Group. All rights reserved.
+</footer>
 
 </body>
 </html>
+
 
 
