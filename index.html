@@ -3,193 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PAGE TITLE -->
     <title>Vitium Group</title>
 
-    <style>
-        /* === GLOBAL PAGE SETTINGS === */
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #0b1a33;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        /* === GREY BAR ABOVE ORANGE MENU BAR === */ 
-        header {
-            background-color: #d9d9d9; /* grey tone matching VERITAS page */
-            height: 40px;
-            line-height: 40px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #000;
-        }
-
-        /* === ORANGE MENU BAR === */
-        nav {
-            background-color: #f57c00;
-            height: 40px;
-            line-height: 40px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 18px;
-            font-weight: 500;
-            font-size: 15px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* === MAIN CONTAINER === */
-        .container {
-            margin-top: 30px;
-            padding: 0 20px;
-        }
-
-        /* === VERITAS EMBLEM === */
-        .logo-veritas {
-            width: 100px;
-            margin-top: 20px;
-            margin-bottom: 25px;
-        }
-
-        /* === SECTION HEADERS === */
-        h1, h2 {
-            color: #f57c00;
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-top: 40px;
-            margin-bottom: 8px;
-        }
-
-        /* === ORANGE DIVIDER === */
-        .divider {
-            width: 750px;
-            height: 1px;
-            background-color: #f57c00;
-            margin: 0 auto 15px auto;
-        }
-
-        /* === TEXT BLOCKS === */
-        .text-block {
-            font-size: 16px;
-            max-width: 750px;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #dcdcdc;
-        }
-
-        /* === CORE VALUES LIST === */
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 auto;
-            max-width: 200px;
-            text-align: left;
-            color: #dcdcdc;
-        }
-
-        ul li::before {
-            content: "• ";
-            color: #f57c00;
-        }
-
-        /* === FOOTER === */
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #f57c00;
-            padding: 10px 0;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
-    </style>
+    <!-- CORRECT STYLESHEET PATH (styles.css is inside /frontend) -->
+    <link rel="stylesheet" href="frontend/styles.css">
 </head>
 
 <body>
 
-    <!-- GREY BAR ABOVE ORANGE MENU BAR -->
-    <header>
-        VITIUM GROUP
+    <!-- ========================================================= -->
+    <!-- HEADER -->
+    <!-- ========================================================= -->
+    <header class="vg-header">
+        <h1>Vitium Group</h1>
     </header>
 
-    <!-- ORANGE MENU BAR -->
-    <nav>
-        <a href="/index.html">Home</a>
-        <a href="/frontend/about.html">About</a>
-        <a href="/frontend/operations.html">Operations</a>
-        <a href="/frontend/contact.html">Contact</a>
-        <a href="/frontend/console.html">System Access</a>
+    <!-- ========================================================= -->
+    <!-- NAVIGATION BAR (NOW INCLUDES LEARN MORE) -->
+    <!-- ========================================================= -->
+    <nav class="vg-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="learn-more.html">Learn More</a>
+        <a href="about.html">About</a>
+        <a href="operations.html">Operations</a>
+        <a href="contact.html">Contact</a>
+        <a href="system-access.html">System Access</a>
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
+    <!-- ========================================================= -->
+    <!-- BRAND BLOCK / HERO -->
+    <!-- ========================================================= -->
+    <section class="brand-block">
+        <img src="assets/veritas-emblem.png" alt="VERITAS Emblem" class="veritas-logo">
+        <h2>VERITAS</h2>
+        <p>Strategic Advisory & Signals</p>
+    </section>
 
-        <!-- VERITAS EMBLEM -->
-        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
+    <!-- ========================================================= -->
+    <!-- MISSION -->
+    <!-- ========================================================= -->
+    <section class="content-section">
+        <h2>Mission</h2>
+        <p>To deliver operational truth, resilience, and clarity across critical sectors.</p>
+    </section>
 
-        <!-- MISSION HEADER -->
-        <h1>MISSION</h1>
-        <div class="divider"></div>
-        <p class="text-block">
-Vitium Group delivers immutable, truth‑driven systems — powered by Microsoft Azure and supported by Copilot intelligence — including our Patent Pending VERITAS evidence governance platform.
-Our mission is to bring clarity, resilience, and accountability to complex environments through evidence‑based governance, purpose‑built technology, and long‑term community impact.
-        </p>
+    <!-- ========================================================= -->
+    <!-- VISION -->
+    <!-- ========================================================= -->
+    <section class="content-section">
+        <h2>Vision</h2>
+        <p>To become the leading authority in evidence‑driven strategic advisory and infrastructure resilience.</p>
+    </section>
 
-        <!-- VISION -->
-        <h2>VISION</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            VERITAS is built on a simple principle: truth through data. A unified system that captures, verifies, and preserves operational evidence with absolute integrity.
-        </p>
+    <!-- ========================================================= -->
+    <!-- WHY VERITAS EXISTS -->
+    <!-- ========================================================= -->
+    <section class="content-section">
+        <h2>Why VERITAS Exists</h2>
+        <p>Because organisations need clarity, truth, and resilience in an increasingly complex world.</p>
+    </section>
 
-        <!-- WHY VERITAS EXISTS -->
-        <h2>WHY VERITAS EXISTS</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            Because evidence should never be lost, altered, or questioned. VERITAS ensures that what happened is what is recorded — every time.
-        </p>
+    <!-- ========================================================= -->
+    <!-- WHAT VERITAS DOES -->
+    <!-- ========================================================= -->
+    <section class="content-section">
+        <h2>What VERITAS Does</h2>
+        <p>We provide strategic advisory, operational assurance, and resilience engineering across multiple verticals.</p>
+    </section>
 
-        <!-- WHAT VERITAS DOES -->
-        <h2>WHAT VERITAS DOES</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            VERITAS captures field data, office data, and system‑level events into a single, immutable chain of custody. It provides dashboards for Admin, Office, Field, and Unified operations — all synchronised, all consistent.
-        </p>
-
-        <!-- CORE VALUES -->
-        <h2>CORE VALUES</h2>
-        <div class="divider"></div>
+    <!-- ========================================================= -->
+    <!-- CORE VALUES -->
+    <!-- ========================================================= -->
+    <section class="content-section">
+        <h2>Core Values</h2>
         <ul>
-            <li>Immutable</li>
             <li>Integrity</li>
-            <li>Transparency</li>
-            <li>Accountability</li>
-            <li>Precision</li>
-            <li>Reliability</li>
+            <li>Evidence‑Driven</li>
+            <li>Operational Excellence</li>
+            <li>Resilience</li>
         </ul>
+    </section>
 
+    <!-- ========================================================= -->
+    <!-- LEARN MORE BUTTON BELOW CORE VALUES -->
+    <!-- ========================================================= -->
+    <div style="text-align:center; margin:60px 0;">
+        <a href="learn-more.html"
+           style="background-color:#00aaff;
+                  color:#ffffff;
+                  padding:14px 32px;
+                  text-decoration:none;
+                  font-weight:600;
+                  border-radius:6px;
+                  transition:all 0.25s ease;">
+            Learn More
+        </a>
     </div>
 
+    <!-- ========================================================= -->
+    <!-- CTA SECTION (OPTIONAL SECONDARY CTA) -->
+    <!-- ========================================================= -->
+    <section class="cta-section">
+        <a href="learn-more.html" class="btn-primary">Explore Our Work</a>
+    </section>
+
+    <!-- ========================================================= -->
     <!-- FOOTER -->
-    <footer>
-        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    <!-- ========================================================= -->
+    <footer class="vg-footer">
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
     </footer>
 
 </body>
 </html>
-
