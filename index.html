@@ -1,626 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Vitium Group · Learn More · VERITAS / IRaaS -->
     <meta charset="UTF-8">
-    <title>Vitium Group – Learn More</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitium Group</title>
 
+    <!-- ========================================================= -->
+    <!-- INLINE BRANDING + LAYOUT CSS (ORIGINAL WORKING VERSION)  -->
+    <!-- ========================================================= -->
     <style>
-        :root {
-            --bg-main: #0b1220;
-            --bg-card: #111827;
-            --accent: #f97316;
-            --accent-soft: #fed7aa;
-            --text-main: #e5e7eb;
-            --text-muted: #9ca3af;
-            --border-soft: #374151;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
+        /* === GLOBAL PAGE SETTINGS === */
         body {
             margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
-            color: var(--text-main);
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33; /* deep navy background */
+            color: #ffffff;
+            text-align: center;
         }
 
-        /* Top navigation */
+        /* === GREY BAR ABOVE ORANGE MENU BAR === */
         header {
-            background: #020617;
-            border-bottom: 1px solid #1f2937;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        header .logo {
+            background-color: #d9d9d9; /* light grey */
+            height: 40px;
+            line-height: 40px;
             font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
+            letter-spacing: 0.5px;
+            color: #000;
         }
 
-        header nav a {
-            color: var(--text-muted);
+        /* === ORANGE MENU BAR === */
+        nav {
+            background-color: #f57c00; /* VERITAS orange */
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav a {
+            color: #fff;
             text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.9rem;
+            margin: 0 18px;
+            font-weight: 500;
+            font-size: 15px;
         }
 
-        header nav a:hover {
-            color: var(--accent);
+        nav a:hover {
+            text-decoration: underline;
         }
 
-        /* Main container */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 5rem;
+        /* === MAIN CONTAINER === */
+        .container {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        /* === VERITAS EMBLEM === */
+        .logo-veritas {
+            width: 100px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* === SECTION HEADERS === */
+        h1, h2 {
+            color: #f57c00; /* VERITAS orange */
+            letter-spacing: 1px;
         }
 
         h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+            font-size: 28px;
+            margin-bottom: 8px;
         }
 
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
+        h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 8px;
         }
 
-        /* 3‑column desktop grid, responsive down to 2 / 1 columns */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 3rem;
+        /* === ORANGE DIVIDER === */
+        .divider {
+            width: 750px;
+            height: 1px;
+            background-color: #f57c00;
+            margin: 0 auto 15px auto;
         }
 
-        .card {
-            background: var(--bg-card);
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            min-height: 180px;
+        /* === TEXT BLOCKS === */
+        .text-block {
+            font-size: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #dcdcdc;
         }
 
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--accent-soft);
-            margin-bottom: 0.35rem;
+        /* === CORE VALUES LIST === */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 200px;
+            text-align: left;
+            color: #dcdcdc;
         }
 
-        .card-body {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.4;
+        ul li::before {
+            content: "• ";
+            color: #f57c00;
         }
 
-        .card-tag {
-            margin-top: 0.75rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--accent);
-        }
-
-        /* Intake form container */
-        .form-section {
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.75rem 1.5rem;
-        }
-
-        .form-section h2 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-section p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            margin-bottom: 0.35rem;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"],
-        .form-group textarea {
-            width: 100%;
-            padding: 0.5rem 0.6rem;
-            border-radius: 0.4rem;
-            border: 1px solid #1f2937;
-            background: #020617;
-            color: var(--text-main);
-            font-size: 0.85rem;
-        }
-
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .hint {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        .checkbox-group,
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-            font-size: 0.85rem;
-        }
-
-        .checkbox-group label,
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            cursor: pointer;
-        }
-
-        .checkbox-group input,
-        .radio-group input {
-            accent-color: var(--accent);
-        }
-
-        .section-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 0.35rem;
-            color: var(--accent-soft);
-        }
-
-        .section-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .water-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-
-        .submit-row {
-            margin-top: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            justify-content: space-between;
-        }
-
-        .upload-hint {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        button.submit-btn {
-            background: var(--accent);
-            color: #0b1220;
-            border: none;
-            border-radius: 999px;
-            padding: 0.6rem 1.4rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        button.submit-btn:hover {
-            background: #fb923c;
-        }
-
-        /* Fixed footer */
+        /* === FOOTER === */
         footer {
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
-            background: #020617;
-            border-top: 1px solid #1f2937;
-            padding: 0.5rem 1.5rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        @media (max-width: 640px) {
-            header {
-                padding: 0.75rem 1rem;
-            }
-            main {
-                padding: 1.5rem 1rem 4.5rem;
-            }
-            footer {
-                flex-direction: column;
-                gap: 0.35rem;
-                align-items: flex-start;
-            }
+            width: 100%;
+            background-color: #f57c00;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #fff;
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <div class="logo">VITIUM GROUP</div>
+    <!-- ========================================================= -->
+    <!-- GREY BAR ABOVE ORANGE MENU BAR -->
+    <!-- ========================================================= -->
+    <header>
+        VITIUM GROUP
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- ORANGE MENU BAR -->
+    <!-- ========================================================= -->
     <nav>
         <a href="/index.html">Home</a>
         <a href="/frontend/about.html">About</a>
         <a href="/frontend/operations.html">Operations</a>
         <a href="/frontend/contact.html">Contact</a>
+        <a href="/frontend/console.html">System Access</a>
     </nav>
-</header>
 
-<main>
-    <h1>Learn More</h1>
-    <div class="subtitle">
-        Strategic advisory, infrastructure resilience and VERITAS truth‑layer services across national verticals.
-    </div>
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================================================= -->
+    <div class="container">
 
-    <!-- Vertical cards -->
-    <section class="cards-grid">
+        <!-- VERITAS EMBLEM -->
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
-        <!-- 1. Historical Data Scanning & OCR Extraction -->
-        <article class="card">
-            <div class="card-title">Historical Data Scanning & OCR Extraction</div>
-            <div class="card-body">
-                Digitising handwritten notes, legacy logs, books, archives and historical work orders. Text from photos,
-                site images and field captures can be extracted and merged into existing data records. Legacy audio files
-                (WAV, MP3, etc.) can also be transcribed into structured text. All data can be enriched with historical
-                weather context and GPS long/lat for new field inputs, and aligned to NUAR‑compliant and OS/GIS
-                (Geographic Information System) data structures — providing a single source of immutable truth across all
-                Vitium Group verticals.
-            </div>
-            <div class="card-tag">Foundational truth layer</div>
-        </article>
-
-        <!-- 2. VERITAS – Strategic Advisory & Signals -->
-        <article class="card">
-            <div class="card-title">VERITAS – Strategic Advisory & Signals</div>
-            <div class="card-body">
-                Evidence‑grade advisory built on immutable truth data. VERITAS ingests historical records, live signals
-                and field intelligence to support councils, utilities, national infrastructure and central government
-                with aligned, defensible decision‑making.
-            </div>
-            <div class="card-tag">Signals & governance</div>
-        </article>
-
-        <!-- 3. IRaaS – Infrastructure Resilience as a Service -->
-        <article class="card">
-            <div class="card-title">IRaaS – Infrastructure Resilience as a Service</div>
-            <div class="card-body">
-                Continuous resilience assessment for critical infrastructure — utilities, transport, communications and
-                public assets. Combines historical data, live monitoring and field inspections to identify weak points,
-                prioritise interventions and support long‑term asset health.
-            </div>
-            <div class="card-tag">Resilience services</div>
-        </article>
-
-        <!-- 4. IRaaS‑WATER -->
-        <article class="card">
-            <div class="card-title">IRaaS‑WATER – Water Resilience / Harvesting / Storage</div>
-            <div class="card-body">
-                Water harvesting, storage, treatment and distribution across residential, commercial, industrial,
-                agricultural and municipal scales. Integrates site data, historical performance and weather patterns to
-                support secure, resilient water systems.
-            </div>
-            <div class="card-tag">Water resilience</div>
-        </article>
-
-        <!-- 5. Highways & Bridges -->
-        <article class="card">
-            <div class="card-title">Highways & Bridges – National Road Infrastructure & Structural Resilience</div>
-            <div class="card-body">
-                Digitising historical bridge logs, inspection sheets, handwritten notes and work orders. Extracted data
-                is merged into existing asset records, enriched with historical weather context and GPS long/lat for new
-                field inspections. Fully aligned with NUAR and OS/GIS (Geographic Information System) data structures.
-                Supports proactive bridge health monitoring — addressing the emerging national issue often described as
-                the “next pothole epidemic”.
-            </div>
-            <div class="card-tag">Roads & structures</div>
-        </article>
-
-        <!-- 6. Telecoms & Fibre -->
-        <article class="card">
-            <div class="card-title">Telecoms & Fibre – Network Mapping, Resilience & Field Intelligence</div>
-            <div class="card-body">
-                Digitising legacy fibre plans, duct maps, jointing records, pole logs and handwritten field notes.
-                Extracted data is merged into existing network records, enriched with weather and GPS long/lat, and
-                aligned to NUAR and OS/GIS (Geographic Information System) standards. Provides a unified, immutable
-                truth layer for fibre, broadband, 5G and critical communications infrastructure.
-            </div>
-            <div class="card-tag">Communications infrastructure</div>
-        </article>
-
-        <!-- 7. Modular Housing / Modular Assembly -->
-        <article class="card">
-            <div class="card-title">Modular Housing / Modular Assembly</div>
-            <div class="card-body">
-                Site assessment, feasibility and design for modular housing and modular assembly systems. Integrates
-                planning data, local constraints and resilience requirements to support rapid, repeatable deployment.
-            </div>
-            <div class="card-tag">Housing & assembly</div>
-        </article>
-
-        <!-- 8. SMR – Small Modular Reactors -->
-        <article class="card">
-            <div class="card-title">SMR – Small Modular Reactors</div>
-            <div class="card-body">
-                Strategic support for SMR (Small Modular Reactor) siting, resilience and integration into existing grids
-                and communities. Evidence‑grade data and modelling to support safe, defensible deployment.
-            </div>
-            <div class="card-tag">Energy & nuclear</div>
-        </article>
-
-        <!-- 9. Rail / Signalling / Critical Transport -->
-        <article class="card">
-            <div class="card-title">Rail / Signalling / Critical Transport</div>
-            <div class="card-body">
-                Historical incident logs, signalling records and field notes digitised and aligned with modern asset
-                data. Supports safer operations, targeted interventions and long‑term resilience across rail and
-                critical transport corridors.
-            </div>
-            <div class="card-tag">Transport resilience</div>
-        </article>
-
-        <!-- 10. Mining / Extraction / Heavy Industry -->
-        <article class="card">
-            <div class="card-title">Mining / Extraction / Heavy Industry</div>
-            <div class="card-body">
-                Site records, permits, inspections and operational logs brought into a single truth layer. Supports
-                safer operations, environmental compliance and long‑term asset stewardship.
-            </div>
-            <div class="card-tag">Industrial assets</div>
-        </article>
-
-        <!-- 11. No10 / Governance / Policy Advisory -->
-        <article class="card">
-            <div class="card-title">No10 / Governance / Policy Advisory</div>
-            <div class="card-body">
-                Evidence‑grade advisory for central government, departments and agencies. VERITAS provides aligned,
-                defensible data to support policy, governance and national infrastructure decisions.
-            </div>
-            <div class="card-tag">Central governance</div>
-        </article>
-
-        <!-- 12. NHS – Health Infrastructure & Resilience -->
-        <article class="card">
-            <div class="card-title">NHS – Health Infrastructure & Resilience</div>
-            <div class="card-body">
-                Estate data, historical incidents and operational records aligned into a single resilience view.
-                Supports hospitals, trusts and regional systems with infrastructure‑grade insight.
-            </div>
-            <div class="card-tag">Health infrastructure</div>
-        </article>
-
-        <!-- 13. Emergency Services – Police / Fire / Ambulance -->
-        <article class="card">
-            <div class="card-title">Emergency Services – Police / Fire / Ambulance</div>
-            <div class="card-body">
-                Historical call logs, incident reports and field notes digitised and aligned with geospatial and asset
-                data. Supports faster situational awareness, better planning and improved resilience.
-            </div>
-            <div class="card-tag">Blue‑light resilience</div>
-        </article>
-
-        <!-- 14. FIREWATCH – Moorland / Wildfire / Grid‑Edge Monitoring -->
-        <article class="card">
-            <div class="card-title">FIREWATCH – Moorland / Wildfire / Grid‑Edge Monitoring</div>
-            <div class="card-body">
-                Monitoring and advisory for moorland, wildfire risk and grid‑edge assets. Integrates historical fire
-                records, weather patterns and live signals to support prevention and response.
-            </div>
-            <div class="card-tag">Wildfire & grid‑edge</div>
-        </article>
-
-        <!-- 15. Other – Bespoke Projects & Emerging Requirements -->
-        <article class="card">
-            <div class="card-title">Other – Bespoke Projects & Emerging Requirements</div>
-            <div class="card-body">
-                For projects that do not fit neatly into a single vertical. VERITAS and IRaaS (Infrastructure Resilience
-                as a Service) can be applied to bespoke sites, assets and organisations where evidence‑grade resilience
-                and advisory are required.
-            </div>
-            <div class="card-tag">Custom engagements</div>
-        </article>
-
-    </section>
-
-    <!-- Client Intake Form -->
-    <section class="form-section">
-        <h2>Client Intake Form</h2>
-        <p>
-            Complete the sections below and send this form by email or via the client portal. This intake form aligns
-            all data with the VERITAS truth layer and the relevant verticals.
+        <!-- MISSION -->
+        <h1>MISSION</h1>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group delivers immutable, truth‑driven systems — powered by Microsoft Azure and supported by Copilot intelligence — including our Patent Pending VERITAS evidence governance platform.
+            Our mission is to bring clarity, resilience, and accountability to complex environments through evidence‑based governance, purpose‑built technology, and long‑term community impact.
         </p>
 
-        <form>
-            <div class="form-grid">
-                <!-- 1. Contact Details -->
-                <div>
-                    <div class="section-title">1. Contact Details</div>
+        <!-- VISION -->
+        <h2>VISION</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            VERITAS is built on a simple principle: truth through data. A unified system that captures, verifies, and preserves operational evidence with absolute integrity.
+        </p>
 
-                    <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName">
-                    </div>
+        <!-- WHY VERITAS EXISTS -->
+        <h2>WHY VERITAS EXISTS</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Because evidence should never be lost, altered, or questioned. VERITAS ensures that what happened is what is recorded — every time.
+        </p>
 
-                    <div class="form-group">
-                        <label for="company">Company / Organisation</label>
-                        <input type="text" id="company" name="company">
-                    </div>
+        <!-- WHAT VERITAS DOES -->
+        <h2>WHAT VERITAS DOES</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            VERITAS captures field data, office data, and system‑level events into a single, immutable chain of custody. It provides dashboards for Admin, Office, Field, and Unified operations — all synchronised, all consistent.
+        </p>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email">
-                    </div>
+        <!-- CORE VALUES -->
+        <h2>CORE VALUES</h2>
+        <div class="divider"></div>
+        <ul>
+            <li>Immutable</li>
+            <li>Integrity</li>
+            <li>Transparency</li>
+            <li>Accountability</li>
+            <li>Precision</li>
+            <li>Reliability</li>
+        </ul>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                </div>
+    </div>
 
-                <!-- 2. Vertical Selection -->
-                <div>
-                    <div class="section-title">2. Which Area Do You Need Help With?</div>
-                    <div class="section-subtitle">Select all that apply.</div>
-
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" name="vertical" value="historical-ocr"> Historical Data Scanning &amp; OCR Extraction</label>
-                        <label><input type="checkbox" name="vertical" value="veritas"> VERITAS – Strategic Advisory &amp; Signals</label>
-                        <label><input type="checkbox" name="vertical" value="iraas"> IRaaS – Infrastructure Resilience as a Service</label>
-                        <label><input type="checkbox" name="vertical" value="iraas-water"> IRaaS‑WATER – Water Resilience / Harvesting / Storage</label>
-                        <label><input type="checkbox" name="vertical" value="highways-bridges"> Highways &amp; Bridges</label>
-                        <label><input type="checkbox" name="vertical" value="telecoms-fibre"> Telecoms &amp; Fibre</label>
-                        <label><input type="checkbox" name="vertical" value="modular-housing"> Modular Housing / Modular Assembly</label>
-                        <label><input type="checkbox" name="vertical" value="smr"> SMR – Small Modular Reactors</label>
-                        <label><input type="checkbox" name="vertical" value="rail"> Rail / Signalling / Critical Transport</label>
-                        <label><input type="checkbox" name="vertical" value="mining"> Mining / Extraction / Heavy Industry</label>
-                        <label><input type="checkbox" name="vertical" value="no10"> No10 / Governance / Policy Advisory</label>
-                        <label><input type="checkbox" name="vertical" value="nhs"> NHS – Health Infrastructure &amp; Resilience</label>
-                        <label><input type="checkbox" name="vertical" value="emergency-services"> Emergency Services – Police / Fire / Ambulance</label>
-                        <label><input type="checkbox" name="vertical" value="firewatch"> FIREWATCH – Moorland / Wildfire / Grid‑Edge Monitoring</label>
-                        <label><input type="checkbox" name="vertical" value="other"> Other</label>
-                    </div>
-                </div>
-
-                <!-- 3. Requirement Type -->
-                <div>
-                    <div class="section-title">3. What Best Describes Your Requirement?</div>
-                    <div class="section-subtitle">Select all that apply.</div>
-
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" name="requirement" value="site-assessment"> Site Assessment</label>
-                        <label><input type="checkbox" name="requirement" value="feasibility"> Feasibility Study</label>
-                        <label><input type="checkbox" name="requirement" value="design-modelling"> Design / Modelling (Forma, CAD, BIM)</label>
-                        <label><input type="checkbox" name="requirement" value="operational-problem"> Operational Problem / Failure</label>
-                        <label><input type="checkbox" name="requirement" value="risk-review"> Risk Review / Resilience Audit</label>
-                        <label><input type="checkbox" name="requirement" value="procurement"> Procurement / Vendor Review</label>
-                        <label><input type="checkbox" name="requirement" value="full-delivery"> Full Project Delivery</label>
-                        <label><input type="checkbox" name="requirement" value="emergency"> Emergency / Time‑Critical Issue</label>
-                        <label><input type="checkbox" name="requirement" value="general-consultation"> General Consultation</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. Project Location -->
-            <div class="form-group" style="margin-top:1rem;">
-                <div class="section-title">4. Project Location</div>
-                <label for="location">Address / Site / Region</label>
-                <textarea id="location" name="location"></textarea>
-            </div>
-
-            <!-- 5. Water‑Specific (IRaaS‑WATER) -->
-            <div style="margin-top:1.25rem;">
-                <div class="section-title">5. Water‑Specific (IRaaS‑WATER)</div>
-                <div class="section-subtitle">Skip this section if it is not relevant.</div>
-
-                <div class="water-grid">
-                    <div>
-                        <div class="section-subtitle">Type of Requirement</div>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="water-type" value="harvesting"> Harvesting</label>
-                            <label><input type="checkbox" name="water-type" value="storage"> Storage</label>
-                            <label><input type="checkbox" name="water-type" value="treatment"> Treatment</label>
-                            <label><input type="checkbox" name="water-type" value="distribution"> Distribution</label>
-                            <label><input type="checkbox" name="water-type" value="emergency-supply"> Emergency Supply</label>
-                            <label><input type="checkbox" name="water-type" value="multi-site"> Multi‑site Review</label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="section-subtitle">Scale</div>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="water-scale" value="residential"> Residential</label>
-                            <label><input type="checkbox" name="water-scale" value="commercial"> Commercial</label>
-                            <label><input type="checkbox" name="water-scale" value="industrial"> Industrial</label>
-                            <label><input type="checkbox" name="water-scale" value="agricultural"> Agricultural</label>
-                            <label><input type="checkbox" name="water-scale" value="municipal"> Municipal</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. Uploads (instructional only) -->
-            <div class="submit-row">
-                <div class="upload-hint">
-                    <strong>6. Uploads (Optional)</strong><br>
-                    Attach site plans, photos or PDFs when sending this form back.
-                </div>
-                <button type="submit" class="submit-btn">Save &amp; Send</button>
-            </div>
-
-            <!-- 7. Your Message -->
-            <div class="form-group" style="margin-top:1.25rem;">
-                <div class="section-title">7. Your Message</div>
-                <label for="message">Briefly describe the issue or requirement.</label>
-                <textarea id="message" name="message" maxlength="300"></textarea>
-                <div class="hint">Max 300 characters.</div>
-            </div>
-
-            <!-- 8. Preferred Response Speed -->
-            <div style="margin-top:1.25rem;">
-                <div class="section-title">8. Preferred Response Speed</div>
-                <div class="section-subtitle">Choose one option.</div>
-                <div class="radio-group">
-                    <label><input type="radio" name="response-speed" value="standard"> Standard (24‑48h)</label>
-                    <label><input type="radio" name="response-speed" value="priority"> Priority (Same Day)</label>
-                    <label><input type="radio" name="response-speed" value="critical"> Critical (Immediate)</label>
-                </div>
-            </div>
-
-            <div class="hint" style="margin-top:0.75rem;">
-                Submit / Send Instructions: Please save this form and email it to the address provided, or upload via the
-                client portal.
-            </div>
-        </form>
-    </section>
-</main>
-
-<footer>
-    <div>Vitium Group · VERITAS · Infrastructure Resilience</div>
-    <div>Data aligned with OS, NUAR and GIS (Geographic Information System) systems.</div>
-</footer>
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
+    <footer>
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    </footer>
 
 </body>
 </html>
-
