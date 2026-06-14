@@ -1,163 +1,710 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vitium Group – Learn More</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Vitium Group – Learn More</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      color: #111;
+      background: #f5f5f7;
+    }
 
-    <style>
-        :root {
-            --bg-main: #0b1220;
-            --bg-card: #111827;
-            --accent: #f97316;
-            --accent-soft: #fed7aa;
-            --text-main: #e5e7eb;
-            --text-muted: #9ca3af;
-            --border-soft: #374151;
-        }
+    header, footer {
+      background: #0b0c10;
+      color: #fff;
+      padding: 16px 24px;
+    }
 
-        body {
-            margin: 0;
-            font-family: system-ui, sans-serif;
-            background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
-            color: var(--text-main);
-        }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 16px;
+      font-weight: 500;
+    }
 
-        header {
-            background: #020617;
-            border-bottom: 1px solid #1f2937;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+    main {
+      max-width: 960px;
+      margin: 24px auto 48px;
+      padding: 0 16px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
 
-        header .logo {
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
+    h1, h2, h3 {
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
 
-        header nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.9rem;
-        }
+    p {
+      margin: 4px 0 12px;
+    }
 
-        header nav a:hover {
-            color: var(--accent);
-        }
+    .section-block {
+      border-top: 1px solid #e0e0e0;
+      padding-top: 16px;
+      margin-top: 16px;
+    }
 
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 5rem;
-        }
+    .tagline {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
 
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
+    .vertical-label {
+      font-weight: 600;
+      color: #333;
+      margin-top: 8px;
+    }
 
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-        }
+    form {
+      margin-top: 24px;
+    }
 
-        /* ORIGINAL 3‑COLUMN DESKTOP GRID */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 3rem;
-        }
+    .form-section {
+      margin-bottom: 20px;
+      padding: 12px 12px 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      background: #fafafa;
+    }
 
-        .card {
-            background: var(--bg-card);
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            min-height: 180px;
-        }
+    .form-section h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
 
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--accent-soft);
-            margin-bottom: 0.35rem;
-        }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
 
-        .card-body {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+    }
 
-        .card-tag {
-            margin-top: 0.75rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--accent);
-        }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
 
-        /* FORM */
-        .form-section {
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.75rem 1.5rem;
-        }
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 4px 16px;
+      margin-top: 4px;
+    }
 
-        .form-section h2 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.95rem;
+    }
 
-        .form-section p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-        }
+    .checkbox-item input {
+      margin-right: 6px;
+      margin-top: 2px;
+    }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+    }
 
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            margin-bottom: 0.35rem;
-        }
+    .radio-item input {
+      margin-right: 6px;
+    }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.5rem 0.6rem;
-            border-radius: 0.4rem;
-            border: 1px solid #1f2937;
-            background: #020617;
-            color: var(--text-main);
-            font-size: 0.85rem;
-        }
+    .hint {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 2px;
+    }
 
-        textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
+    .hidden {
+      display: none;
+    }
 
-        .checkbox-group
+    .submit-row {
+      margin-top: 16px;
+      text-align: right;
+    }
+
+    button {
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: none;
+      background: #0b0c10;
+      color: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1c1d22;
+    }
+
+    footer p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/operations">Operations</a>
+    <a href="/contact">Contact</a>
+    <strong>Learn More</strong>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <h1>Vitium Group – Learn More</h1>
+    <p class="tagline">
+      Strategic advisory, infrastructure resilience and VERITAS truth‑layer services across national verticals.
+    </p>
+
+    <div class="section-block">
+      <h2>Historical Data Scanning & OCR Extraction</h2>
+      <p>
+        Digitising handwritten notes, legacy logs, books, archives and historical work orders. Text from photos,
+        site images and field captures can be extracted and merged into existing data records. Legacy audio files
+        (WAV, MP3, etc.) can also be transcribed into structured text.
+      </p>
+      <p>
+        All data can be enriched with historical weather context and GPS long/lat for new field inputs, and aligned
+        to NUAR‑compliant and OS/GIS (Geographic Information System) data structures — providing a single source of
+        immutable truth across all Vitium Group verticals.
+      </p>
+      <p class="vertical-label">Foundational truth layer</p>
+    </div>
+
+    <div class="section-block">
+      <h2>VERITAS – Strategic Advisory & Signals</h2>
+      <p>
+        Evidence‑grade advisory built on immutable truth data. VERITAS ingests historical records, live signals and
+        field intelligence to support councils, utilities, national infrastructure and central government with
+        aligned, defensible decision‑making.
+      </p>
+      <p class="vertical-label">Signals & governance</p>
+    </div>
+
+    <div class="section-block">
+      <h2>IRaaS – Infrastructure Resilience as a Service</h2>
+      <p>
+        Continuous resilience assessment for critical infrastructure — utilities, transport, communications and
+        public assets. Combines historical data, live monitoring and field inspections to identify weak points,
+        prioritise interventions and support long‑term asset health.
+      </p>
+      <p class="vertical-label">Resilience services</p>
+    </div>
+
+    <div class="section-block">
+      <h2>IRaaS‑WATER – Water Resilience / Harvesting / Storage</h2>
+      <p>
+        Water harvesting, storage, treatment and distribution across residential, commercial, industrial,
+        agricultural and municipal scales. Integrates site data, historical performance and weather patterns to
+        support secure, resilient water systems.
+      </p>
+      <p class="vertical-label">Water resilience</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Highways & Bridges – National Road Infrastructure & Structural Resilience</h2>
+      <p>
+        Digitising historical bridge logs, inspection sheets, handwritten notes and work orders. Extracted data is
+        merged into existing asset records, enriched with historical weather context and GPS long/lat for new field
+        inspections. Fully aligned with NUAR and OS/GIS (Geographic Information System) data structures. Supports
+        proactive bridge health monitoring — addressing the emerging national issue often described as the “next
+        pothole epidemic”.
+      </p>
+      <p class="vertical-label">Roads & structures</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Telecoms & Fibre – Network Mapping, Resilience & Field Intelligence</h2>
+      <p>
+        Digitising legacy fibre plans, duct maps, jointing records, pole logs and handwritten field notes. Extracted
+        data is merged into existing network records, enriched with weather and GPS long/lat, and aligned to NUAR
+        and OS/GIS (Geographic Information System) standards. Provides a unified, immutable truth layer for fibre,
+        broadband, 5G and critical communications infrastructure.
+      </p>
+      <p class="vertical-label">Communications infrastructure</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Modular Housing / Modular Assembly</h2>
+      <p>
+        Site assessment, feasibility and design for modular housing and modular assembly systems. Integrates planning
+        data, local constraints and resilience requirements to support rapid, repeatable deployment.
+      </p>
+      <p class="vertical-label">Housing & assembly</p>
+    </div>
+
+    <div class="section-block">
+      <h2>SMR – Small Modular Reactors</h2>
+      <p>
+        Strategic support for SMR (Small Modular Reactor) siting, resilience and integration into existing grids and
+        communities. Evidence‑grade data and modelling to support safe, defensible deployment.
+      </p>
+      <p class="vertical-label">Energy & nuclear</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Rail / Signalling / Critical Transport</h2>
+      <p>
+        Historical incident logs, signalling records and field notes digitised and aligned with modern asset data.
+        Supports safer operations, targeted interventions and long‑term resilience across rail and critical transport
+        corridors.
+      </p>
+      <p class="vertical-label">Transport resilience</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Mining / Extraction / Heavy Industry</h2>
+      <p>
+        Site records, permits, inspections and operational logs brought into a single truth layer. Supports safer
+        operations, environmental compliance and long‑term asset stewardship.
+      </p>
+      <p class="vertical-label">Industrial assets</p>
+    </div>
+
+    <div class="section-block">
+      <h2>No10 / Governance / Policy Advisory</h2>
+      <p>
+        Evidence‑grade advisory for central government, departments and agencies. VERITAS provides aligned,
+        defensible data to support policy, governance and national infrastructure decisions.
+      </p>
+      <p class="vertical-label">Central governance</p>
+    </div>
+
+    <div class="section-block">
+      <h2>NHS – Health Infrastructure & Resilience</h2>
+      <p>
+        Estate data, historical incidents and operational records aligned into a single resilience view. Supports
+        hospitals, trusts and regional systems with infrastructure‑grade insight.
+      </p>
+      <p class="vertical-label">Health infrastructure</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Emergency Services – Police / Fire / Ambulance</h2>
+      <p>
+        Historical call logs, incident reports and field notes digitised and aligned with geospatial and asset data.
+        Supports faster situational awareness, better planning and improved resilience.
+      </p>
+      <p class="vertical-label">Blue‑light resilience</p>
+    </div>
+
+    <div class="section-block">
+      <h2>FIREWATCH – Moorland / Wildfire / Grid‑Edge Monitoring</h2>
+      <p>
+        Monitoring and advisory for moorland, wildfire risk and grid‑edge assets. Integrates historical fire records,
+        weather patterns and live signals to support prevention and response.
+      </p>
+      <p class="vertical-label">Wildfire & grid‑edge</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Other – Bespoke Projects & Emerging Requirements</h2>
+      <p>
+        For projects that do not fit neatly into a single vertical. VERITAS and IRaaS (Infrastructure Resilience as a
+        Service) can be applied to bespoke sites, assets and organisations where evidence‑grade resilience and
+        advisory are required.
+      </p>
+      <p class="vertical-label">Custom engagements</p>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <h2>Client Intake Form</h2>
+    <p>
+      Complete the sections below and send this form by email or via the client portal. This intake form aligns all
+      data with the VERITAS truth layer and the relevant verticals.
+    </p>
+
+    <form>
+      <!-- 1. Contact Details -->
+      <div class="form-section">
+        <h3>1. Contact Details</h3>
+        <label>
+          Full Name
+          <input type="text" name="fullName" autocomplete="name">
+        </label>
+        <label>
+          Company / Organisation
+          <input type="text" name="company">
+        </label>
+        <label>
+          Email Address
+          <input type="email" name="email" autocomplete="email">
+        </label>
+        <label>
+          Phone Number
+          <input type="tel" name="phone" autocomplete="tel">
+        </label>
+      </div>
+
+      <!-- 2. Which Area Do You Need Help With? -->
+      <div class="form-section">
+        <h3>2. Which Area Do You Need Help With?</h3>
+        <p>Select all that apply.</p>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-historical" name="areaHistorical">
+            <label for="area-historical">Historical Data Scanning & OCR Extraction</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-veritas" name="areaVeritas">
+            <label for="area-veritas">VERITAS – Strategic Advisory & Signals</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-iraas" name="areaIRaaS">
+            <label for="area-iraas">IRaaS – Infrastructure Resilience as a Service</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-iraas-water" name="areaIRaaSWater">
+            <label for="area-iraas-water">IRaaS‑WATER – Water Resilience / Harvesting / Storage</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-highways" name="areaHighways">
+            <label for="area-highways">Highways & Bridges</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-telecoms" name="areaTelecoms">
+            <label for="area-telecoms">Telecoms & Fibre</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-modular" name="areaModular">
+            <label for="area-modular">Modular Housing / Modular Assembly</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-smr" name="areaSMR">
+            <label for="area-smr">SMR – Small Modular Reactors</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-rail" name="areaRail">
+            <label for="area-rail">Rail / Signalling / Critical Transport</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-mining" name="areaMining">
+            <label for="area-mining">Mining / Extraction / Heavy Industry</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-no10" name="areaNo10">
+            <label for="area-no10">No10 / Governance / Policy Advisory</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-nhs" name="areaNHS">
+            <label for="area-nhs">NHS – Health Infrastructure & Resilience</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-emergency" name="areaEmergency">
+            <label for="area-emergency">Emergency Services – Police / Fire / Ambulance</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-firewatch" name="areaFirewatch">
+            <label for="area-firewatch">FIREWATCH – Moorland / Wildfire / Grid‑Edge Monitoring</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-nuar" name="areaNUAR">
+            <label for="area-nuar">NUAR Integration / OS‑Aligned GIS</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-weather" name="areaWeather">
+            <label for="area-weather">Weather Patterns & Historical Context</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="area-other" name="areaOther">
+            <label for="area-other">Other</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. What Best Describes Your Requirement? -->
+      <div class="form-section">
+        <h3>3. What Best Describes Your Requirement?</h3>
+        <p>Select all that apply.</p>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-site" name="reqSiteAssessment">
+            <label for="req-site">Site Assessment</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-feasibility" name="reqFeasibility">
+            <label for="req-feasibility">Feasibility Study</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-design" name="reqDesign">
+            <label for="req-design">Design / Modelling (Forma, CAD, BIM)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-operational" name="reqOperationalProblem">
+            <label for="req-operational">Operational Problem / Failure</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-risk" name="reqRiskReview">
+            <label for="req-risk">Risk Review / Resilience Audit</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-procurement" name="reqProcurement">
+            <label for="req-procurement">Procurement / Vendor Review</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-full" name="reqFullDelivery">
+            <label for="req-full">Full Project Delivery</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-emergency" name="reqEmergency">
+            <label for="req-emergency">Emergency / Time‑Critical Issue</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="req-general" name="reqGeneralConsultation">
+            <label for="req-general">General Consultation</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Project Location -->
+      <div class="form-section">
+        <h3>4. Project Location</h3>
+        <label>
+          Address / Site / Region
+          <textarea name="location"></textarea>
+        </label>
+      </div>
+
+      <!-- 5. Water‑Specific (IRaaS‑WATER) -->
+      <div class="form-section hidden" id="section-water">
+        <h3>5. Water‑Specific (IRaaS‑WATER)</h3>
+        <p>Complete this section if you selected IRaaS‑WATER.</p>
+
+        <label>Type of Requirement</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-harvesting" name="waterHarvesting">
+            <label for="water-harvesting">Harvesting</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-storage" name="waterStorage">
+            <label for="water-storage">Storage</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-treatment" name="waterTreatment">
+            <label for="water-treatment">Treatment</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-distribution" name="waterDistribution">
+            <label for="water-distribution">Distribution</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-emergency" name="waterEmergencySupply">
+            <label for="water-emergency">Emergency Supply</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-multisite" name="waterMultisite">
+            <label for="water-multisite">Multi‑site Review</label>
+          </div>
+        </div>
+
+        <label style="margin-top:8px;">Scale</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-residential" name="waterResidential">
+            <label for="water-residential">Residential</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-commercial" name="waterCommercial">
+            <label for="water-commercial">Commercial</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-industrial" name="waterIndustrial">
+            <label for="water-industrial">Industrial</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-agricultural" name="waterAgricultural">
+            <label for="water-agricultural">Agricultural</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="water-municipal" name="waterMunicipal">
+            <label for="water-municipal">Municipal</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. NUAR‑Specific -->
+      <div class="form-section hidden" id="section-nuar">
+        <h3>6. NUAR‑Specific</h3>
+        <p>Complete this section if you selected NUAR Integration / OS‑Aligned GIS.</p>
+
+        <label>NUAR Integration Options</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="nuar-geometry" name="nuarGeometry">
+            <label for="nuar-geometry">Asset Geometry Alignment</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="nuar-metadata" name="nuarMetadata">
+            <label for="nuar-metadata">Metadata & Provenance Normalisation</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="nuar-cross-utility" name="nuarCrossUtility">
+            <label for="nuar-cross-utility">Cross‑Utility Coordination (Gas, Water, Fibre, Power)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="nuar-evidence" name="nuarEvidence">
+            <label for="nuar-evidence">Evidence Packs for Submissions</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="nuar-compliance" name="nuarCompliance">
+            <label for="nuar-compliance">OS/NUAR Schema Compliance Check</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Weather‑Specific -->
+      <div class="form-section hidden" id="section-weather">
+        <h3>7. Weather‑Specific</h3>
+        <p>Complete this section if you selected Weather Patterns & Historical Context.</p>
+
+        <label>Weather Pattern Options</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="weather-historical" name="weatherHistorical">
+            <label for="weather-historical">Historical Weather Context (Met Office)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="weather-rainfall" name="weatherRainfall">
+            <label for="weather-rainfall">Rainfall &gt; 50mm Pattern Detection</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="weather-wind" name="weatherWind">
+            <label for="weather-wind">Wind / Storm Impact Mapping</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="weather-temperature" name="weatherTemperature">
+            <label for="weather-temperature">Temperature Extremes (Operational Risk)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="weather-gps" name="weatherGPS">
+            <label for="weather-gps">GPS‑Linked Weather Observations</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Uploads -->
+      <div class="form-section">
+        <h3>8. Uploads (Optional)</h3>
+        <p>Attach site plans, photos or PDFs when sending this form back.</p>
+        <p class="hint">Uploads are handled via email or the client portal.</p>
+      </div>
+
+      <!-- 9. Your Message -->
+      <div class="form-section">
+        <h3>9. Your Message</h3>
+        <label>
+          Briefly describe the issue or requirement. Max 300 characters.
+          <textarea name="message" maxlength="300"></textarea>
+        </label>
+      </div>
+
+      <!-- 10. Preferred Response Speed -->
+      <div class="form-section">
+        <h3>10. Preferred Response Speed</h3>
+        <p>Choose one option.</p>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" id="resp-standard" name="responseSpeed" value="standard">
+            <label for="resp-standard">Standard (24‑48h)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="resp-priority" name="responseSpeed" value="priority">
+            <label for="resp-priority">Priority (Same Day)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="resp-critical" name="responseSpeed" value="critical">
+            <label for="resp-critical">Critical (Immediate)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Submit / Send Instructions -->
+      <div class="form-section">
+        <h3>11. Submit / Send</h3>
+        <p>
+          Instructions: Please save this form and email it to the address provided, or upload via the client portal.
+        </p>
+        <div class="submit-row">
+          <button type="button">Save &amp; Send</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>Vitium Group · VERITAS · Infrastructure Resilience</p>
+  <p>Data aligned with OS, NUAR and GIS (Geographic Information System) systems.</p>
+</footer>
+
+<script>
+  (function () {
+    function toggleSection(checkboxId, sectionId) {
+      var cb = document.getElementById(checkboxId);
+      var section = document.getElementById(sectionId);
+      if (!cb || !section) return;
+      section.classList.toggle('hidden', !cb.checked);
+    }
+
+    function initToggle(checkboxId, sectionId) {
+      var cb = document.getElementById(checkboxId);
+      if (!cb) return;
+      // initial state
+      toggleSection(checkboxId, sectionId);
+      // on change
+      cb.addEventListener('change', function () {
+        toggleSection(checkboxId, sectionId);
+      });
+    }
+
+    // IRaaS‑WATER → Water‑Specific section
+    initToggle('area-iraas-water', 'section-water');
+    // NUAR → NUAR‑Specific section
+    initToggle('area-nuar', 'section-nuar');
+    // Weather → Weather‑Specific section
+    initToggle('area-weather', 'section-weather');
+  })();
+</script>
+</body>
+</html>
+
