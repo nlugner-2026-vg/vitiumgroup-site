@@ -4,7 +4,23 @@
   <meta charset="UTF-8">
   <title>Vitium Group – Learn More</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    Vitium Group – Learn More
+    Purpose:
+      - Present all verticals and VERITAS/IRaaS capabilities.
+      - Provide a structured client intake form.
+      - Implement conditional reveal sections for:
+          * IRaaS‑WATER (water‑specific detail)
+          * NUAR Integration (schema/geospatial detail)
+          * Weather Patterns (Met Office / operational risk detail)
+    Notes:
+      - This file is designed as a full replacement for frontend/learn-more.html.
+      - Styling is self‑contained for this page; global styles can still be applied via styles.css if linked.
+  -->
+
   <style>
+    /* ===== Base layout & typography ===== */
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
@@ -14,7 +30,8 @@
       background: #f5f5f7;
     }
 
-    header, footer {
+    header,
+    footer {
       background: #0b0c10;
       color: #fff;
       padding: 16px 24px;
@@ -25,6 +42,10 @@
       text-decoration: none;
       margin-right: 16px;
       font-weight: 500;
+    }
+
+    header nav strong {
+      margin-left: 8px;
     }
 
     main {
@@ -63,6 +84,7 @@
       margin-top: 8px;
     }
 
+    /* ===== Form layout ===== */
     form {
       margin-top: 24px;
     }
@@ -179,15 +201,17 @@
 <body>
 <header>
   <nav>
+    <!-- Simple nav; can be wired to real routes if needed -->
     <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/operations">Operations</a>
-    <a href="/contact">Contact</a>
+    <a href="/about.html">About</a>
+    <a href="/operations.html">Operations</a>
+    <a href="/contact.html">Contact</a>
     <strong>Learn More</strong>
   </nav>
 </header>
 
 <main>
+  <!-- ===== Core content: verticals & capabilities ===== -->
   <section>
     <h1>Vitium Group – Learn More</h1>
     <p class="tagline">
@@ -346,6 +370,7 @@
     </div>
   </section>
 
+  <!-- ===== Client Intake Form ===== -->
   <section class="section-block">
     <h2>Client Intake Form</h2>
     <p>
@@ -380,6 +405,7 @@
         <h3>2. Which Area Do You Need Help With?</h3>
         <p>Select all that apply.</p>
         <div class="checkbox-group">
+          <!-- Core verticals -->
           <div class="checkbox-item">
             <input type="checkbox" id="area-historical" name="areaHistorical">
             <label for="area-historical">Historical Data Scanning & OCR Extraction</label>
@@ -436,6 +462,8 @@
             <input type="checkbox" id="area-firewatch" name="areaFirewatch">
             <label for="area-firewatch">FIREWATCH – Moorland / Wildfire / Grid‑Edge Monitoring</label>
           </div>
+
+          <!-- NUAR & Weather – explicit options to drive conditional sections -->
           <div class="checkbox-item">
             <input type="checkbox" id="area-nuar" name="areaNUAR">
             <label for="area-nuar">NUAR Integration / OS‑Aligned GIS</label>
@@ -444,6 +472,8 @@
             <input type="checkbox" id="area-weather" name="areaWeather">
             <label for="area-weather">Weather Patterns & Historical Context</label>
           </div>
+
+          <!-- Other catch‑all -->
           <div class="checkbox-item">
             <input type="checkbox" id="area-other" name="areaOther">
             <label for="area-other">Other</label>
@@ -504,7 +534,7 @@
         </label>
       </div>
 
-      <!-- 5. Water‑Specific (IRaaS‑WATER) -->
+      <!-- 5. Water‑Specific (IRaaS‑WATER) – conditional reveal -->
       <div class="form-section hidden" id="section-water">
         <h3>5. Water‑Specific (IRaaS‑WATER)</h3>
         <p>Complete this section if you selected IRaaS‑WATER.</p>
@@ -562,7 +592,7 @@
         </div>
       </div>
 
-      <!-- 6. NUAR‑Specific -->
+      <!-- 6. NUAR‑Specific – conditional reveal -->
       <div class="form-section hidden" id="section-nuar">
         <h3>6. NUAR‑Specific</h3>
         <p>Complete this section if you selected NUAR Integration / OS‑Aligned GIS.</p>
@@ -575,7 +605,7 @@
           </div>
           <div class="checkbox-item">
             <input type="checkbox" id="nuar-metadata" name="nuarMetadata">
-            <label for="nuar-metadata">Metadata & Provenance Normalisation</label>
+            <label for="nuar-metadata">Metadata &amp; Provenance Normalisation</label>
           </div>
           <div class="checkbox-item">
             <input type="checkbox" id="nuar-cross-utility" name="nuarCrossUtility">
@@ -592,10 +622,10 @@
         </div>
       </div>
 
-      <!-- 7. Weather‑Specific -->
+      <!-- 7. Weather‑Specific – conditional reveal -->
       <div class="form-section hidden" id="section-weather">
         <h3>7. Weather‑Specific</h3>
-        <p>Complete this section if you selected Weather Patterns & Historical Context.</p>
+        <p>Complete this section if you selected Weather Patterns &amp; Historical Context.</p>
 
         <label>Weather Pattern Options</label>
         <div class="checkbox-group">
@@ -665,6 +695,7 @@
           Instructions: Please save this form and email it to the address provided, or upload via the client portal.
         </p>
         <div class="submit-row">
+          <!-- Button is intentionally non‑submitting; sending is handled outside the browser (email/portal). -->
           <button type="button">Save &amp; Send</button>
         </div>
       </div>
@@ -678,20 +709,31 @@
 </footer>
 
 <script>
+  // ===== Conditional reveal logic for IRaaS‑WATER, NUAR, Weather =====
   (function () {
+    /**
+     * Toggle a section's visibility based on a checkbox state.
+     * @param {string} checkboxId - ID of the checkbox driving the reveal.
+     * @param {string} sectionId  - ID of the section to show/hide.
+     */
     function toggleSection(checkboxId, sectionId) {
       var cb = document.getElementById(checkboxId);
       var section = document.getElementById(sectionId);
       if (!cb || !section) return;
+      // If checkbox is checked → show section; otherwise hide.
       section.classList.toggle('hidden', !cb.checked);
     }
 
+    /**
+     * Initialise a checkbox → section binding.
+     * Sets initial state and attaches change listener.
+     */
     function initToggle(checkboxId, sectionId) {
       var cb = document.getElementById(checkboxId);
       if (!cb) return;
-      // initial state
+      // Initial state on page load.
       toggleSection(checkboxId, sectionId);
-      // on change
+      // Update on user interaction.
       cb.addEventListener('change', function () {
         toggleSection(checkboxId, sectionId);
       });
@@ -707,4 +749,3 @@
 </script>
 </body>
 </html>
-
