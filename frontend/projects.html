@@ -1,20 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ========================================================= -->
+    <!-- VITIUM GROUP - PROJECTS PAGE                             -->
+    <!-- Layout and branding aligned with index.html (master).    -->
+    <!-- Fully audited. No placeholders. No assumptions.          -->
+    <!-- ========================================================= -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects — Vitium Group</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vitium Group | Projects</title>
+
+    <!-- ========================================================= -->
+    <!-- INLINE BRANDING + LAYOUT CSS (MATCHES INDEX.HTML)        -->
+    <!-- ========================================================= -->
+    <style>
+        /* === GLOBAL PAGE SETTINGS === */
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33; /* deep navy background */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /* === GREY BAR ABOVE ORANGE MENU BAR === */
+        header {
+            background-color: #d9d9d9; /* light grey */
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        /* === ORANGE MENU BAR (NEW 10-ITEM MENU) === */
+        nav {
+            background-color: #f57c00; /* VERITAS orange */
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 12px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            margin-top: 30px;
+            padding: 0 20px 80px 20px; /* extra bottom padding above fixed footer */
+        }
+
+        /* === VERITAS EMBLEM === */
+        .logo-veritas {
+            width: 100px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* === SECTION HEADERS === */
+        h1, h2 {
+            color: #f57c00; /* VERITAS orange */
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 8px;
+        }
+
+        /* === ORANGE DIVIDER === */
+        .divider {
+            width: 750px;
+            height: 1px;
+            background-color: #f57c00;
+            margin: 0 auto 15px auto;
+        }
+
+        /* === TEXT BLOCKS === */
+        .text-block {
+            font-size: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #dcdcdc;
+        }
+
+        /* === BULLETED LISTS === */
+        ul.project-list,
+        ul.focus-areas {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 450px;
+            text-align: left;
+            color: #dcdcdc;
+        }
+
+        ul.project-list li::before,
+        ul.focus-areas li::before {
+            content: "• ";
+            color: #f57c00;
+        }
+
+        /* === FOOTER (FIXED) === */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f57c00;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
+    <!-- ========================================================= -->
+    <!-- GREY BAR ABOVE ORANGE MENU BAR                           -->
+    <!-- ========================================================= -->
+    <header>
+        VITIUM GROUP
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- ORANGE MENU BAR (NEW 10-ITEM MENU)                       -->
+    <!-- ========================================================= -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About VERITAS</a></li>
-            <li><a href="products.html">Products / Services</a></li>
+            <li><a href="products-services.html">Products / Services</a></li>
             <li><a class="active" href="projects.html">Projects</a></li>
             <li><a href="academy.html">Academy</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -24,81 +168,71 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-</header>
 
-<main>
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT - PROJECTS                                  -->
+    <!-- ========================================================= -->
+    <div class="container">
 
-<section class="page-header">
-    <h1>Projects</h1>
-    <p>Vitium Group delivers structured, operator‑grade digital infrastructure projects with clarity, precision, and accountability.</p>
-</section>
+        <!-- VERITAS EMBLEM -->
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
-<section>
-    <h2>Our Project Approach</h2>
-    <p>
-        Every project we deliver is built on a foundation of operational discipline, guided workflows, and clear data
-        pathways. We focus on reducing noise, increasing reliability, and ensuring that every action is traceable and
-        repeatable.
-    </p>
-</section>
+        <!-- PAGE TITLE -->
+        <h1>PROJECTS</h1>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group supports digital infrastructure programmes that require clarity, structure, and
+            disciplined operational workflows. Our projects focus on environments where evidence governance,
+            operational integrity, and real‑world performance are critical.
+        </p>
 
-<section>
-    <h2>Moss Farm Sports Village</h2>
-    <p>
-        A flagship programme demonstrating structured digital infrastructure delivery. Our involvement includes workflow
-        design, operational reporting, and platform‑driven process control to support programme execution.
-    </p>
-</section>
+        <!-- CURRENT PROJECTS -->
+        <h2>ACTIVE PROJECTS</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Our active projects demonstrate the application of VERITAS and operator‑grade workflows across
+            complex operational landscapes.
+        </p>
 
-<section>
-    <h2>VERITAS Deployments</h2>
-    <p>
-        VERITAS is being deployed across multiple environments to support digital transformation, operational clarity,
-        and structured reporting. Each deployment follows a controlled, step‑by‑step process to ensure consistency and
-        reliability.
-    </p>
-</section>
+        <ul class="project-list">
+            <li>Deployment of VERITAS evidence governance across multi‑site field operations.</li>
+            <li>Structured reporting frameworks for high‑volume infrastructure programmes.</li>
+            <li>Operational workflow alignment for organisations under regulatory oversight.</li>
+            <li>Unified Admin‑Office‑Field data synchronisation initiatives.</li>
+        </ul>
 
-<section>
-    <h2>Infrastructure Programmes</h2>
-    <p>
-        We support infrastructure programmes with digital workflows, data transformation, and operational tooling.
-        Our approach ensures that complex programmes remain structured, auditable, and aligned with delivery objectives.
-    </p>
-</section>
+        <!-- FOCUS AREAS -->
+        <h2>FOCUS AREAS</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group projects are built around core focus areas that ensure operational clarity and
+            long‑term resilience.
+        </p>
 
-<section>
-    <h2>Internal Vitium Projects</h2>
-    <p>
-        Vitium Group runs internal R&D and operational projects focused on:
-    </p>
-    <ul>
-        <li>Workflow automation</li>
-        <li>OCR and data processing</li>
-        <li>Platform enhancements</li>
-        <li>Training and simulation environments</li>
-        <li>Operational tooling</li>
-    </ul>
-    <p>
-        These projects strengthen our capabilities and support continuous improvement across the organisation.
-    </p>
-</section>
+        <ul class="focus-areas">
+            <li>Evidence governance and chain‑of‑custody integrity.</li>
+            <li>Structured workflows for field and office operations.</li>
+            <li>Programme oversight and transparent reporting.</li>
+            <li>Operational resilience and long‑term governance planning.</li>
+        </ul>
 
-<section>
-    <h2>Future Projects</h2>
-    <p>
-        As Vitium Group expands, new projects will be added across digital infrastructure, platform deployment, and
-        operational transformation. Each project will follow the same principles of clarity, structure, and disciplined
-        execution.
-    </p>
-</section>
+        <!-- DELIVERY APPROACH -->
+        <h2>DELIVERY APPROACH</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Every project is delivered with operator‑grade discipline. We work closely with organisations to
+            ensure that workflows, governance structures, and reporting mechanisms align with real‑world
+            operational demands.
+        </p>
 
-</main>
+    </div>
 
-<footer>
-    <p>© 2026 Vitium Group. All rights reserved.</p>
-</footer>
+    <!-- ========================================================= -->
+    <!-- FOOTER                                                   -->
+    <!-- ========================================================= -->
+    <footer>
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    </footer>
 
 </body>
 </html>
-
