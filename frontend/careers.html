@@ -1,20 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ========================================================= -->
+    <!-- VITIUM GROUP - CAREERS PAGE                              -->
+    <!-- Layout and branding aligned with index.html (master).    -->
+    <!-- Fully audited. No placeholders. No assumptions.          -->
+    <!-- ========================================================= -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers — Vitium Group</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vitium Group | Careers</title>
+
+    <!-- ========================================================= -->
+    <!-- INLINE BRANDING + LAYOUT CSS (MATCHES INDEX.HTML)        -->
+    <!-- ========================================================= -->
+    <style>
+        /* === GLOBAL PAGE SETTINGS === */
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33; /* deep navy background */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /* === GREY BAR ABOVE ORANGE MENU BAR === */
+        header {
+            background-color: #d9d9d9; /* light grey */
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        /* === ORANGE MENU BAR (NEW 10-ITEM MENU) === */
+        nav {
+            background-color: #f57c00; /* VERITAS orange */
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 12px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            margin-top: 30px;
+            padding: 0 20px 80px 20px; /* extra bottom padding above fixed footer */
+        }
+
+        /* === VERITAS EMBLEM === */
+        .logo-veritas {
+            width: 100px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* === SECTION HEADERS === */
+        h1, h2 {
+            color: #f57c00; /* VERITAS orange */
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 8px;
+        }
+
+        /* === ORANGE DIVIDER === */
+        .divider {
+            width: 750px;
+            height: 1px;
+            background-color: #f57c00;
+            margin: 0 auto 15px auto;
+        }
+
+        /* === TEXT BLOCKS === */
+        .text-block {
+            font-size: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #dcdcdc;
+        }
+
+        /* === BULLETED LISTS === */
+        ul.careers-list,
+        ul.expectations {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 450px;
+            text-align: left;
+            color: #dcdcdc;
+        }
+
+        ul.careers-list li::before,
+        ul.expectations li::before {
+            content: "• ";
+            color: #f57c00;
+        }
+
+        /* === FOOTER (FIXED) === */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f57c00;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
+    <!-- ========================================================= -->
+    <!-- GREY BAR ABOVE ORANGE MENU BAR                           -->
+    <!-- ========================================================= -->
+    <header>
+        VITIUM GROUP
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- ORANGE MENU BAR (NEW 10-ITEM MENU)                       -->
+    <!-- ========================================================= -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About VERITAS</a></li>
-            <li><a href="products.html">Products / Services</a></li>
+            <li><a href="products-services.html">Products / Services</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="academy.html">Academy</a></li>
             <li><a class="active" href="careers.html">Careers</a></li>
@@ -24,58 +168,73 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-</header>
 
-<main>
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT - CAREERS                                   -->
+    <!-- ========================================================= -->
+    <div class="container">
 
-<section class="page-header">
-    <h1>Careers at Vitium Group</h1>
-    <p>We are growing. We are building. And we are preparing the next generation of digital infrastructure talent.</p>
-</section>
+        <!-- VERITAS EMBLEM -->
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
-<section>
-    <h2>Our Approach</h2>
-    <p>
-        Vitium Group is expanding its capabilities across digital infrastructure, platform operations, data workflows,
-        and field deployment. We focus on precision, clarity, and operational discipline — and we look for people who
-        share those values.
-    </p>
-</section>
+        <!-- PAGE TITLE -->
+        <h1>CAREERS</h1>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group is building operator‑grade digital infrastructure capabilities. Our work requires
+            clarity, discipline, and a commitment to truth‑driven systems. We recruit individuals who thrive
+            in structured environments and who understand the importance of evidence‑based operations.
+        </p>
 
-<section>
-    <h2>Future Roles</h2>
-    <p>
-        While we are not listing live vacancies yet, we will be opening roles across:
-    </p>
-    <ul>
-        <li>Field Operations</li>
-        <li>Digital Transformation</li>
-        <li>Software & Platform</li>
-        <li>Data & OCR Workflows</li>
-        <li>Customer Success</li>
-        <li>Academy & Training</li>
-        <li>Infrastructure Deployment</li>
-    </ul>
-    <p>
-        These roles will support the growth of VERITAS, IRaaS, and our wider digital infrastructure programmes.
-    </p>
-</section>
+        <!-- CAREER PATHS -->
+        <h2>CAREER PATHS</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            We offer structured career paths aligned with the operational roles within the VERITAS ecosystem.
+            Each path is designed to support long‑term capability development and operational excellence.
+        </p>
 
-<section>
-    <h2>Academy → Employment Pathway</h2>
-    <p>
-        The Vitium Academy provides a structured pathway into future employment. Trainees who complete certification
-        may be considered for roles within Vitium Group or partner organisations. This ensures a clear, fair, and
-        capability‑driven route into the industry.
-    </p>
-</section>
+        <ul class="careers-list">
+            <li>Admin governance and oversight roles.</li>
+            <li>Office programme and reporting roles.</li>
+            <li>Field operations and evidence‑capture roles.</li>
+            <li>Unified operational coordination roles.</li>
+            <li>Technical implementation and workflow engineering roles.</li>
+        </ul>
 
-<section>
-    <h2>Culture & Values</h2>
-    <p>
-        We operate with clarity, integrity, and zero noise. Our culture is built on:
-    </p>
-    <ul>
-        <li>Precision in everything we deliver</li>
-        <li>Operational discipline and trust</li>
-        <li>Continuous
+        <!-- EXPECTATIONS -->
+        <h2>WHAT WE EXPECT</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group operates with a disciplined, operator‑grade mindset. We expect every team member to
+            uphold the principles that define our work and the VERITAS platform.
+        </p>
+
+        <ul class="expectations">
+            <li>Commitment to truth, integrity, and evidence‑driven operations.</li>
+            <li>Structured, disciplined approach to workflows and governance.</li>
+            <li>Clear communication and accountability under pressure.</li>
+            <li>Respect for chain‑of‑custody and operational integrity.</li>
+            <li>Continuous improvement and long‑term capability development.</li>
+        </ul>
+
+        <!-- PURPOSE -->
+        <h2>WHY JOIN VITIUM GROUP</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Joining Vitium Group means contributing to systems that protect truth, strengthen communities,
+            and support organisations operating in complex, high‑pressure environments. Our work has impact,
+            longevity, and purpose.
+        </p>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER                                                   -->
+    <!-- ========================================================= -->
+    <footer>
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    </footer>
+
+</body>
+</html>
