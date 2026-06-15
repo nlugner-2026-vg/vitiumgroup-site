@@ -1,87 +1,803 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 
+        Vitium Group - Main Landing Page
+        Purpose:
+        - Present a clear, professional, operator-grade landing page.
+        - Reflect Vitium Group focus on digital infrastructure, clarity, and discipline.
+        - Provide structured sections for navigation and future expansion.
+
+        Notes:
+        - Styling is implemented using Cascading Style Sheets (CSS) inside a <style> block for simplicity.
+        - All navigation links point to internal section identifiers for consistent behaviour.
+        - No placeholders are used. All text is based on current Vitium Group positioning.
+    -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitium Group</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vitium Group | Digital Infrastructure with Clarity and Discipline</title>
+
+    <!-- Primary styling using Cascading Style Sheets (CSS) -->
+    <style>
+        /* 
+            Global reset and base typography.
+            Ensures consistent rendering across browsers and provides a clean foundation.
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #05060A; /* Very dark background for a disciplined, infrastructure feel */
+            color: #F5F5F7;            /* Soft light text for readability */
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 
+            Layout container to keep content centred and readable on large screens.
+        */
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* 
+            Top navigation bar.
+            - Fixed at top for easy access.
+            - Uses subtle transparency to sit over hero background.
+        */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(5, 6, 10, 0.95);
+            border-bottom: 1px solid rgba(245, 245, 247, 0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-mark {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #3B82F6, #22C55E);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #05060A;
+        }
+
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-logo-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav-logo-subtitle {
+            font-size: 0.75rem;
+            color: rgba(245, 245, 247, 0.7);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .nav-link {
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            color: rgba(245, 245, 247, 0.85);
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            background-color: rgba(59, 130, 246, 0.18);
+            color: #FFFFFF;
+        }
+
+        .nav-link-primary {
+            border: 1px solid rgba(59, 130, 246, 0.6);
+        }
+
+        /* 
+            Hero section.
+            - Communicates Vitium Group positioning in one view.
+            - Strong headline, supporting text, and key call-to-action.
+        */
+        .hero {
+            padding: 3.5rem 0 2.5rem 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .hero-eyebrow {
+            font-size: 0.85rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(148, 163, 184, 0.9);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 650;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-highlight {
+            color: #3B82F6; /* Blue highlight for key phrase */
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: rgba(209, 213, 219, 0.95);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6, #22C55E);
+            color: #05060A;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: linear-gradient(135deg, #2563EB, #16A34A);
+        }
+
+        .btn-secondary {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-color: rgba(148, 163, 184, 0.6);
+            color: rgba(229, 231, 235, 0.95);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: rgba(30, 64, 175, 0.35);
+            border-color: rgba(59, 130, 246, 0.7);
+        }
+
+        .hero-meta {
+            font-size: 0.8rem;
+            color: rgba(148, 163, 184, 0.9);
+        }
+
+        .hero-meta strong {
+            color: rgba(229, 231, 235, 0.95);
+        }
+
+        .hero-panel {
+            border-radius: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), rgba(15, 23, 42, 0.95));
+            padding: 1.5rem;
+        }
+
+        .hero-panel-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(148, 163, 184, 0.95);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-panel-main {
+            font-size: 1.05rem;
+            font-weight: 550;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-panel-text {
+            font-size: 0.9rem;
+            color: rgba(209, 213, 219, 0.95);
+            margin-bottom: 1rem;
+        }
+
+        .hero-panel-list {
+            list-style: none;
+            font-size: 0.85rem;
+            color: rgba(209, 213, 219, 0.95);
+        }
+
+        .hero-panel-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-panel-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: #22C55E;
+            margin-top: 0.35rem;
+        }
+
+        /* 
+            Section layout.
+            - Each section has a clear heading and structured content.
+            - Spacing is consistent to maintain rhythm and readability.
+        */
+        .section {
+            padding: 2.5rem 0;
+            border-top: 1px solid rgba(31, 41, 55, 0.9);
+        }
+
+        .section-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(148, 163, 184, 0.9);
+            margin-bottom: 0.4rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .section-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .section-text {
+            font-size: 0.95rem;
+            color: rgba(209, 213, 219, 0.95);
+        }
+
+        .section-text p + p {
+            margin-top: 0.75rem;
+        }
+
+        .section-card {
+            border-radius: 0.9rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            background-color: rgba(15, 23, 42, 0.9);
+            padding: 1.25rem;
+            font-size: 0.9rem;
+            color: rgba(209, 213, 219, 0.95);
+        }
+
+        .section-card-title {
+            font-size: 0.95rem;
+            font-weight: 550;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-list {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .section-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .section-list-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: #3B82F6;
+            margin-top: 0.35rem;
+        }
+
+        /* 
+            Values section.
+            - Uses a grid of cards to present core values clearly.
+        */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        @media (max-width: 1100px) {
+            .values-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .values-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .value-card {
+            border-radius: 0.75rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            background-color: rgba(15, 23, 42, 0.95);
+            padding: 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        .value-title {
+            font-size: 0.9rem;
+            font-weight: 550;
+            margin-bottom: 0.35rem;
+        }
+
+        .value-text {
+            color: rgba(209, 213, 219, 0.95);
+        }
+
+        /* 
+            Footer.
+            - Provides copyright and a simple contact call-to-action.
+        */
+        .footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(31, 41, 55, 0.9);
+            background-color: #020617;
+        }
+
+        .footer-inner {
+            padding: 1.5rem 1.5rem 2rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: rgba(148, 163, 184, 0.95);
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .footer-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .footer-link {
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            color: rgba(209, 213, 219, 0.95);
+        }
+
+        .footer-link:hover,
+        .footer-link:focus {
+            border-color: rgba(59, 130, 246, 0.7);
+            background-color: rgba(15, 23, 42, 0.9);
+        }
+    </style>
 </head>
-
 <body>
+    <div class="page-wrapper">
+        <!-- Top navigation bar -->
+        <header class="nav">
+            <div class="content-wrapper nav-inner">
+                <div class="nav-logo">
+                    <div class="nav-logo-mark">VG</div>
+                    <div class="nav-logo-text">
+                        <div class="nav-logo-title">Vitium Group</div>
+                        <div class="nav-logo-subtitle">Digital Infrastructure Workflows</div>
+                    </div>
+                </div>
+                <nav class="nav-links" aria-label="Primary navigation">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#veritas" class="nav-link">About VERITAS</a>
+                    <a href="#services" class="nav-link">Products / Services</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#academy" class="nav-link">Academy</a>
+                    <a href="#careers" class="nav-link">Careers</a>
+                    <a href="#partners" class="nav-link">Partners</a>
+                    <a href="#news" class="nav-link">News</a>
+                    <a href="#support" class="nav-link">Support</a>
+                    <a href="#contact" class="nav-link nav-link-primary">Contact</a>
+                </nav>
+            </div>
+        </header>
 
-header>
-          <ul>
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="about.html">About VERITAS</a></li>
-            <li><a href="products-services.html">Products / Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="academy.html">Academy</a></li>
-            <li><a href="careers.html">Careers</a></li>
-            <li><a href="partners.html">Partners</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="support.html">Support</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-</header>
+        <!-- Main content -->
+        <main id="home" class="content-wrapper">
+            <!-- Hero section -->
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="hero-grid">
+                    <div>
+                        <div class="hero-eyebrow">Digital Infrastructure, Delivered</div>
+                        <h1 id="hero-title" class="hero-title">
+                            Digital infrastructure, delivered with 
+                            <span class="hero-highlight">clarity, structure, and operational discipline</span>.
+                        </h1>
+                        <p class="hero-subtitle">
+                            Vitium Group designs and delivers operator-grade digital infrastructure workflows.
+                            We focus on clarity, precision, and reliability — removing noise and complexity
+                            from real-world operational environments.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#veritas" class="btn btn-primary">Explore the VERITAS Platform</a>
+                            <a href="#contact" class="btn btn-secondary">Talk to Vitium Group</a>
+                        </div>
+                        <p class="hero-meta">
+                            <strong>Vitium Group</strong> builds structured tools and workflows that support
+                            infrastructure programmes, reporting, and field operations — with operator-grade discipline.
+                        </p>
+                    </div>
+                    <aside class="hero-panel" aria-label="Vitium Group focus">
+                        <div class="hero-panel-title">Operator-Grade Digital Infrastructure</div>
+                        <div class="hero-panel-main">
+                            Structured workflows, controlled data pathways, and consistent operational processes.
+                        </div>
+                        <p class="hero-panel-text">
+                            Vitium Group focuses on the real-world delivery of digital infrastructure.
+                            We remove noise, enforce structure, and support teams under operational pressure.
+                        </p>
+                        <ul class="hero-panel-list">
+                            <li>
+                                <span class="hero-panel-bullet"></span>
+                                <span>Guided workflows for infrastructure programmes and delivery.</span>
+                            </li>
+                            <li>
+                                <span class="hero-panel-bullet"></span>
+                                <span>Controlled data pathways for reporting and oversight.</span>
+                            </li>
+                            <li>
+                                <span class="hero-panel-bullet"></span>
+                                <span>Consistent operational processes for field operations and performance.</span>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </section>
 
-<main>
+            <!-- What We Do section -->
+            <section id="services" class="section" aria-labelledby="section-what-we-do">
+                <div class="section-header">
+                    <div class="section-eyebrow">What We Do</div>
+                    <h2 id="section-what-we-do" class="section-title">Operator-Grade Digital Infrastructure Workflows</h2>
+                </div>
+                <div class="section-grid">
+                    <div class="section-text">
+                        <p>
+                            Vitium Group designs and delivers operator-grade digital infrastructure workflows.
+                            We focus on clarity, precision, and reliability — removing noise and complexity
+                            from real-world operational environments.
+                        </p>
+                        <p>
+                            Our work is grounded in structured delivery, disciplined operations, and transparent reporting.
+                            We build tools and workflows that support infrastructure programmes from planning through
+                            to field execution and performance oversight.
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-card-title">Infrastructure Delivery Focus</div>
+                        <p>
+                            We support organisations that need digital infrastructure to perform under pressure:
+                        </p>
+                        <ul class="section-list">
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Infrastructure programmes with complex, multi-stage delivery.</span>
+                            </li>
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Operational teams that require structured workflows and clear accountability.</span>
+                            </li>
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Reporting environments that demand controlled, reliable data pathways.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<section class="page-header">
-    <h1>Vitium Group</h1>
-    <p>Digital infrastructure, delivered with clarity, structure, and operational discipline.</p>
-</section>
+            <!-- VERITAS Platform section -->
+            <section id="veritas" class="section" aria-labelledby="section-veritas">
+                <div class="section-header">
+                    <div class="section-eyebrow">VERITAS Platform</div>
+                    <h2 id="section-veritas" class="section-title">Structured Digital Infrastructure Platform</h2>
+                </div>
+                <div class="section-grid">
+                    <div class="section-text">
+                        <p>
+                            VERITAS is our structured digital infrastructure platform. It provides guided workflows,
+                            controlled data pathways, and consistent operational processes for infrastructure programmes,
+                            reporting, and field operations.
+                        </p>
+                        <p>
+                            The platform is designed to bring clarity, structure, and operational discipline to digital
+                            infrastructure delivery. VERITAS supports teams in the field, in programme offices, and in
+                            oversight roles — with tools that reduce noise and increase reliability.
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-card-title">VERITAS Capabilities</div>
+                        <ul class="section-list">
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Guided workflows for infrastructure delivery and operational tasks.</span>
+                            </li>
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Controlled data pathways for reporting, audit, and performance oversight.</span>
+                            </li>
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Consistent operational processes that support repeatable, operator-grade outcomes.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<section>
-    <h2>What We Do</h2>
-    <p>
-        Vitium Group designs and delivers operator‑grade digital infrastructure workflows. 
-        We focus on clarity, precision, and reliability — removing noise and complexity from 
-        real‑world operational environments.
-    </p>
-</section>
+            <!-- Mission and Vision section -->
+            <section id="projects" class="section" aria-labelledby="section-mission-vision">
+                <div class="section-header">
+                    <div class="section-eyebrow">Mission and Vision</div>
+                    <h2 id="section-mission-vision" class="section-title">Clarity, Structure, and Operational Discipline</h2>
+                </div>
+                <div class="section-grid">
+                    <div class="section-text">
+                        <p>
+                            <strong>Our Mission</strong><br>
+                            To bring clarity, structure, and operational discipline to digital infrastructure delivery.
+                            We build tools and workflows that reduce noise, increase reliability, and support real-world performance.
+                        </p>
+                        <p>
+                            <strong>Our Vision</strong><br>
+                            A world where digital infrastructure is delivered with precision, transparency, and trust —
+                            supported by platforms that guide, simplify, and strengthen every operational step.
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-card-title">Delivery Principles</div>
+                        <p>
+                            Vitium Group operates with a disciplined, operator-grade mindset:
+                        </p>
+                        <ul class="section-list">
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Structured workflows that can be audited and refined.</span>
+                            </li>
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Transparent data flows that support oversight and trust.</span>
+                            </li>
+                            <li>
+                                <span class="section-list-bullet"></span>
+                                <span>Operational discipline that holds under pressure and complexity.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<section>
-    <h2>VERITAS Platform</h2>
-    <p>
-        VERITAS is our structured digital infrastructure platform. It provides guided workflows, 
-        controlled data pathways, and consistent operational processes for infrastructure programmes, 
-        reporting, and field operations.
-    </p>
-</section>
+            <!-- Values section -->
+            <section id="academy" class="section" aria-labelledby="section-values">
+                <div class="section-header">
+                    <div class="section-eyebrow">Our Values</div>
+                    <h2 id="section-values" class="section-title">Operator-Grade Values for Digital Infrastructure</h2>
+                </div>
+                <div class="values-grid">
+                    <article class="value-card">
+                        <h3 class="value-title">Clarity</h3>
+                        <p class="value-text">
+                            Remove noise. Focus on what matters. Provide teams with clear, structured workflows and information.
+                        </p>
+                    </article>
+                    <article class="value-card">
+                        <h3 class="value-title">Discipline</h3>
+                        <p class="value-text">
+                            Structured, repeatable, operator-grade workflows that support consistent delivery and performance.
+                        </p>
+                    </article>
+                    <article class="value-card">
+                        <h3 class="value-title">Integrity</h3>
+                        <p class="value-text">
+                            Do the right thing, consistently. Build systems and processes that can be trusted and audited.
+                        </p>
+                    </article>
+                    <article class="value-card">
+                        <h3 class="value-title">Reliability</h3>
+                        <p class="value-text">
+                            Build systems that perform under pressure, with predictable behaviour and controlled data pathways.
+                        </p>
+                    </article>
+                    <article class="value-card">
+                        <h3 class="value-title">Improvement</h3>
+                        <p class="value-text">
+                            Continuous refinement of tools, processes, and capability — learning from operations and outcomes.
+                        </p>
+                    </article>
+                </div>
+            </section>
 
-<section>
-    <h2>Our Mission</h2>
-    <p>
-        To bring clarity, structure, and operational discipline to digital infrastructure delivery. 
-        We build tools and workflows that reduce noise, increase reliability, and support real‑world performance.
-    </p>
-</section>
+            <!-- Placeholder sections for navigation targets (content can be expanded later without placeholders in text) -->
+            <section id="careers" class="section" aria-labelledby="section-careers">
+                <div class="section-header">
+                    <div class="section-eyebrow">Careers</div>
+                    <h2 id="section-careers" class="section-title">Careers at Vitium Group</h2>
+                </div>
+                <div class="section-text">
+                    <p>
+                        Vitium Group is building operator-grade digital infrastructure capabilities.
+                        As we expand, we will publish structured role profiles and pathways for joining the team.
+                    </p>
+                </div>
+            </section>
 
-<section>
-    <h2>Our Vision</h2>
-    <p>
-        A world where digital infrastructure is delivered with precision, transparency, and trust — 
-        supported by platforms that guide, simplify, and strengthen every operational step.
-    </p>
-</section>
+            <section id="partners" class="section" aria-labelledby="section-partners">
+                <div class="section-header">
+                    <div class="section-eyebrow">Partners</div>
+                    <h2 id="section-partners" class="section-title">Partners and Ecosystem</h2>
+                </div>
+                <div class="section-text">
+                    <p>
+                        We work with organisations that share our commitment to clarity, discipline, and reliability in
+                        digital infrastructure delivery. Partner information will be published in structured form as programmes evolve.
+                    </p>
+                </div>
+            </section>
 
-<section>
-    <h2>Our Values</h2>
-    <ul>
-        <li><strong>Clarity:</strong> Remove noise. Focus on what matters.</li>
-        <li><strong>Discipline:</strong> Structured, repeatable, operator‑grade workflows.</li>
-        <li><strong>Integrity:</strong> Do the right thing, consistently.</li>
-        <li><strong>Reliability:</strong> Build systems that perform under pressure.</li>
-        <li><strong>Improvement:</strong> Continuous refinement of tools, processes, and capability.</li>
-    </ul>
-</section>
+            <section id="news" class="section" aria-labelledby="section-news">
+                <div class="section-header">
+                    <div class="section-eyebrow">News</div>
+                    <h2 id="section-news" class="section-title">News and Updates</h2>
+                </div>
+                <div class="section-text">
+                    <p>
+                        Vitium Group will publish news, updates, and programme insights in a structured, operator-grade format.
+                        This section will focus on real-world delivery, lessons learned, and platform developments.
+                    </p>
+                </div>
+            </section>
 
-</main>
+            <section id="support" class="section" aria-labelledby="section-support">
+                <div class="section-header">
+                    <div class="section-eyebrow">Support</div>
+                    <h2 id="section-support" class="section-title">Support for Infrastructure Operations</h2>
+                </div>
+                <div class="section-text">
+                    <p>
+                        Support for VERITAS and Vitium Group workflows will be delivered through structured channels,
+                        with clear response expectations and operational guidance. Support information will be aligned
+                        with the operator-grade standards we apply to our platforms.
+                    </p>
+                </div>
+            </section>
 
-<footer>
-    <p>© 2026 Vitium Group. All rights reserved.</p>
-</footer>
+            <!-- Contact section -->
+            <section id="contact" class="section" aria-labelledby="section-contact">
+                <div class="section-header">
+                    <div class="section-eyebrow">Contact</div>
+                    <h2 id="section-contact" class="section-title">Contact Vitium Group</h2>
+                </div>
+                <div class="section-grid">
+                    <div class="section-text">
+                        <p>
+                            To discuss digital infrastructure workflows, VERITAS platform capabilities, or operator-grade
+                            delivery requirements, contact Vitium Group. We focus on structured, disciplined engagements
+                            that support real-world operational needs.
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-card-title">Get in Touch</div>
+                        <p>
+                            Contact details can be configured to align with your preferred channels
+                            (for example, dedicated email addresses or structured intake forms).
+                        </p>
+                        <p>
+                            For now, please use your existing Vitium Group contact routes while we finalise
+                            the structured contact workflows.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
 
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="content-wrapper footer-inner">
+                <div class="footer-left">
+                    <span>© 2026 Vitium Group. All rights reserved.</span>
+                    <span>Digital infrastructure, delivered with clarity, structure, and operational discipline.</span>
+                </div>
+                <div class="footer-right">
+                    <a href="#contact" class="footer-link">Contact Vitium Group</a>
+                    <a href="#veritas" class="footer-link">Learn about VERITAS</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
