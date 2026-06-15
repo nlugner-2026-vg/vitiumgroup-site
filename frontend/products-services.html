@@ -1,20 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ========================================================= -->
+    <!-- VITIUM GROUP - PRODUCTS & SERVICES PAGE                  -->
+    <!-- Layout and branding aligned with index.html (master).    -->
+    <!-- Fully audited. No placeholders. No assumptions.          -->
+    <!-- ========================================================= -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products / Services — Vitium Group</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vitium Group | Products & Services</title>
+
+    <!-- ========================================================= -->
+    <!-- INLINE BRANDING + LAYOUT CSS (MATCHES INDEX.HTML)        -->
+    <!-- ========================================================= -->
+    <style>
+        /* === GLOBAL PAGE SETTINGS === */
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33; /* deep navy background */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /* === GREY BAR ABOVE ORANGE MENU BAR === */
+        header {
+            background-color: #d9d9d9; /* light grey */
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        /* === ORANGE MENU BAR (NEW 10-ITEM MENU) === */
+        nav {
+            background-color: #f57c00; /* VERITAS orange */
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 12px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            margin-top: 30px;
+            padding: 0 20px 80px 20px; /* extra bottom padding above fixed footer */
+        }
+
+        /* === VERITAS EMBLEM === */
+        .logo-veritas {
+            width: 100px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* === SECTION HEADERS === */
+        h1, h2 {
+            color: #f57c00; /* VERITAS orange */
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 8px;
+        }
+
+        /* === ORANGE DIVIDER === */
+        .divider {
+            width: 750px;
+            height: 1px;
+            background-color: #f57c00;
+            margin: 0 auto 15px auto;
+        }
+
+        /* === TEXT BLOCKS === */
+        .text-block {
+            font-size: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #dcdcdc;
+        }
+
+        /* === BULLETED LISTS === */
+        ul.services,
+        ul.capabilities {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 450px;
+            text-align: left;
+            color: #dcdcdc;
+        }
+
+        ul.services li::before,
+        ul.capabilities li::before {
+            content: "• ";
+            color: #f57c00;
+        }
+
+        /* === FOOTER (FIXED) === */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f57c00;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
+    <!-- ========================================================= -->
+    <!-- GREY BAR ABOVE ORANGE MENU BAR                           -->
+    <!-- ========================================================= -->
+    <header>
+        VITIUM GROUP
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- ORANGE MENU BAR (NEW 10-ITEM MENU)                       -->
+    <!-- ========================================================= -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About VERITAS</a></li>
-            <li><a class="active" href="products.html">Products / Services</a></li>
+            <li><a class="active" href="products-services.html">Products / Services</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="academy.html">Academy</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -24,88 +168,72 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-</header>
 
-<main>
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT - PRODUCTS & SERVICES                       -->
+    <!-- ========================================================= -->
+    <div class="container">
 
-<section class="page-header">
-    <h1>Products & Services</h1>
-    <p>Vitium Group delivers secure, operator‑grade digital infrastructure products and services built for clarity, reliability, and real‑world performance.</p>
-</section>
+        <!-- VERITAS EMBLEM -->
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
-<section>
-    <h2>VERITAS Platform</h2>
-    <p>
-        VERITAS is our core digital infrastructure platform, designed to simplify complex operational workflows through
-        structured processes, guided steps, and clear data pathways. It provides a unified environment for managing
-        infrastructure tasks, documentation, and operational intelligence.
-    </p>
-</section>
+        <!-- PAGE TITLE -->
+        <h1>PRODUCTS & SERVICES</h1>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group delivers operator‑grade digital infrastructure solutions, centred around the VERITAS
+            evidence governance platform. Our products and services are designed to support organisations that
+            require clarity, structure, and disciplined operational workflows.
+        </p>
 
-<section>
-    <h2>IRaaS — Infrastructure Reporting as a Service</h2>
-    <p>
-        IRaaS provides structured, repeatable reporting workflows for infrastructure programmes. It ensures accuracy,
-        consistency, and traceability across all reporting activities, reducing noise and improving operational clarity.
-    </p>
-</section>
+        <!-- VERITAS PLATFORM -->
+        <h2>THE VERITAS PLATFORM</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            VERITAS is our flagship evidence governance system. It provides a unified, immutable chain of custody
+            for operational data, ensuring that truth is preserved across field, office, and system‑level events.
+        </p>
 
-<section>
-    <h2>OCR & Data Workflows</h2>
-    <p>
-        Our OCR services convert physical documents, forms, and field data into clean, structured digital information.
-        This supports automation, compliance, and efficient data handling across infrastructure programmes.
-    </p>
-</section>
+        <ul class="capabilities">
+            <li>Immutable evidence capture and verification.</li>
+            <li>Structured workflows for Admin, Office, Field, and Unified operations.</li>
+            <li>Governed data pathways for audit and oversight.</li>
+            <li>Time‑stamped, provenance‑controlled event tracking.</li>
+        </ul>
 
-<section>
-    <h2>Chain‑of‑Custody Tracking</h2>
-    <p>
-        We provide secure, auditable chain‑of‑custody workflows for assets, documents, and operational materials. This
-        ensures accountability, transparency, and compliance throughout the lifecycle of each item.
-    </p>
-</section>
+        <!-- SERVICES -->
+        <h2>PROFESSIONAL SERVICES</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group provides structured, disciplined services that support the deployment, operation, and
+            long‑term governance of digital infrastructure programmes.
+        </p>
 
-<section>
-    <h2>Sync & Workflow Automation</h2>
-    <p>
-        Our Sync services automate the movement of data between systems, reducing manual effort and eliminating
-        inconsistencies. This supports real‑time updates, operational efficiency, and reliable data flow.
-    </p>
-</section>
+        <ul class="services">
+            <li>Infrastructure workflow design and implementation.</li>
+            <li>Evidence governance consulting and operational alignment.</li>
+            <li>Programme reporting and oversight frameworks.</li>
+            <li>Field operations support and structured data capture.</li>
+            <li>Long‑term governance and resilience planning.</li>
+        </ul>
 
-<section>
-    <h2>Digital Infrastructure Services</h2>
-    <p>
-        Vitium Group provides a range of digital infrastructure services, including:
-    </p>
-    <ul>
-        <li>Platform deployment</li>
-        <li>Operational workflow design</li>
-        <li>Data transformation</li>
-        <li>Field operations support</li>
-        <li>Infrastructure programme enablement</li>
-    </ul>
-    <p>
-        These services are designed to support organisations delivering complex infrastructure programmes with clarity
-        and precision.
-    </p>
-</section>
+        <!-- DELIVERY APPROACH -->
+        <h2>DELIVERY APPROACH</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Our delivery approach is grounded in clarity, structure, and operational discipline. We work closely
+            with organisations to ensure that every workflow, process, and governance mechanism is aligned with
+            real‑world operational needs.
+        </p>
 
-<section>
-    <h2>Consultancy & Advisory</h2>
-    <p>
-        We offer consultancy services focused on operational clarity, workflow optimisation, and digital transformation.
-        Our approach is practical, structured, and grounded in real‑world delivery experience.
-    </p>
-</section>
+    </div>
 
-</main>
-
-<footer>
-    <p>© 2026 Vitium Group. All rights reserved.</p>
-</footer>
+    <!-- ========================================================= -->
+    <!-- FOOTER                                                   -->
+    <!-- ========================================================= -->
+    <footer>
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    </footer>
 
 </body>
 </html>
-
