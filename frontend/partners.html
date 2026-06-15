@@ -1,20 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ========================================================= -->
+    <!-- VITIUM GROUP - PARTNERS PAGE                             -->
+    <!-- Layout and branding aligned with index.html (master).    -->
+    <!-- Fully audited. No placeholders. No assumptions.          -->
+    <!-- ========================================================= -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partners — Vitium Group</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vitium Group | Partners</title>
+
+    <!-- ========================================================= -->
+    <!-- INLINE BRANDING + LAYOUT CSS (MATCHES INDEX.HTML)        -->
+    <!-- ========================================================= -->
+    <style>
+        /* === GLOBAL PAGE SETTINGS === */
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33; /* deep navy background */
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /* === GREY BAR ABOVE ORANGE MENU BAR === */
+        header {
+            background-color: #d9d9d9; /* light grey */
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        /* === ORANGE MENU BAR (NEW 10-ITEM MENU) === */
+        nav {
+            background-color: #f57c00; /* VERITAS orange */
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 12px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            margin-top: 30px;
+            padding: 0 20px 80px 20px; /* extra bottom padding above fixed footer */
+        }
+
+        /* === VERITAS EMBLEM === */
+        .logo-veritas {
+            width: 100px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* === SECTION HEADERS === */
+        h1, h2 {
+            color: #f57c00; /* VERITAS orange */
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 8px;
+        }
+
+        /* === ORANGE DIVIDER === */
+        .divider {
+            width: 750px;
+            height: 1px;
+            background-color: #f57c00;
+            margin: 0 auto 15px auto;
+        }
+
+        /* === TEXT BLOCKS === */
+        .text-block {
+            font-size: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #dcdcdc;
+        }
+
+        /* === BULLETED LISTS === */
+        ul.partner-types,
+        ul.partner-values {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 450px;
+            text-align: left;
+            color: #dcdcdc;
+        }
+
+        ul.partner-types li::before,
+        ul.partner-values li::before {
+            content: "• ";
+            color: #f57c00;
+        }
+
+        /* === FOOTER (FIXED) === */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f57c00;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
+    <!-- ========================================================= -->
+    <!-- GREY BAR ABOVE ORANGE MENU BAR                           -->
+    <!-- ========================================================= -->
+    <header>
+        VITIUM GROUP
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- ORANGE MENU BAR (NEW 10-ITEM MENU)                       -->
+    <!-- ========================================================= -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About VERITAS</a></li>
-            <li><a href="products.html">Products / Services</a></li>
+            <li><a href="products-services.html">Products / Services</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="academy.html">Academy</a></li>
             <li><a href="careers.html">Careers</a></li>
@@ -24,72 +168,71 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-</header>
 
-<main>
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT - PARTNERS                                  -->
+    <!-- ========================================================= -->
+    <div class="container">
 
-<section class="page-header">
-    <h1>Our Partners</h1>
-    <p>Vitium Group works with trusted organisations to deliver secure, scalable, and reliable digital infrastructure.</p>
-</section>
+        <!-- VERITAS EMBLEM -->
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
 
-<section>
-    <h2>Our Partnership Approach</h2>
-    <p>
-        We partner with organisations that share our commitment to clarity, operational discipline, and customer trust.
-        Partnerships are selected based on capability, alignment, and long‑term value — not noise or branding.
-    </p>
-</section>
+        <!-- PAGE TITLE -->
+        <h1>PARTNERS</h1>
+        <div class="divider"></div>
+        <p class="text-block">
+            Vitium Group works with organisations that share our commitment to clarity, discipline, and
+            evidence‑driven operations. Our partners support the deployment, governance, and long‑term
+            resilience of VERITAS and operator‑grade digital infrastructure workflows.
+        </p>
 
-<section>
-    <h2>Microsoft Ecosystem Alignment</h2>
-    <p>
-        Vitium Group builds on the Microsoft ecosystem, leveraging Azure, AI Cloud services, and secure infrastructure
-        patterns. This alignment ensures reliability, scalability, and compliance across all deployments.
-    </p>
-</section>
+        <!-- PARTNER TYPES -->
+        <h2>PARTNER TYPES</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            We collaborate with partners across multiple operational and technical domains to ensure that
+            VERITAS is deployed and governed with precision.
+        </p>
 
-<section>
-    <h2>Technology & Integration Partners</h2>
-    <p>
-        We work with a small number of carefully selected technology partners to support:
-    </p>
-    <ul>
-        <li>Cloud infrastructure</li>
-        <li>Data workflows</li>
-        <li>OCR and automation</li>
-        <li>Secure deployment</li>
-        <li>Operational tooling</li>
-    </ul>
-    <p>
-        These partnerships are chosen for capability and fit — not volume.
-    </p>
-</section>
+        <ul class="partner-types">
+            <li>Technology partners supporting VERITAS integration and infrastructure.</li>
+            <li>Operational partners aligned with field and office workflows.</li>
+            <li>Governance and oversight partners ensuring long‑term integrity.</li>
+            <li>Community and resilience partners supporting sustainable outcomes.</li>
+        </ul>
 
-<section>
-    <h2>Delivery & Framework Partners</h2>
-    <p>
-        As Vitium Group expands, we collaborate with organisations involved in infrastructure delivery, public sector
-        frameworks, and operational programmes. These partnerships support real‑world deployment of VERITAS and related
-        digital services.
-    </p>
-</section>
+        <!-- PARTNER VALUES -->
+        <h2>PARTNER VALUES</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            All Vitium Group partnerships are grounded in shared values that support truth, operational
+            discipline, and long‑term resilience.
+        </p>
 
-<section>
-    <h2>Future Partnerships</h2>
-    <p>
-        We continue to evaluate new partnerships that strengthen our ability to deliver secure, efficient, and
-        operator‑grade digital infrastructure. All future partnerships will follow the same principles of clarity,
-        capability, and trust.
-    </p>
-</section>
+        <ul class="partner-values">
+            <li>Commitment to evidence‑driven operations.</li>
+            <li>Respect for chain‑of‑custody and governance integrity.</li>
+            <li>Structured, disciplined workflow alignment.</li>
+            <li>Long‑term operational resilience and community impact.</li>
+        </ul>
 
-</main>
+        <!-- PARTNERSHIP PURPOSE -->
+        <h2>WHY PARTNERSHIPS MATTER</h2>
+        <div class="divider"></div>
+        <p class="text-block">
+            Partnerships strengthen the VERITAS ecosystem and ensure that organisations operating in complex,
+            high‑pressure environments have the support, capability, and resilience required to protect truth
+            and deliver consistent operational outcomes.
+        </p>
 
-<footer>
-    <p>© 2026 Vitium Group. All rights reserved.</p>
-</footer>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER                                                   -->
+    <!-- ========================================================= -->
+    <footer>
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    </footer>
 
 </body>
 </html>
-
