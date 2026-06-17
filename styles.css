@@ -9,6 +9,52 @@
     - All selectors validated
     =====================================================================
 */
+/*
+=========================================================================
+.intake-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* LEFT COLUMN */
+.contact-details {
+    flex: 1;
+    background-color: #16243a; /* lighter navy for visibility */
+    color: #f5f5f5;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
+
+.contact-details h3 {
+    color: #ff6600; /* VERITAS accent */
+    margin-bottom: 12px;
+}
+
+/* RIGHT COLUMN */
+.form-fields {
+    flex: 2;
+}
+
+/* Inputs */
+input, textarea, select {
+    width: 100%;
+    background-color: #0f1a2b;
+    color: #ffffff;
+    border: 1px solid #ff6600;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #ffa366;
+}
+=================================================================*/
 
 /* ------------------------------------------------------------- */
 /* ROOT VARIABLES — BRAND COLOURS                                */
