@@ -2,275 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERITAS Intake Form – Vitium Group</title>
-    <meta name="description" content="Submit a VERITAS-aligned intake request for information, governance support, or operational engagement.">
-    <style>
-        body {
-            margin: 0;
-            background-color: #0b1a33;
-            color: #ffffff;
-            font-family: "Segoe UI", Arial, sans-serif;
-        }
-        header {
-            background-color: #f47c20;
-            padding: 6px 0;
-            text-align: center;
-        }
-        header a {
-            color: #ffffff;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-        .container {
-            max-width: 900px;
-            margin: 30px auto 60px;
-            padding: 0 15px;
-        }
-        h1, h2, h3 {
-            color: #f47c20;
-        }
-        fieldset {
-            border: 1px solid #223355;
-            border-radius: 6px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-        }
-        legend {
-            padding: 0 8px;
-            color: #f47c20;
-            font-weight: 600;
-        }
-        label {
-            display: block;
-            margin: 6px 0;
-        }
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 8px 10px;
-            border-radius: 4px;
-            border: 1px solid #223355;
-            background-color: #0b1a33;
-            color: #ffffff;
-            box-sizing: border-box;
-        }
-        textarea {
-            resize: vertical;
-        }
-        .checkbox-group label {
-            display: block;
-            margin: 4px 0;
-        }
-        .suboptions {
-            margin: 10px 0 0 20px;
-            padding: 10px 12px;
-            border-left: 2px solid #f47c20;
-            background-color: #101f3d;
-        }
-        .char-counter {
-            font-size: 0.85rem;
-            color: #cccccc;
-            text-align: right;
-            margin-top: 2px;
-        }
-        .required {
-            color: #f47c20;
-        }
-        .submit-row {
-            text-align: center;
-            margin-top: 30px;
-        }
-        button[type="submit"] {
-            background-color: #f47c20;
-            color: #ffffff;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-        button[type="submit"]:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .note {
-            font-size: 0.9rem;
-            color: #cccccc;
-            margin-top: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About VERITAS</a>
-        <a href="products-services.html">Products / Services</a>
-        <a href="projects.html">Projects</a>
-        <a href="academy.html">Academy</a>
-        <a href="careers.html">Careers</a>
-        <a href="partners.html">Partners</a>
-        <a href="news.html">News</a>
-        <a href="support.html">Support</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-</header>
-
-<div class="container">
-    <h1>VERITAS Intake Form</h1>
-    <p>
-        Complete the fields below to request VERITAS-aligned information, governance support, or operational response engagement.
-    </p>
-
-    <form>
-
-        <!-- SELECT YOUR AREA(S) OF INTEREST -->
-        <fieldset>
-            <legend>Select Your Area(s) of Interest</legend>
-
-            <h3>Core Platforms</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="core_platforms" value="VERITAS — National Truth Governance"> VERITAS — National Truth Governance</label>
-                <label><input type="checkbox" name="core_platforms" value="FIREWATCH — Environmental Truth & Detection"> FIREWATCH — Environmental Truth & Detection</label>
-                <label><input type="checkbox" name="core_platforms" value="IRaaS — Rapid Response Infrastructure"> IRaaS — Rapid Response Infrastructure</label>
-                <label><input type="checkbox" name="core_platforms" value="IRaaS (General)"> IRaaS (General)</label>
-            </div>
-
-            <div class="checkbox-group" style="margin-top:10px;">
-                <label><input type="checkbox" name="core_platforms" value="IRaaS — Water Utility Rapid Response (Contamination, Pressure, Emergency Supply)"> IRaaS — Water Utility Rapid Response (Contamination, Pressure, Emergency Supply)</label>
-            </div>
-
-            <h3>Public Sector</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="public_sector" value="NHS Evidence Governance"> NHS Evidence Governance</label>
-                <label><input type="checkbox" name="public_sector" value="MOJ Estate Safety"> MOJ Estate Safety</label>
-                <label><input type="checkbox" name="public_sector" value="Government Departments"> Government Departments</label>
-                <label><input type="checkbox" name="public_sector" value="Local Authorities"> Local Authorities</label>
-            </div>
-
-            <h3>Utilities & Infrastructure</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="utilities" value="Water Utilities (General)"> Water Utilities (General)</label>
-                <label><input type="checkbox" name="utilities" value="SMR / Energy"> SMR / Energy</label>
-                <label><input type="checkbox" name="utilities" value="Transport & Rail"> Transport & Rail</label>
-                <label><input type="checkbox" name="utilities" value="Housing & Social Infrastructure"> Housing & Social Infrastructure</label>
-            </div>
-
-            <h3>Airports</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="airports" value="Airports"> Airports</label>
-            </div>
-
-            <h3>Logistics</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="logistics" value="Logistics"> Logistics</label>
-            </div>
-
-            <h3>Agriculture</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="agriculture" value="Agriculture"> Agriculture</label>
-            </div>
-
-            <h3>Emergency Services</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="emergency" value="Emergency Services"> Emergency Services</label>
-            </div>
-
-            <h3>Other</h3>
-            <div class="checkbox-group">
-                <label>
-                    <input type="checkbox" name="other" value="Other">
-                    Other (please specify):
-                </label>
-                <input type="text" maxlength="300">
-                <div class="char-counter">0 / 300</div>
-            </div>
-
-        </fieldset>
-
-        <!-- YOUR DETAILS -->
-        <fieldset>
-            <legend>Your Details</legend>
-
-            <label>Name<span class="required">*</span></label>
-            <input type="text" name="name" required>
-
-            <label>Organisation<span class="required">*</span></label>
-            <input type="text" name="organisation" required>
-
-            <label>Email<span class="required">*</span></label>
-            <input type="email" name="email" required>
-
-            <label>Role (optional)</label>
-            <input type="text" name="role">
-
-            <label>Message / Context (optional, max 300 characters)</label>
-            <textarea id="messageContext" name="message_context" rows="4" maxlength="300"></textarea>
-            <div class="char-counter" id="messageContextCounter">0 / 300</div>
-        </fieldset>
-
-        <!-- COMMUNICATION PREFERENCES -->
-        <fieldset>
-            <legend>Communication Preferences</legend>
-
-            <h3>Required Consent</h3>
-            <label>
-                <input type="checkbox" id="requiredConsent">
-                I consent to being contacted with the information I have requested.
-            </label>
-            <p class="note">
-                This consent is required so VERITAS can respond to your request with the information you have asked to receive.
-            </p>
-
-            <h3>Optional Updates</h3>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="optional_updates" value="Keep me up to date with VERITAS-approved information only."> Keep me up to date with VERITAS-approved information only.</label>
-                <label><input type="checkbox" name="optional_updates" value="I would like to receive SMS notifications for VERITAS-approved updates only."> I would like to receive SMS notifications for VERITAS-approved updates only.</label>
-                <label><input type="checkbox" name="optional_updates" value="I do not wish to be contacted by phone."> I do not wish to be contacted by phone.</label>
-            </div>
-
-            <h3>Optional Meeting Request</h3>
-            <label>
-                <input type="checkbox" name="meeting_request" value="I would like to book a meeting.">
-                I would like to book a meeting.
-            </label>
-            <p class="note">
-                If selected, a VERITAS representative may contact you to arrange a suitable time using the details you have provided.
-            </p>
-        </fieldset>
-
-        <div class="submit-row">
-            <button type="submit" id="submitBtn" disabled>Submit</button>
-            <p class="note">
-                You will receive only the information you request. No spam. No marketing. No pressure.
-            </p>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="index.html">
+                <img src="assets/vitium-logo.png" alt="Vitium Group Logo" class="logo">
+            </a>
         </div>
+        <div class="navbar-right">
+            <a href="index.html">Home</a>
+            <a href="learn-more.html">Learn More</a>
+            <a href="intake.html" class="active">Intake</a>
+        </div>
+    </nav>
 
-    </form>
-</div>
+    <!-- Emblem Block (matches index.html exactly) -->
+    <div class="emblem-container">
+        <img src="assets/veritas-emblem.png" alt="VERITAS Emblem" class="emblem">
+    </div>
 
-<!-- EMBLEM -->
-<div style="text-align:center; margin-top:40px;">
-    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
-         alt="Vitium Veritas Emblem"
-         style="width:80px; height:auto;">
-</div>
+    <!-- Page Title -->
+    <h1 class="page-title">VERITAS Intake Form</h1>
 
-<!-- FOOTER -->
-<footer style="background-color:#f47c20; color:#ffffff; text-align:center; padding:15px 0; margin-top:40px;">
-    <p style="margin:0;">Vitium Group © 2026 — All Rights Reserved</p>
-    <p style="margin:5px 0 0;">
-        Contact:
-        <a href="mailto:info@vitiumgroup.com" style="color:#ffffff; text-decoration:none;">
-            info@vitiumgroup.com
-        </a>
-        &nbsp;|&nbsp; Tel: +44 (0)161 000 0000
-    </p>
-</footer>
+    <!-- Two‑Column Form Layout -->
+    <div class="content-container">
+
+        <div class="intake-form">
+
+            <!-- LEFT COLUMN: Contact Details -->
+            <div class="contact-details">
+                <h3>Your Details</h3>
+
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" required>
+
+                <label for="organisation">Organisation</label>
+                <input type="text" id="organisation" name="organisation">
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="role">Role / Position</label>
+                <input type="text" id="role" name="role">
+
+                <label for="message">Message (300 characters max)</label>
+                <textarea id="message" name="message" maxlength="300" rows="5"></textarea>
+            </div>
+
+            <!-- RIGHT COLUMN: Main Intake Fields -->
+            <div class="form-fields">
+
+                <label for="sector">Select Sector</label>
+                <select id="sector" name="sector" required>
+                    <option value="">-- Select a Sector --</option>
+                    <option>Cyber Defence</option>
+                    <option>Physical Security</option>
+                    <option>Counter‑Fraud</option>
+                    <option>Financial Crime</option>
+                    <option>Insider Threat</option>
+                    <option>Operational Risk</option>
+                    <option>Governance</option>
+                    <option>Compliance</option>
+                    <option>Intelligence</option>
+                    <option>Threat Monitoring</option>
+                    <option>Due Diligence</option>
+                    <option>Audit</option>
+                    <option>Assurance</option>
+                    <option>Business Continuity</option>
+                    <option>Resilience</option>
+                </select>
+
+                <label for="details">Case / Requirement Details</label>
+                <textarea id="details" name="details" rows="8" required></textarea>
+
+                <button type="submit" class="submit-btn">Submit Intake</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Vitium Group. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
