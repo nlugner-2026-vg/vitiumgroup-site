@@ -132,39 +132,18 @@
         <fieldset>
             <legend>Select Your Area(s) of Interest</legend>
 
-            <!-- Core Platforms -->
             <h3>Core Platforms</h3>
             <div class="checkbox-group">
                 <label><input type="checkbox" name="core_platforms" value="VERITAS — National Truth Governance"> VERITAS — National Truth Governance</label>
                 <label><input type="checkbox" name="core_platforms" value="FIREWATCH — Environmental Truth & Detection"> FIREWATCH — Environmental Truth & Detection</label>
-                <label><input type="checkbox" id="iraasRapid" name="core_platforms" value="IRaaS — Rapid Response Infrastructure"> IRaaS — Rapid Response Infrastructure</label>
-                <label><input type="checkbox" id="iraasGeneral" name="core_platforms" value="IRaaS (General)"> IRaaS (General)</label>
-            </div>
-
-            <!-- IRaaS (General) sub-options -->
-            <div id="iraasGeneralSub" class="suboptions" style="display:none;">
-                <p><strong>Sub-options — display only when IRaaS (General) is selected:</strong></p>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="iraas_general_sub" value="Structural Collapse"> Structural Collapse</label>
-                    <label><input type="checkbox" name="iraas_general_sub" value="Communications Failure"> Communications Failure</label>
-                    <label><input type="checkbox" name="iraas_general_sub" value="Power / Energy Failure"> Power / Energy Failure</label>
-                    <label><input type="checkbox" name="iraas_general_sub" value="Environmental Hazard"> Environmental Hazard</label>
-                    <label><input type="checkbox" name="iraas_general_sub" value="Emergency Accommodation"> Emergency Accommodation</label>
-                    <label><input type="checkbox" name="iraas_general_sub" value="Command & Control"> Command & Control</label>
-                    <label>
-                        <input type="checkbox" id="iraasGeneralOtherChk" name="iraas_general_sub" value="Other">
-                        Other (please specify):
-                    </label>
-                    <input type="text" id="iraasGeneralOtherText" maxlength="300" disabled>
-                    <div class="char-counter" id="iraasGeneralOtherCounter">0 / 300</div>
-                </div>
+                <label><input type="checkbox" name="core_platforms" value="IRaaS — Rapid Response Infrastructure"> IRaaS — Rapid Response Infrastructure</label>
+                <label><input type="checkbox" name="core_platforms" value="IRaaS (General)"> IRaaS (General)</label>
             </div>
 
             <div class="checkbox-group" style="margin-top:10px;">
                 <label><input type="checkbox" name="core_platforms" value="IRaaS — Water Utility Rapid Response (Contamination, Pressure, Emergency Supply)"> IRaaS — Water Utility Rapid Response (Contamination, Pressure, Emergency Supply)</label>
             </div>
 
-            <!-- Public Sector -->
             <h3>Public Sector</h3>
             <div class="checkbox-group">
                 <label><input type="checkbox" name="public_sector" value="NHS Evidence Governance"> NHS Evidence Governance</label>
@@ -173,7 +152,6 @@
                 <label><input type="checkbox" name="public_sector" value="Local Authorities"> Local Authorities</label>
             </div>
 
-            <!-- Utilities & Infrastructure -->
             <h3>Utilities & Infrastructure</h3>
             <div class="checkbox-group">
                 <label><input type="checkbox" name="utilities" value="Water Utilities (General)"> Water Utilities (General)</label>
@@ -182,17 +160,117 @@
                 <label><input type="checkbox" name="utilities" value="Housing & Social Infrastructure"> Housing & Social Infrastructure</label>
             </div>
 
-            <!-- Airports -->
             <h3>Airports</h3>
             <div class="checkbox-group">
-                <label><input type="checkbox" id="airportsChk" name="airports" value="Airports"> Airports</label>
+                <label><input type="checkbox" name="airports" value="Airports"> Airports</label>
             </div>
-            <div id="airportsSub" class="suboptions" style="display:none;">
-                <p><strong>Sub-options — display only when Airports is selected:</strong></p>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="airports_sub" value="Landside Operations"> Landside Operations</label>
-                    <label><input type="checkbox" name="airports_sub" value="Airside Operations"> Airside Operations</label>
-                    <label><input type="checkbox" name="airports_sub" value="Terminal Safety & Governance"> Terminal Safety & Governance</label>
-                    <label><input type="checkbox" name="airports_sub" value="Baggage & Logistics"> Baggage & Logistics</label>
-                    <label><input type="checkbox" name="airports_sub" value="Fuel Farm / Utilities"> Fuel Farm / Utilities</label>
-                    <label><input type="checkbox" name="airports_sub" value="ATC Coordination (non-operational)"> ATC Coordination (non-operational
+
+            <h3>Logistics</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="logistics" value="Logistics"> Logistics</label>
+            </div>
+
+            <h3>Agriculture</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="agriculture" value="Agriculture"> Agriculture</label>
+            </div>
+
+            <h3>Emergency Services</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="emergency" value="Emergency Services"> Emergency Services</label>
+            </div>
+
+            <h3>Other</h3>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="other" value="Other">
+                    Other (please specify):
+                </label>
+                <input type="text" maxlength="300">
+                <div class="char-counter">0 / 300</div>
+            </div>
+
+        </fieldset>
+
+        <!-- YOUR DETAILS -->
+        <fieldset>
+            <legend>Your Details</legend>
+
+            <label>Name<span class="required">*</span></label>
+            <input type="text" name="name" required>
+
+            <label>Organisation<span class="required">*</span></label>
+            <input type="text" name="organisation" required>
+
+            <label>Email<span class="required">*</span></label>
+            <input type="email" name="email" required>
+
+            <label>Role (optional)</label>
+            <input type="text" name="role">
+
+            <label>Message / Context (optional, max 300 characters)</label>
+            <textarea id="messageContext" name="message_context" rows="4" maxlength="300"></textarea>
+            <div class="char-counter" id="messageContextCounter">0 / 300</div>
+        </fieldset>
+
+        <!-- COMMUNICATION PREFERENCES -->
+        <fieldset>
+            <legend>Communication Preferences</legend>
+
+            <h3>Required Consent</h3>
+            <label>
+                <input type="checkbox" id="requiredConsent">
+                I consent to being contacted with the information I have requested.
+            </label>
+            <p class="note">
+                This consent is required so VERITAS can respond to your request with the information you have asked to receive.
+            </p>
+
+            <h3>Optional Updates</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="optional_updates" value="Keep me up to date with VERITAS-approved information only."> Keep me up to date with VERITAS-approved information only.</label>
+                <label><input type="checkbox" name="optional_updates" value="I would like to receive SMS notifications for VERITAS-approved updates only."> I would like to receive SMS notifications for VERITAS-approved updates only.</label>
+                <label><input type="checkbox" name="optional_updates" value="I do not wish to be contacted by phone."> I do not wish to be contacted by phone.</label>
+            </div>
+
+            <h3>Optional Meeting Request</h3>
+            <label>
+                <input type="checkbox" name="meeting_request" value="I would like to book a meeting.">
+                I would like to book a meeting.
+            </label>
+            <p class="note">
+                If selected, a VERITAS representative may contact you to arrange a suitable time using the details you have provided.
+            </p>
+        </fieldset>
+
+        <div class="submit-row">
+            <button type="submit" id="submitBtn" disabled>Submit</button>
+            <p class="note">
+                You will receive only the information you request. No spam. No marketing. No pressure.
+            </p>
+        </div>
+
+    </form>
+</div>
+
+<!-- EMBLEM -->
+<div style="text-align:center; margin-top:40px;">
+    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
+         alt="Vitium Veritas Emblem"
+         style="width:80px; height:auto;">
+</div>
+
+<!-- FOOTER -->
+<footer style="background-color:#f47c20; color:#ffffff; text-align:center; padding:15px 0; margin-top:40px;">
+    <p style="margin:0;">Vitium Group © 2026 — All Rights Reserved</p>
+    <p style="margin:5px 0 0;">
+        Contact:
+        <a href="mailto:info@vitiumgroup.com" style="color:#ffffff; text-decoration:none;">
+            info@vitiumgroup.com
+        </a>
+        &nbsp;|&nbsp; Tel: +44 (0)161 000 0000
+    </p>
+</footer>
+
+</body>
+</html>
