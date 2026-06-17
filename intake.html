@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VERITAS Intake Form – Vitium Group</title>
+    <meta name="description" content="Submit a VERITAS-aligned intake request for information, governance support, or operational engagement.">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0b1a33;
+            color: #ffffff;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        header {
+            background-color: #f47c20;
+            padding: 6px 0;
+            text-align: center;
+        }
+        header a {
+            color: #ffffff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto 60px;
+            padding: 0 15px;
+        }
+        h1, h2, h3 {
+            color: #f47c20;
+        }
+        fieldset {
+            border: 1px solid #223355;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+        legend {
+            padding: 0 8px;
+            color: #f47c20;
+            font-weight: 600;
+        }
+        label {
+            display: block;
+            margin: 6px 0;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border: 1px solid #223355;
+            background-color: #0b1a33;
+            color: #ffffff;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .checkbox-group label {
+            display: block;
+            margin: 4px 0;
+        }
+        .suboptions {
+            margin: 10px 0 0 20px;
+            padding: 10px 12px;
+            border-left: 2px solid #f47c20;
+            background-color: #101f3d;
+        }
+        .char-counter {
+            font-size: 0.85rem;
+            color: #cccccc;
+            text-align: right;
+            margin-top: 2px;
+        }
+        .required {
+            color: #f47c20;
+        }
+        .submit-row {
+            text-align: center;
+            margin-top: 30px;
+        }
+        button[type="submit"] {
+            background-color: #f47c20;
+            color: #ffffff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button[type="submit"]:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About VERITAS</a>
+        <a href="products-services.html">Products / Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="academy.html">Academy</a>
+        <a href="careers.html">Careers</a>
+        <a href="partners.html">Partners</a>
+        <a href="news.html">News</a>
+        <a href="support.html">Support</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>VERITAS Intake Form</h1>
+    <p>
+        Complete the fields below to request VERITAS-aligned information, governance support, or operational response engagement.
+    </p>
+
+    <form>
+
+        <!-- SELECT YOUR AREA(S) OF INTEREST -->
+        <fieldset>
+            <legend>Select Your Area(s) of Interest</legend>
+
+            <!-- Core Platforms -->
+            <h3>Core Platforms</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="core_platforms" value="VERITAS — National Truth Governance"> VERITAS — National Truth Governance</label>
+                <label><input type="checkbox" name="core_platforms" value="FIREWATCH — Environmental Truth & Detection"> FIREWATCH — Environmental Truth & Detection</label>
+                <label><input type="checkbox" id="iraasRapid" name="core_platforms" value="IRaaS — Rapid Response Infrastructure"> IRaaS — Rapid Response Infrastructure</label>
+                <label><input type="checkbox" id="iraasGeneral" name="core_platforms" value="IRaaS (General)"> IRaaS (General)</label>
+            </div>
+
+            <!-- IRaaS (General) sub-options -->
+            <div id="iraasGeneralSub" class="suboptions" style="display:none;">
+                <p><strong>Sub-options — display only when IRaaS (General) is selected:</strong></p>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="iraas_general_sub" value="Structural Collapse"> Structural Collapse</label>
+                    <label><input type="checkbox" name="iraas_general_sub" value="Communications Failure"> Communications Failure</label>
+                    <label><input type="checkbox" name="iraas_general_sub" value="Power / Energy Failure"> Power / Energy Failure</label>
+                    <label><input type="checkbox" name="iraas_general_sub" value="Environmental Hazard"> Environmental Hazard</label>
+                    <label><input type="checkbox" name="iraas_general_sub" value="Emergency Accommodation"> Emergency Accommodation</label>
+                    <label><input type="checkbox" name="iraas_general_sub" value="Command & Control"> Command & Control</label>
+                    <label>
+                        <input type="checkbox" id="iraasGeneralOtherChk" name="iraas_general_sub" value="Other">
+                        Other (please specify):
+                    </label>
+                    <input type="text" id="iraasGeneralOtherText" maxlength="300" disabled>
+                    <div class="char-counter" id="iraasGeneralOtherCounter">0 / 300</div>
+                </div>
+            </div>
+
+            <div class="checkbox-group" style="margin-top:10px;">
+                <label><input type="checkbox" name="core_platforms" value="IRaaS — Water Utility Rapid Response (Contamination, Pressure, Emergency Supply)"> IRaaS — Water Utility Rapid Response (Contamination, Pressure, Emergency Supply)</label>
+            </div>
+
+            <!-- Public Sector -->
+            <h3>Public Sector</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="public_sector" value="NHS Evidence Governance"> NHS Evidence Governance</label>
+                <label><input type="checkbox" name="public_sector" value="MOJ Estate Safety"> MOJ Estate Safety</label>
+                <label><input type="checkbox" name="public_sector" value="Government Departments"> Government Departments</label>
+                <label><input type="checkbox" name="public_sector" value="Local Authorities"> Local Authorities</label>
+            </div>
+
+            <!-- Utilities & Infrastructure -->
+            <h3>Utilities & Infrastructure</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="utilities" value="Water Utilities (General)"> Water Utilities (General)</label>
+                <label><input type="checkbox" name="utilities" value="SMR / Energy"> SMR / Energy</label>
+                <label><input type="checkbox" name="utilities" value="Transport & Rail"> Transport & Rail</label>
+                <label><input type="checkbox" name="utilities" value="Housing & Social Infrastructure"> Housing & Social Infrastructure</label>
+            </div>
+
+            <!-- Airports -->
+            <h3>Airports</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="airportsChk" name="airports" value="Airports"> Airports</label>
+            </div>
+            <div id="airportsSub" class="suboptions" style="display:none;">
+                <p><strong>Sub-options — display only when Airports is selected:</strong></p>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="airports_sub" value="Landside Operations"> Landside Operations</label>
+                    <label><input type="checkbox" name="airports_sub" value="Airside Operations"> Airside Operations</label>
+                    <label><input type="checkbox" name="airports_sub" value="Terminal Safety & Governance"> Terminal Safety & Governance</label>
+                    <label><input type="checkbox" name="airports_sub" value="Baggage & Logistics"> Baggage & Logistics</label>
+                    <label><input type="checkbox" name="airports_sub" value="Fuel Farm / Utilities"> Fuel Farm / Utilities</label>
+                    <label><input type="checkbox" name="airports_sub" value="ATC Coordination (non-operational)"> ATC Coordination (non-operational)</label>
+                    <label>
+                        <input type="checkbox" id="airportsOtherChk" name="airports_sub" value="Other Airport Function">
+                        Other Airport Function (please specify):
+                    </label>
+                    <input type="text" id="airportsOtherText" maxlength="300" disabled>
+                    <div class="char-counter" id="airportsOtherCounter">0 / 300</div>
+                </div>
+            </div>
+
+            <!-- Logistics -->
+            <h3>Logistics</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="logisticsChk" name="logistics" value="Logistics"> Logistics</label>
+            </div>
+            <div id="logisticsSub" class="suboptions" style="display:none;">
+                <p><strong>Sub-options — display only when Logistics is selected:</strong></p>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="logistics_sub" value="Fleet Operations"> Fleet Operations</label>
+                    <label><input type="checkbox" name="logistics_sub" value="Warehousing & Storage"> Warehousing & Storage</label>
+                    <label><input type="checkbox" name="logistics_sub" value="Last-Mile Delivery"> Last-Mile Delivery</label>
+                    <label><input type="checkbox" name="logistics_sub" value="Cross-Border / Customs"> Cross-Border / Customs</label>
+                    <label><input type="checkbox" name="logistics_sub" value="Cold-Chain Logistics"> Cold-Chain Logistics</label>
+                    <label><input type="checkbox" name="logistics_sub" value="Hazardous Materials Transport"> Hazardous Materials Transport</label>
+                    <label>
+                        <input type="checkbox" id="logisticsOtherChk" name="logistics_sub" value="Other Logistics Function">
+                        Other Logistics Function (please specify):
+                    </label>
+                    <input type="text" id="logisticsOtherText" maxlength="300" disabled>
+                    <div class="char-counter" id="logisticsOtherCounter">0 / 300</div>
+                </div>
+            </div>
+
+            <!-- Agriculture -->
+            <h3>Agriculture</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="agricultureChk" name="agriculture" value="Agriculture"> Agriculture</label>
+            </div>
+            <div id="agricultureSub" class="suboptions" style="display:none;">
+                <p><strong>Sub-options — display only when Agriculture is selected:</strong></p>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="agriculture_sub" value="Crop Monitoring & Health"> Crop Monitoring & Health</label>
+                    <label><input type="checkbox" name="agriculture_sub" value="Soil & Water Management"> Soil & Water Management</label>
+                    <label><input type="checkbox" name="agriculture_sub" value="Livestock Safety & Welfare"> Livestock Safety & Welfare</label>
+                    <label><input type="checkbox" name="agriculture_sub" value="Farm Machinery & Robotics"> Farm Machinery & Robotics</label>
+                    <label><input type="checkbox" name="agriculture_sub" value="Storage & Supply Chain"> Storage & Supply Chain</label>
+                    <label><input type="checkbox" name="agriculture_sub" value="Biosecurity / Disease Control"> Biosecurity / Disease Control</label>
+                    <label>
+                        <input type="checkbox" id="agricultureOtherChk" name="agriculture_sub" value="Other Agricultural Function">
+                        Other Agricultural Function (please specify):
+                    </label>
+                    <input type="text" id="agricultureOtherText" maxlength="300" disabled>
+                    <div class="char-counter" id="agricultureOtherCounter">0 / 300</div>
+                </div>
+            </div>
+
+            <!-- Emergency Services -->
+            <h3>Emergency Services</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="emergencyChk" name="emergency" value="Emergency Services"> Emergency Services</label>
+            </div>
+            <div id="emergencySub" class="suboptions" style="display:none;">
+                <p><strong>Sub-options — display only when Emergency Services is selected:</strong></p>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="emergency_sub" value="Police"> Police</label>
+                    <label><input type="checkbox" name="emergency_sub" value="Fire & Rescue"> Fire & Rescue</label>
+                    <label><input type="checkbox" name="emergency_sub" value="Ambulance Service"> Ambulance Service</label>
+                    <label><input type="checkbox" name="emergency_sub" value="Coastguard"> Coastguard</label>
+                    <label><input type="checkbox" name="emergency_sub" value="Mountain Rescue"> Mountain Rescue</label>
+                    <label><input type="checkbox" name="emergency_sub" value="RNLI"> RNLI</label>
+                    <label>
+                        <input type="checkbox" id="emergencyOtherChk" name="emergency_sub" value="Other Emergency Service">
+                        Other Emergency Service (please specify):
+                    </label>
+                    <input type="text" id="emergencyOtherText" maxlength="300" disabled>
+                    <div class="char-counter" id="emergencyOtherCounter">0 / 300</div>
+                </div>
+            </div>
+
+            <!-- Other -->
+            <h3>Other</h3>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="otherMainChk" name="other" value="Other">
+                    Other (please specify):
+                </label>
+                <input type="text" id="otherMainText" maxlength="300" disabled>
+                <div class="char-counter" id="otherMainCounter">0 / 300</div>
+            </div>
+
+        </fieldset>
+
+        <!-- YOUR DETAILS -->
+        <fieldset>
+            <legend>Your Details</legend>
+
+            <label>Name<span class="required">*</span></label>
+            <input type="text" name="name" required>
+
+            <label>Organisation<span class="required">*</span></label>
+            <input type="text" name="organisation" required>
+
+            <label>Email<span class="required">*</span></label>
+            <input type="email" name="email" required>
+
+            <label>Role (optional)</label>
+            <input type="text" name="role">
+
+            <label>Message / Context (optional, max 300 characters)</label>
+            <textarea id="messageContext" name="message_context" rows="4" maxlength="300"></textarea>
+            <div class="char-counter" id="messageContextCounter">0 / 300</div>
+        </fieldset>
+
+        <!-- COMMUNICATION PREFERENCES -->
+        <fieldset>
+            <legend>Communication Preferences</legend>
+
+            <h3>Required Consent</h3>
+            <label>
+                <input type="checkbox" id="requiredConsent">
+                I consent to being contacted with the information I have requested.
+            </label>
+            <p class="note">
+                This consent is required so VERITAS can respond to your request with the information you have asked to receive.
+            </p>
+
+            <h3>Optional Updates</h3>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="optional_updates" value="Keep me up to date with VERITAS-approved information only."> Keep me up to date with VERITAS-approved information only.</label>
+                <label><input type="checkbox" name="optional_updates" value="I would like to receive SMS notifications for VERITAS-approved updates only."> I would like to receive SMS notifications for VERITAS-approved updates only.</label>
+                <label><input type="checkbox" name="optional_updates" value="I do not wish to be contacted by phone."> I do not wish to be contacted by phone.</label>
+            </div>
+
+            <h3>Optional Meeting Request</h3>
+            <label>
+                <input type="checkbox" name="meeting_request" value="I would like to book a meeting.">
+                I would like to book a meeting.
+            </label>
+            <p class="note">
+                If selected, a VERITAS representative may contact you to arrange a suitable time using the details you have provided.
+            </p>
+        </fieldset>
+
+        <!-- SUBMIT -->
+        <div class="submit-row">
+            <button type="submit" id="submitBtn" disabled>Submit</button>
+            <p class="note">
+                You will receive only the information you request. No spam. No marketing. No pressure.
+            </p>
+        </div>
+
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Helper: toggle block visibility
+    function bindToggleBlock(checkboxId, blockId) {
+        const chk = document.getElementById(checkboxId);
+        const blk = document.getElementById(blockId);
+        if (!chk || !blk) return;
+        function update() {
+            blk.style.display = chk.checked ? "block" : "none";
+        }
+        chk.addEventListener("change", update);
+        update();
+    }
+
+    // Helper: toggle "Other" text field + counter
+    function bindOtherField(checkboxId, inputId, counterId) {
+        const chk = document.getElementById(checkboxId);
+        const input = document.getElementById(inputId);
+        const counter = document.getElementById(counterId);
+        if (!chk || !input || !counter) return;
+
+        function updateEnabled() {
+            input.disabled = !chk.checked;
+            if (!chk.checked) {
+                input.value = "";
+                counter.textContent = "0 / 300";
+            }
+        }
+        function updateCount() {
+            const len = input.value.length;
+            counter.textContent = len + " / 300";
+        }
+
+        chk.addEventListener("change", updateEnabled);
+        input.addEventListener("input", updateCount);
+
+        updateEnabled();
+        updateCount();
+    }
+
+    // Helper: bind simple textarea counter
+    function bindCounter(inputId, counterId) {
+        const input = document.getElementById(inputId);
+        const counter = document.getElementById(counterId);
+        if (!input || !counter) return;
+        function update() {
+            const len = input.value.length;
+            counter.textContent = len + " / 300";
+        }
+        input.addEventListener("input", update);
+        update();
+    }
+
+    // Conditional blocks
+    bindToggleBlock("iraasGeneral", "iraasGeneralSub");
+    bindToggleBlock("airportsChk", "airportsSub");
+    bindToggleBlock("logisticsChk", "logisticsSub");
+    bindToggleBlock("agricultureChk", "agricultureSub");
+    bindToggleBlock("emergencyChk", "emergencySub");
+
+    // "Other" fields with 300-char counters
+    bindOtherField("iraasGeneralOtherChk", "iraasGeneralOtherText", "iraasGeneralOtherCounter");
+    bindOtherField("airportsOtherChk", "airportsOtherText", "airportsOtherCounter");
+    bindOtherField("logisticsOtherChk", "logisticsOtherText", "logisticsOtherCounter");
+    bindOtherField("agricultureOtherChk", "agricultureOtherText", "agricultureOtherCounter");
+    bindOtherField("emergencyOtherChk", "emergencyOtherText", "emergencyOtherCounter");
+    bindOtherField("otherMainChk", "otherMainText", "otherMainCounter");
+
+    // Message / Context counter
+    bindCounter("messageContext", "messageContextCounter");
+
+    // Required consent → enable/disable submit
+    const consentChk = document.getElementById("requiredConsent");
+    const submitBtn = document.getElementById("submitBtn");
+    if (consentChk && submitBtn) {
+        function updateSubmit() {
+            submitBtn.disabled = !consentChk.checked;
+        }
+        consentChk.addEventListener("change", updateSubmit);
+        updateSubmit();
+    }
+
+});
+</script>
+
+</body>
+</html>
