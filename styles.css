@@ -205,3 +205,14 @@ body {
     margin-top: 40px;
     font-size: 0.9rem;
 }
+
+/* ------------------------------------------------------------- */
+/* OVERRIDE: enforce two‑column layout for intake form            */
+/* ------------------------------------------------------------- */
+.content-container .intake-form {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
