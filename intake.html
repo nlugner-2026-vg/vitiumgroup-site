@@ -1,507 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-        =====================================================================
-        Vitium Group – VERITAS™ Intake Gateway
-        File: intake.html
-        Purpose: Enterprise-grade Request for Information (RFI, Request for Information)
-                 intake page aligned with VERITAS design language.
-        Design: Mid-grey header, electric-blue typography, orange navigation
-                and footer, deep-navy content background, fully responsive.
-        Notes:
-        - No placeholders.
-        - All URLs validated.
-        - Fully commented and audit-ready.
-        =====================================================================
-    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vitium Group | VERITAS Intake Gateway</title>
-
-    <style>
-        /* ============================================================
-           COLOUR SYSTEM — VERITAS PALETTE
-           ============================================================ */
-        :root {
-            --vg-navy: #0B1623;                 /* Deep navy background */
-            --vg-header-grey: #3A3F47;          /* Mid-grey header bar */
-            --vg-header-grey-dark: #2E3238;     /* Darker grey border */
-            --vg-orange: #FF6A00;               /* McLaren-style orange */
-            --vg-electric-blue: #4FC3F7;        /* Electric blue header text */
-            --vg-white: #FFFFFF;                /* Neutral white */
-            --vg-border-soft: #D0D4DC;          /* Soft form border */
-            --vg-border-focus: #FF6A00;         /* Orange focus border */
-            --vg-text-muted: #C3CAD5;           /* Secondary muted text */
-        }
-
-        /* ============================================================
-           GLOBAL RESET + BASE TYPOGRAPHY
-           ============================================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            background-color: var(--vg-navy);
-            color: var(--vg-white);
-            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* ============================================================
-           HEADER — MID-GREY WITH ELECTRIC BLUE TEXT
-           ============================================================ */
-        header {
-            background-color: var(--vg-header-grey);
-            border-bottom: 1px solid var(--vg-header-grey-dark);
-        }
-
-        .header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--vg-electric-blue);
-        }
-
-        .brand-subtitle {
-            font-size: 0.8rem;
-            color: var(--vg-text-muted);
-        }
-
-        /* ============================================================
-           NAVIGATION — ORANGE BAR
-           ============================================================ */
-        nav {
-            background-color: var(--vg-orange);
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-
-        .nav-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--vg-navy);
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -3px;
-            width: 0;
-            height: 2px;
-            background-color: var(--vg-navy);
-            transition: width 0.2s ease-out;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            margin-left: auto;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background-color: var(--vg-navy);
-            color: var(--vg-orange);
-            border: 1px solid var(--vg-navy);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .nav-cta:hover {
-            background-color: var(--vg-orange);
-            color: var(--vg-navy);
-        }
-
-        /* ============================================================
-           MAIN CONTENT AREA
-           ============================================================ */
-        main {
-            flex: 1;
-            padding: 40px 20px 80px 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .main-inner {
-            max-width: 900px;
-            width: 100%;
-        }
-
-        /* ============================================================
-           INTRO BLOCK
-           ============================================================ */
-        .intro-kicker {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--vg-electric-blue);
-            margin-bottom: 8px;
-        }
-
-        .intro-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .intro-subtitle {
-            font-size: 0.95rem;
-            color: var(--vg-text-muted);
-            margin-bottom: 30px;
-        }
-
-        /* ============================================================
-           FORM CARD — ENTERPRISE-GRADE
-           ============================================================ */
-        .form-card {
-            background-color: rgba(11, 22, 35, 0.9);
-            border: 1px solid var(--vg-header-grey-dark);
-            border-radius: 8px;
-            padding: 24px;
-            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px 24px;
-        }
-
-        .form-section-title {
-            grid-column: 1 / -1;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--vg-text-muted);
-            margin-top: 10px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .field-hint {
-            font-size: 0.75rem;
-            color: var(--vg-text-muted);
-        }
-
-        input[type="text"],
-        input[type="email"],
-        select,
-        textarea {
-            background-color: var(--vg-white);
-            color: #111827;
-            border: 1px solid var(--vg-border-soft);
-            border-radius: 4px;
-            padding: 10px 12px;
-            font-size: 0.9rem;
-            transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--vg-border-focus);
-            box-shadow: 0 0 0 1px rgba(255, 106, 0, 0.35);
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .checkbox-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: var(--vg-text-muted);
-        }
-
-        .btn-submit {
-            background-color: var(--vg-orange);
-            color: var(--vg-navy);
-            border: none;
-            border-radius: 999px;
-            padding: 10px 22px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            cursor: pointer;
-            transition: 0.15s ease-out;
-        }
-
-        .btn-submit:hover {
-            background-color: var(--vg-navy);
-            color: var(--vg-orange);
-        }
-
-        /* ============================================================
-           FOOTER — ORANGE BAR
-           ============================================================ */
-        footer {
-            background-color: var(--vg-orange);
-            color: var(--vg-navy);
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-        }
-
-        .footer-right {
-            display: flex;
-            gap: 16px;
-        }
-
-        .footer-link {
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-
-        /* ============================================================
-           RESPONSIVE BEHAVIOUR
-           ============================================================ */
-        @media (max-width: 900px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-            }
-
-            .nav-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .nav-cta {
-                margin-left: 0;
-            }
-
-            .intro-title {
-                font-size: 1.4rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- ============================================================
-         HEADER
-         ============================================================ -->
-    <header>
-        <div class="header-inner">
-            <div>
-                <div class="brand-title">Vitium Group</div>
-                <div class="brand-subtitle">VERITAS™ Operational Intelligence Platform</div>
-            </div>
-            <div class="brand-subtitle">ICEYE Partner Ecosystem · Critical Infrastructure Resilience</div>
+<header class="vg-header">
+    <div class="vg-header-inner">
+        <div class="vg-logo">VITIUM GROUP</div>
+        <nav class="vg-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About VERITAS</a>
+            <a href="products-services.html">Solutions</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="vg-intake-container">
+
+    <h1>VERITAS™ Intake Gateway</h1>
+    <p class="vg-intro">
+        Submit your Request for Information. VERITAS provides clarity, operational truth, and sector‑level insight.
+    </p>
+
+    <form class="vg-form">
+
+        <label>Primary Contact</label>
+        <input type="text" name="contact" required>
+
+        <label>Work Email</label>
+        <input type="email" name="email" required>
+
+        <label>Organisation</label>
+        <input type="text" name="organisation" required>
+
+        <label>Role</label>
+        <input type="text" name="role" required>
+
+        <label>Primary Geography</label>
+        <input type="text" name="geography" required>
+
+        <h2>Sector(s) Relevant to Your Requirement</h2>
+
+        <div class="vg-checkbox-group">
+            <label><input type="checkbox" name="sector_utilities"> Utilities</label>
+            <label><input type="checkbox" name="sector_water"> Water</label>
+            <label><input type="checkbox" name="sector_energy"> Energy</label>
+            <label><input type="checkbox" name="sector_telecoms"> Telecoms</label>
+            <label><input type="checkbox" name="sector_local_authority"> Local Authority</label>
+            <label><input type="checkbox" name="sector_highways"> Highways</label>
+            <label><input type="checkbox" name="sector_rail"> Rail</label>
+            <label><input type="checkbox" name="sector_aviation"> Aviation</label>
+            <label><input type="checkbox" name="sector_ports"> Ports</label>
+            <label><input type="checkbox" name="sector_defence"> Defence</label>
+            <label><input type="checkbox" name="sector_banking"> Banking</label>
+            <label><input type="checkbox" name="sector_insurance"> Insurance</label>
+            <label><input type="checkbox" name="sector_government"> Government</label>
         </div>
-    </header>
 
-    <!-- ============================================================
-         NAVIGATION
-         ============================================================ -->
-    <nav>
-        <div class="nav-inner">
-            <div class="nav-links">
-                <a class="nav-link" href="/index.html">Home</a>
-                <a class="nav-link" href="/veritas.html">VERITAS</a>
-                <a class="nav-link" href="/partnerships.html">Partnerships</a>
-                <a class="nav-link" href="/intake.html">Intake</a>
-            </div>
-            <a class="nav-cta" href="/intake.html">Initiate VERITAS Review</a>
+        <h3>Emergency Services</h3>
+
+        <div class="vg-checkbox-group">
+            <label><input type="checkbox" name="es_police"> Police</label>
+            <label><input type="checkbox" name="es_fire"> Fire & Rescue</label>
+            <label><input type="checkbox" name="es_ambulance"> Ambulance</label>
+            <label><input type="checkbox" name="es_coastguard"> Coastguard</label>
         </div>
-    </nav>
 
-    <!-- ============================================================
-         MAIN CONTENT — INTAKE GATEWAY
-         ============================================================ -->
-    <main>
-        <div class="main-inner">
+        <label class="vg-other-label">
+            <input type="checkbox" id="sector_other_toggle"> Other
+        </label>
 
-            <div class="intro-kicker">Vitium Veritas™ Intake Gateway</div>
-            <h1 class="intro-title">Request for Information (RFI) · Operational Data and Resilience Intelligence</h1>
-            <p class="intro-subtitle">
-                Vitium Group operates within the ICEYE partner ecosystem to deliver operational clarity for critical
-                infrastructure, utilities, government, banking, and insurance. Submit your Request for Information (RFI)
-                to initiate a structured review under VERITAS™ governance-grade protocols.
-            </p>
+        <div id="sector_other_field" class="vg-hidden">
+            <input type="text" name="sector_other_text" placeholder="Specify other sector">
+        </div>
 
-            <!-- ============================================================
-                 FORM — FULL ENTERPRISE-GRADE RFI INTAKE
-                 ============================================================ -->
-            <form class="form-card" method="post" action="https://www.vitiumgroup.com/intake.html" novalidate>
+        <label>Summary of Requirement</label>
+        <textarea name="requirement" rows="6" required></textarea>
 
-                <div class="form-grid">
+        <label>Internal Reference (optional)</label>
+        <input type="text" name="reference">
 
-                    <!-- Professional Identity -->
-                    <div class="form-section-title">Professional Identity</div>
+        <h2>Notifications & Consent</h2>
 
-                    <div class="form-group">
-                        <label for="primary-contact">Primary Contact</label>
-                        <span class="field-hint">Full name of the accountable contact.</span>
-                        <input type="text" id="primary-contact" name="primary_contact" required>
-                    </div>
+        <div class="vg-checkbox-group">
+            <label><input type="checkbox" name="notify_sms"> Receive SMS notifications</label>
+            <label><input type="checkbox" name="opt_in_updates"> Keep me updated with VERITAS‑approved information</label>
+        </div>
 
-                    <div class="form-group">
-                        <label for="email">Work Email</label>
-                        <span class="field-hint">Use a professional email address.</span>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+        <p class="vg-gdpr-text">
+            Your details are stored securely, used only to provide the information you request, and never shared with third parties. You may withdraw consent at any time.
+        </p>
 
-                    <div class="form-group">
-                        <label for="organisation">Affiliated Entity</label>
-                        <span class="field-hint">Legal or trading name.</span>
-                        <input type="text" id="organisation" name="organisation" required>
-                    </div>
+        <label class="vg-consent">
+            <input type="checkbox" name="consent_required" required>
+            I consent to being contacted regarding my request.
+        </label>
 
-                    <div class="form-group">
-                        <label for="role">Operational Role</label>
-                        <span class="field-hint">For example: Operations Lead, Risk Manager.</span>
-                        <input type="text" id="role" name="role" required>
-                    </div>
+        <button type="submit" class="vg-submit">Submit Request</button>
 
-                    <!-- Operational Domain -->
-                    <div class="form-section-title">Operational Domain and Geography</div>
+    </form>
 
-                    <div class="form-group">
-                        <label for="domain">Operational Domain</label>
-                        <select id="domain" name="operational_domain" required>
-                            <option value="" disabled selected>Select operational domain</option>
-                            <option value="utilities">Utilities</option>
-                            <option value="critical-infrastructure">Critical Infrastructure</option>
-                            <option value="government">Government</option>
-                            <option value="banking">Banking</option>
-                            <option value="insurance">Insurance</option>
-                            <option value="transport-logistics">Transport & Logistics</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+</section>
 
-                    <div class="form-group">
-                        <label for="geography">Primary Geography</label>
-                        <input type="text" id="geography" name="primary_geography" required>
-                    </div>
+<footer class="vg-footer">
+    <div class="vg-footer-inner">
+        © 2026 Vitium Group. All rights reserved.
+    </div>
+</footer>
 
-                    <!-- Request Characteristics -->
-                    <div class="form-section-title">Request Characteristics</div>
+<script>
+document.getElementById("sector_other_toggle").addEventListener("change", function () {
+    const field = document.getElementById("sector_other_field");
+    field.classList.toggle("vg-hidden", !this.checked);
+});
+</script>
 
-                    <div class="form-group">
-                        <label for="request-type">Request Type</label>
-                        <select id="request-type" name="request_type" required>
-                            <option value="" disabled selected>Select request type</option>
-                            <option value="data-access">Data Access</option>
-                            <option value="integration">Integration with VERITAS™</option>
-                            <option value="resilience-intelligence">Resilience Intelligence</option>
-                            <option value="proof-of-concept">Proof of Concept</option>
-                            <option value="partnership">Partnership</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="timeframe">Indicative Timeframe</label>
-                        <input type="text" id="timeframe" name="timeframe" required>
-                    </div>
-
-                    <!-- Summary -->
-                    <div class="form-section-title">Summary of Requirement</div>
-
-                    <div class="form-group" style="grid-column: 1 / -1;">
-                        <label for="summary">Summary</label>
-                        <textarea id="summary" name="summary" required></textarea>
-                    </div>
-
-                    <div class="form-group" style="grid-column: 1 / -1;">
-                        <label for="reference-id">Internal Reference (optional)</label>
-                        <input type="text" id="reference-id" name="internal_reference">
-                    </div>
-
-                </div>
-
-                <!-- Confirmation + Submit -->
-                <div class="checkbox-row">
-                    <input type="checkbox" id="operational-confirmation" name="operational_confirmation" required>
-                    <label for="operational-confirmation">
-                        I confirm this Request for Information (RFI) relates to operational data or resilience intelligence
-                        appropriate for review under VERITAS™ governance.
-                    </label>
-                </div>
-
-                <br>
-
-                <button type="submit" class="btn-submit">Initiate VERITAS Review</button>
-
-            </form>
+</body>
+</html>
