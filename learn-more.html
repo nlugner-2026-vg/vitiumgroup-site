@@ -2,83 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vitium Group – Learn More</title>
-    <meta name="description" content="Explore the 15 resilience sectors supported by Vitium Veritas™.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitium Group | Learn More</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body style="margin:0; background-color:#0b1a33; color:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+<body>
 
-<!-- ORANGE HEADER -->
-<header style="background-color:#f47c20; padding:6px 0; text-align:center;">
-    <nav>
-        <a href="index.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Home</a>
-        <a href="about.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">About VERITAS</a>
-        <a href="products-services.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Products / Services</a>
-        <a href="projects.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Projects</a>
-        <a href="academy.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Academy</a>
-        <a href="careers.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Careers</a>
-        <a href="partners.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Partners</a>
-        <a href="news.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">News</a>
-        <a href="support.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Support</a>
-        <a href="contact.html" style="color:#ffffff; margin:0 10px; text-decoration:none;">Contact</a>
-    </nav>
+<header class="vg-header">
+    <div class="vg-header-inner">
+        <div class="vg-logo">VITIUM GROUP</div>
+        <nav class="vg-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About VERITAS</a>
+            <a href="products-services.html">Solutions</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
 </header>
 
-<!-- EMBLEM -->
-<div style="text-align:center; margin-top:20px;">
-    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" alt="Vitium Veritas Emblem" style="width:80px; height:auto;">
-</div>
+<section class="vg-intake-container">
 
-<!-- TITLE -->
-<div style="text-align:center; margin-top:20px;">
-    <h1 style="color:#f47c20;">Learn More</h1>
-    <p style="max-width:800px; margin:0 auto;">Explore the 15 resilience sectors where Vitium Veritas™ is deployed.</p>
+    <div style="text-align:center;">
+        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" alt="Vitium Veritas Emblem" style="width:80px;height:auto;">
+    </div>
 
-    <!-- CTA BUTTON TO INTAKE FORM -->
-    <div style="margin-top:25px;">
-        <a href="intake.html" 
-           style="background-color:#f47c20; color:#ffffff; padding:10px 20px; border-radius:4px; text-decoration:none; font-weight:600;">
-           RFI (Request for Information Form
+    <h1 style="text-align:center;">Learn More</h1>
+    <p class="vg-intro" style="text-align:center;">
+        Explore the 15 resilience sectors where Vitium Veritas™ is deployed.
+    </p>
+
+    <div class="sector-grid">
+
+        <div class="sector-card">Utilities</div>
+        <div class="sector-card">Water</div>
+        <div class="sector-card">Energy</div>
+        <div class="sector-card">Telecoms</div>
+        <div class="sector-card">Local Authority</div>
+        <div class="sector-card">Highways</div>
+        <div class="sector-card">Rail</div>
+        <div class="sector-card">Aviation</div>
+        <div class="sector-card">Ports</div>
+        <div class="sector-card">Defence</div>
+        <div class="sector-card">Banking</div>
+        <div class="sector-card">Insurance</div>
+        <div class="sector-card">Government</div>
+        <div class="sector-card">Police</div>
+        <div class="sector-card">Fire & Rescue</div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:2rem;">
+        <a href="intake.html" class="vg-submit" style="display:inline-block;text-decoration:none;">
+            Submit an Information Request
         </a>
     </div>
-</div>
 
-<!-- ========================================================= -->
-<!-- 15 SECTORS GRID                                           -->
-<!-- ========================================================= -->
-<section style="max-width:1100px; margin:40px auto;">
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:30px;">
-
-        <div style="background-color:#112244; padding:20px; border-radius:6px;">
-            <h3 style="color:#f47c20;">IRaaS‑WATER</h3>
-            <p>Water resilience, harvesting, treatment and storage.</p>
-        </div>
-
-        <div style="background-color:#112244; padding:20px; border-radius:6px;">
-            <h3 style="color:#f47c20;">Highways & Bridges</h3>
-            <p>National road infrastructure and structural resilience.</p>
-        </div>
-
-        <div style="background-color:#112244; padding:20px; border-radius:6px;">
-            <h3 style="color:#f47c20;">Telecommunications & Fibre</h3>
-            <p>Network mapping, resilience and field intelligence.</p>
-        </div>
-
-        <div style="background-color:#112244; padding:20px; border-radius:6px;">
-            <h3 style="color:#f47c20;">Modular Housing & Assembly</h3>
-            <p>Modular housing and assembly systems.</p>
-        </div>
-
-        <div style="background-color:#112244; padding:20px; border-radius:6px;">
-            <h3 style="color:#f47c20;">Small Modular Reactors (SMR)</h3>
-            <p>Nuclear resilience and intelligence systems.</p>
-        </div>
-
-        <!-- (Remaining sectors unchanged — your file continues exactly as before) -->
-
-    </div>
 </section>
+
+<footer class="vg-footer">
+    <div class="vg-footer-inner">
+        © 2026 Vitium Group. All rights reserved.
+    </div>
+</footer>
 
 </body>
 </html>
