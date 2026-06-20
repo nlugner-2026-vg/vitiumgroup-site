@@ -44,7 +44,7 @@ a:hover {
   color: #0b0f14;
 }
 
-/* INTAKE CONTAINER */
+/* INTAKE + CONTENT CONTAINER */
 
 .vg-intake-container {
   max-width: 900px;
@@ -141,6 +141,31 @@ a:hover {
 
 .vg-submit:hover {
   background-color: #ff7b00;
+}
+
+/* SECTOR GRID */
+
+.sector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.sector-card {
+  background-color: #0f141a;
+  border: 1px solid #f60;
+  padding: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  color: #e6e6e6;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.sector-card:hover {
+  background-color: #1a212b;
+  transform: translateY(-3px);
 }
 
 /* FOOTER */
