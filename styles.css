@@ -1,14 +1,26 @@
-/* GLOBAL */
+/* ========== GLOBAL RESET & BASE ========== */
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #0b0f14;
-  color: #e6e6e6;
+  padding: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #050814;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+/* Links */
+
 a {
-  color: #f60;
+  color: #f47c20;
   text-decoration: none;
 }
 
@@ -16,164 +28,228 @@ a:hover {
   text-decoration: underline;
 }
 
-/* HEADER */
+/* Layout helpers */
 
-.vg-header {
-  background-color: #f60;
-  padding: 0.8rem 0;
-}
-
-.vg-header-inner {
+main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 20px;
+}
+
+/* ========== HEADER: GREY BAR + ORANGE BAR + EMBLEM ========== */
+
+.header-grey {
+  background-color: #a6a6a6; /* slightly darker grey for contrast */
+  height: 50px;
+  width: 100%;
+}
+
+.header-orange {
+  background-color: #ff6600;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+.header-orange nav {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  gap: 18px;
 }
 
-.vg-logo {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #0b0f14;
+.header-orange nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.vg-nav a {
-  margin-left: 1.2rem;
-  font-weight: 600;
-  color: #0b0f14;
+.header-orange nav a:hover {
+  text-decoration: underline;
 }
 
-/* INTAKE + CONTENT CONTAINER */
+/* Emblem under header */
 
-.vg-intake-container {
-  max-width: 900px;
-  margin: 3rem auto;
-  background-color: #11161c;
-  padding: 2rem;
-  border-radius: 6px;
+.emblem {
+  display: block;
+  margin: 20px auto 10px auto;
+  width: 80px;
+  height: auto;
 }
 
-.vg-intake-container h1 {
-  color: #f60;
-  margin-bottom: 0.5rem;
+/* Page titles */
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 10px 0 10px 0;
 }
+
+h2 {
+  font-size: 1.4rem;
+  margin: 20px 0 10px 0;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+/* Intro text */
 
 .vg-intro {
-  font-size: 0.95rem;
-  color: #c3cad5;
-  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  color: #d0d4e0;
 }
 
-/* FORM */
+/* ========== GENERIC CONTENT BLOCKS ========== */
 
-.vg-form label {
+.section {
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+/* Forms (Request Gateway etc.) */
+
+form {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #0b1224;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #24314f;
+}
+
+label {
   display: block;
-  margin-top: 1rem;
-  font-weight: 600;
+  margin-bottom: 6px;
+  font-weight: 500;
 }
 
-.vg-form input[type="text"],
-.vg-form input[type="email"],
-.vg-form textarea {
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
   width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.4rem;
-  border: 1px solid #f60;
+  padding: 8px 10px;
+  margin-bottom: 15px;
   border-radius: 4px;
-  background-color: #0b0f14;
-  color: #e6e6e6;
+  border: 1px solid #3a4a6f;
+  background-color: #050814;
+  color: #ffffff;
 }
 
-.vg-form textarea {
+textarea {
+  min-height: 120px;
   resize: vertical;
 }
 
-/* CHECKBOX GROUPS */
-
-.vg-checkbox-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4rem 1rem;
-  margin-top: 0.6rem;
+input[type="checkbox"] {
+  margin-right: 6px;
 }
 
-.vg-checkbox-group label {
-  font-weight: 400;
-  color: #c3cad5;
-}
-
-.vg-other-label {
-  margin-top: 1rem;
-  font-weight: 600;
-}
-
-.vg-hidden {
-  display: none;
-}
-
-/* GDPR */
-
-.vg-gdpr-text {
-  font-size: 0.85rem;
-  color: #c3cad5;
-  margin-top: 1.5rem;
-}
-
-.vg-consent {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
-}
-
-/* BUTTON */
-
-.vg-submit {
-  margin-top: 2rem;
-  background-color: #f60;
-  color: #0b0f14;
+button,
+input[type="submit"] {
+  background-color: #f47c20;
+  color: #050814;
   border: none;
-  padding: 0.8rem 1.6rem;
-  font-weight: 700;
+  padding: 10px 18px;
   border-radius: 4px;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.vg-submit:hover {
-  background-color: #ff7b00;
+button:hover,
+input[type="submit"]:hover {
+  background-color: #ffa24f;
 }
 
-/* SECTOR GRID */
+/* ========== SECTOR GRID (LEARN-MORE) ========== */
 
 .sector-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin: 40px auto 60px auto;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .sector-card {
-  background-color: #0f141a;
-  border: 1px solid #f60;
-  padding: 1.2rem;
+  display: block;
+  background-color: #102544;
+  border: 2px solid #f47c20;
+  border-radius: 8px;
+  padding: 25px 20px;
   text-align: center;
-  font-weight: 600;
-  color: #e6e6e6;
-  border-radius: 4px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  color: #ffffff;
+  text-decoration: none;
+  height: 180px; /* taller */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .sector-card:hover {
-  background-color: #1a212b;
-  transform: translateY(-3px);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  border-color: #ffa24f;
 }
 
-/* FOOTER */
+.sector-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #f47c20;
+  font-size: 1.05rem;
+}
 
-.vg-footer {
-  background-color: #f60;
-  color: #0b0f14;
+.sector-card p {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: #d0d4e0;
+}
+
+/* ========== FOOTER ========== */
+
+footer {
+  background-color: #ff6600;
+  color: #ffffff;
   text-align: center;
-  padding: 1rem 0;
-  font-weight: 600;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+.footer-links {
+  margin-bottom: 6px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 768px) {
+  .header-orange nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .sector-grid {
+    margin-top: 30px;
+  }
+
+  .sector-card {
+    height: auto; /* allow natural height on small screens */
+  }
 }
