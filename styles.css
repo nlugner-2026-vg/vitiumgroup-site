@@ -1,218 +1,154 @@
-/* 
-    =====================================================================
-    VITIUM GROUP — GLOBAL STYLESHEET
-    Fully compliant with user rules:
-    - Full file replacement only
-    - No placeholders
-    - Fully commented and audit‑ready
-    - No abbreviations without definition
-    - All selectors validated
-    =====================================================================
-*/
-
-/* ------------------------------------------------------------- */
-/* INTAKE FORM LAYOUT (UNCOMMENTED + VERIFIED)                   */
-/* ------------------------------------------------------------- */
-
-.intake-form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
-}
-
-/* LEFT COLUMN */
-.contact-details {
-    flex: 1;
-    background-color: #16243a; /* lighter navy for visibility */
-    color: #f5f5f5;
-    padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.05);
-}
-
-.contact-details h3 {
-    color: #ff6600; /* VERITAS accent */
-    margin-bottom: 12px;
-}
-
-/* RIGHT COLUMN */
-.form-fields {
-    flex: 2;
-}
-
-/* Inputs */
-input, textarea, select {
-    width: 100%;
-    background-color: #0f1a2b;
-    color: #ffffff;
-    border: 1px solid #ff6600;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-}
-
-input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: #ffa366;
-}
-
-/* ------------------------------------------------------------- */
-/* ROOT VARIABLES — BRAND COLOURS                                */
-/* ------------------------------------------------------------- */
-:root {
-    --brand-dark: #0A0F1F;          /* Deep navy for headers and navigation */
-    --brand-light: #F5F7FA;         /* Light grey background */
-    --brand-accent: #FF6A00;        /* Orange accent for highlights */
-    --brand-text: #1A1A1A;          /* Primary text colour */
-    --brand-muted: #555555;         /* Secondary text colour */
-}
-
-/* ------------------------------------------------------------- */
-/* GLOBAL RESET                                                  */
-/* ------------------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* GLOBAL */
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--brand-light);
-    color: var(--brand-text);
-    line-height: 1.6;
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #0b0f14;
+  color: #e6e6e6;
 }
 
-/* ------------------------------------------------------------- */
-/* NAVIGATION BAR                                                */
-/* ------------------------------------------------------------- */
-.navbar {
-    background-color: var(--brand-dark);
-    padding: 15px 0;
-    width: 100%;
+a {
+  color: #f60;
+  text-decoration: none;
 }
 
-.navbar-container {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+a:hover {
+  text-decoration: underline;
 }
 
-.navbar-logo {
-    color: white;
-    font-size: 1.4rem;
-    text-decoration: none;
-    font-weight: bold;
+/* HEADER */
+
+.vg-header {
+  background-color: #f60;
+  padding: 0.8rem 0;
 }
 
-.navbar-menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+.vg-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.navbar-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
+.vg-logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0b0f14;
 }
 
-.navbar-menu a.active,
-.navbar-menu a:hover {
-    color: var(--brand-accent);
+.vg-nav a {
+  margin-left: 1.2rem;
+  font-weight: 600;
+  color: #0b0f14;
 }
 
-/* ------------------------------------------------------------- */
-/* HERO SECTION                                                  */
-/* ------------------------------------------------------------- */
-.hero-section {
-    background-color: var(--brand-dark);
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
+/* INTAKE CONTAINER */
+
+.vg-intake-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  background-color: #11161c;
+  padding: 2rem;
+  border-radius: 6px;
 }
 
-.hero-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+.vg-intake-container h1 {
+  color: #f60;
+  margin-bottom: 0.5rem;
 }
 
-.hero-section p {
-    font-size: 1.2rem;
-    color: var(--brand-accent);
+.vg-intro {
+  font-size: 0.95rem;
+  color: #c3cad5;
+  margin-bottom: 2rem;
 }
 
-/* ------------------------------------------------------------- */
-/* CONTENT SECTIONS                                              */
-/* ------------------------------------------------------------- */
-.content-section {
-    width: 90%;
-    margin: 40px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+/* FORM */
+
+.vg-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
 }
 
-.section-title,
-.content-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: var(--brand-dark);
+.vg-form input[type="text"],
+.vg-form input[type="email"],
+.vg-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.4rem;
+  border: 1px solid #f60;
+  border-radius: 4px;
+  background-color: #0b0f14;
+  color: #e6e6e6;
 }
 
-.section-divider {
-    border: none;
-    height: 2px;
-    background-color: var(--brand-accent);
-    width: 60px;
-    margin-bottom: 20px;
+.vg-form textarea {
+  resize: vertical;
 }
 
-.content-section p {
-    font-size: 1rem;
-    color: var(--brand-muted);
-    margin-bottom: 20px;
+/* CHECKBOX GROUPS */
+
+.vg-checkbox-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 1rem;
+  margin-top: 0.6rem;
 }
 
-/* ------------------------------------------------------------- */
-/* LISTS (MARKETS, FEATURES, ETC.)                              */
-/* ------------------------------------------------------------- */
-.markets-list {
-    list-style: none;
-    padding-left: 0;
+.vg-checkbox-group label {
+  font-weight: 400;
+  color: #c3cad5;
 }
 
-.markets-list li {
-    margin-bottom: 15px;
-    padding-left: 10px;
-    border-left: 4px solid var(--brand-accent);
-    color: var(--brand-text);
+.vg-other-label {
+  margin-top: 1rem;
+  font-weight: 600;
 }
 
-/* ------------------------------------------------------------- */
-/* FOOTER                                                        */
-/* ------------------------------------------------------------- */
-.footer {
-    background-color: var(--brand-dark);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    font-size: 0.9rem;
+.vg-hidden {
+  display: none;
 }
 
-/* ------------------------------------------------------------- */
-/* OVERRIDE: enforce two‑column layout for intake form            */
-/* ------------------------------------------------------------- */
-.content-container .intake-form {
-    display: flex !important;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+/* GDPR */
+
+.vg-gdpr-text {
+  font-size: 0.85rem;
+  color: #c3cad5;
+  margin-top: 1.5rem;
+}
+
+.vg-consent {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+/* BUTTON */
+
+.vg-submit {
+  margin-top: 2rem;
+  background-color: #f60;
+  color: #0b0f14;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.vg-submit:hover {
+  background-color: #ff7b00;
+}
+
+/* FOOTER */
+
+.vg-footer {
+  background-color: #f60;
+  color: #0b0f14;
+  text-align: center;
+  padding: 1rem 0;
+  font-weight: 600;
 }
