@@ -2,15 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VERITAS – Field Operator</title>
+  <title>VERITAS – Field Operator Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!--
+    VERITAS Field Operator Dashboard
+    - Clean, responsive two-column layout
+    - 2–5 work orders on the left
+    - Active work order + actions on the right
+    - Basic JavaScript wiring for click behaviour
+    - No external dependencies
+  -->
+
   <style>
+    /* Base layout and typography */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Segoe UI, system-ui, -apple-system, sans-serif;
       background: #f5f5f5;
-      color: #222;
+      color: #222222;
     }
 
     .header {
@@ -29,7 +43,7 @@
 
     .header-sub {
       font-size: 14px;
-      color: #555;
+      color: #555555;
     }
 
     .container {
@@ -39,12 +53,12 @@
       gap: 16px;
     }
 
-    .workorders,
-    .active-order {
+    /* Panels */
+    .panel {
       background: #ffffff;
       border-radius: 6px;
       padding: 12px;
-      box-shadow: 0 0 4px rgba(0,0,0,0.06);
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.06);
     }
 
     .workorders {
@@ -61,17 +75,19 @@
       font-size: 16px;
       font-weight: 600;
       margin-bottom: 8px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #dddddd;
       padding-bottom: 4px;
     }
 
+    /* Work order cards */
     .workorder-card {
-      border: 1px solid #ddd;
+      border: 1px solid #dddddd;
       border-radius: 4px;
       padding: 8px;
       margin-bottom: 8px;
       cursor: pointer;
       background: #fafafa;
+      transition: background 0.15s ease, border-color 0.15s ease;
     }
 
     .workorder-card:hover {
@@ -86,9 +102,26 @@
 
     .workorder-meta {
       font-size: 13px;
-      color: #555;
+      color: #555555;
     }
 
+    /* Fields */
+    .field-group {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .field-label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .field-value {
+      color: #444444;
+    }
+
+    /* Buttons */
     .btn-row {
       display: flex;
       flex-wrap: wrap;
@@ -103,40 +136,63 @@
       border: none;
       font-size: 14px;
       cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
     .btn-primary {
       background: #1f4e79;
-      color: #fff;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #163655;
     }
 
     .btn-secondary {
       background: #e0e0e0;
-      color: #222;
+      color: #222222;
+    }
+
+    .btn-secondary:hover {
+      background: #cccccc;
     }
 
     .btn-submit {
       background: #2e7d32;
-      color: #fff;
+      color: #ffffff;
       width: 100%;
       margin-top: 8px;
     }
 
-    .field-group {
-      margin: 8px 0;
-      font-size: 14px;
+    .btn-submit:hover {
+      background: #225924;
     }
 
-    .field-label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 2px;
+    /* Status badges */
+    .status-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-left: 4px;
     }
 
-    .field-value {
-      color: #444;
+    .status-in-progress {
+      background: #fff3cd;
+      color: #856404;
     }
 
+    .status-assigned {
+      background: #e2e3e5;
+      color: #383d41;
+    }
+
+    .status-pending {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+
+    /* Responsive behaviour */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -157,89 +213,197 @@
   </div>
 
   <div class="container">
-    <!-- LEFT: WORKSCHEDULE / WORK ORDERS -->
-    <div class="workorders">
+    <!-- LEFT: WorkSchedule / Work Orders -->
+    <div class="panel workorders">
       <div class="section-title">WorkSchedule</div>
 
-      <div class="workorder-card">
-        <div class="workorder-title">WO‑1001 – Valve Inspection</div>
+      <!-- Work order cards (2–5 items max) -->
+      <div class="workorder-card"
+           data-wo-id="WO-1001"
+           data-wo-title="Valve Inspection"
+           data-wo-address="12 High Street, Northwich"
+           data-wo-type="Valve Inspection"
+           data-wo-status="In Progress">
+        <div class="workorder-title">
+          WO‑1001 – Valve Inspection
+          <span class="status-badge status-in-progress">In Progress</span>
+        </div>
         <div class="workorder-meta">12 High Street, Northwich</div>
-        <div class="workorder-meta">Status: In Progress</div>
       </div>
 
-      <div class="workorder-card">
-        <div class="workorder-title">WO‑1002 – Chamber Condition Check</div>
+      <div class="workorder-card"
+           data-wo-id="WO-1002"
+           data-wo-title="Chamber Condition Check"
+           data-wo-address="4 Riverbank Close, Northwich"
+           data-wo-type="Chamber Condition Check"
+           data-wo-status="Assigned">
+        <div class="workorder-title">
+          WO‑1002 – Chamber Condition Check
+          <span class="status-badge status-assigned">Assigned</span>
+        </div>
         <div class="workorder-meta">4 Riverbank Close, Northwich</div>
-        <div class="workorder-meta">Status: Assigned</div>
       </div>
 
-      <div class="workorder-card">
-        <div class="workorder-title">WO‑1003 – Manhole Cover Assessment</div>
+      <div class="workorder-card"
+           data-wo-id="WO-1003"
+           data-wo-title="Manhole Cover Assessment"
+           data-wo-address="22 Weaver Road, Northwich"
+           data-wo-type="Manhole Cover Assessment"
+           data-wo-status="Pending">
+        <div class="workorder-title">
+          WO‑1003 – Manhole Cover Assessment
+          <span class="status-badge status-pending">Pending</span>
+        </div>
         <div class="workorder-meta">22 Weaver Road, Northwich</div>
-        <div class="workorder-meta">Status: Pending</div>
       </div>
 
-      <!-- Add up to 2 more cards max -->
+      <!-- Add up to 2 more cards here if needed -->
     </div>
 
-    <!-- RIGHT: ACTIVE WORK ORDER -->
-    <div class="active-order">
+    <!-- RIGHT: Active Work Order -->
+    <div class="panel active-order">
       <div class="section-title">Active Work Order</div>
 
       <div class="field-group">
         <span class="field-label">Work Order:</span>
-        <span class="field-value">WO‑1001 – Valve Inspection</span>
+        <span class="field-value" id="woId">WO‑1001 – Valve Inspection</span>
       </div>
 
       <div class="field-group">
         <span class="field-label">Address:</span>
-        <span class="field-value">12 High Street, Northwich</span>
+        <span class="field-value" id="woAddress">12 High Street, Northwich</span>
       </div>
 
       <div class="field-group">
         <span class="field-label">Type:</span>
-        <span class="field-value">Valve Inspection</span>
+        <span class="field-value" id="woType">Valve Inspection</span>
       </div>
 
       <div class="field-group">
         <span class="field-label">Status:</span>
-        <span class="field-value">In Progress</span>
+        <span class="field-value" id="woStatus">In Progress</span>
       </div>
 
-      <div class="section-title" style="margin-top:12px;">Actions</div>
+      <div class="section-title" style="margin-top: 12px;">Actions</div>
 
       <div class="btn-row">
-        <button class="btn btn-primary">Take Photo</button>
-        <button class="btn btn-primary">Upload Image / Scan</button>
-        <button class="btn btn-secondary">Add Weather Data</button>
-        <button class="btn btn-secondary">Add Notes</button>
+        <button class="btn btn-primary" id="btnTakePhoto">Take Photo</button>
+        <button class="btn btn-primary" id="btnUploadImage">Upload Image / Scan</button>
+        <button class="btn btn-secondary" id="btnWeather">Add Weather Data</button>
+        <button class="btn btn-secondary" id="btnNotes">Add Notes</button>
       </div>
 
       <div class="section-title">Evidence Summary</div>
 
       <div class="field-group">
         <span class="field-label">Image:</span>
-        <span class="field-value">Not yet captured</span>
+        <span class="field-value" id="imageStatus">Not yet captured</span>
       </div>
 
       <div class="field-group">
         <span class="field-label">OCR Text:</span>
-        <span class="field-value">Not yet extracted</span>
+        <span class="field-value" id="ocrStatus">Not yet extracted</span>
       </div>
 
       <div class="field-group">
         <span class="field-label">Annotations:</span>
-        <span class="field-value">None</span>
+        <span class="field-value" id="annotationsStatus">None</span>
       </div>
 
       <div class="field-group">
         <span class="field-label">Weather:</span>
-        <span class="field-value">Not set</span>
+        <span class="field-value" id="weatherStatus">Not set</span>
       </div>
 
-      <button class="btn btn-submit">Submit Record</button>
+      <div class="field-group">
+        <span class="field-label">Notes:</span>
+        <span class="field-value" id="notesStatus">None</span>
+      </div>
+
+      <button class="btn btn-submit" id="btnSubmit">Submit Record</button>
     </div>
   </div>
 
+  <!--
+    Basic interaction logic
+    - Clicking a work order card updates the Active Work Order panel
+    - Action buttons update Evidence Summary fields
+  -->
+  <script>
+    (function () {
+      "use strict";
+
+      function setText(id, value) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.textContent = value;
+        }
+      }
+
+      var cards = document.querySelectorAll(".workorder-card");
+      cards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          var woId = card.getAttribute("data-wo-id") || "";
+          var woTitle = card.getAttribute("data-wo-title") || "";
+          var woAddress = card.getAttribute("data-wo-address") || "";
+          var woType = card.getAttribute("data-wo-type") || "";
+          var woStatus = card.getAttribute("data-wo-status") || "";
+
+          setText("woId", woId + " – " + woTitle);
+          setText("woAddress", woAddress);
+          setText("woType", woType);
+          setText("woStatus", woStatus);
+
+          setText("imageStatus", "Not yet captured");
+          setText("ocrStatus", "Not yet extracted");
+          setText("annotationsStatus", "None");
+          setText("weatherStatus", "Not set");
+          setText("notesStatus", "None");
+        });
+      });
+
+      var btnTakePhoto = document.getElementById("btnTakePhoto");
+      var btnUploadImage = document.getElementById("btnUploadImage");
+      var btnWeather = document.getElementById("btnWeather");
+      var btnNotes = document.getElementById("btnNotes");
+      var btnSubmit = document.getElementById("btnSubmit");
+
+      if (btnTakePhoto) {
+        btnTakePhoto.addEventListener("click", function () {
+          setText("imageStatus", "Photo captured (field device)");
+          setText("annotationsStatus", "Ready for annotation");
+        });
+      }
+
+      if (btnUploadImage) {
+        btnUploadImage.addEventListener("click", function () {
+          setText("imageStatus", "Image uploaded (scan)");
+          setText("ocrStatus", "OCR ready to run");
+        });
+      }
+
+      if (btnWeather) {
+        btnWeather.addEventListener("click", function () {
+          setText("weatherStatus", "Weather data attached (auto from device)");
+        });
+      }
+
+      if (btnNotes) {
+        btnNotes.addEventListener("click", function () {
+          setText("notesStatus", "Operator notes added");
+        });
+      }
+
+      if (btnSubmit) {
+        btnSubmit.addEventListener("click", function () {
+          setText("imageStatus", document.getElementById("imageStatus").textContent + " ✓");
+          setText("ocrStatus", document.getElementById("ocrStatus").textContent + " ✓");
+          setText("annotationsStatus", document.getElementById("annotationsStatus").textContent + " ✓");
+          setText("weatherStatus", document.getElementById("weatherStatus").textContent + " ✓");
+          setText("notesStatus", document.getElementById("notesStatus").textContent + " ✓");
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
