@@ -2,1273 +2,244 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VERITAS Field Dashboard · A‑MODE</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--
-    VERITAS FIELD DASHBOARD (A‑MODE)
-    - Full replacement file
-    - Deterministic wiring
-    - Evidence create + export enabled
-    - Historical weather (scheduled + log timestamps)
-  -->
+  <title>VERITAS – Field Operator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    * { box-sizing:border-box; margin:0; padding:0; }
     body {
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:#f4f6f8;
-      color:#111827;
+      margin: 0;
+      font-family: Segoe UI, system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      color: #222;
     }
-    header {
-      background:#0b3a6a;
-      color:#fff;
-      padding:10px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    header h1 { font-size:18px; font-weight:600; }
-    header span { font-size:12px; opacity:0.8; }
 
-    .container { display:flex; height:calc(100vh - 52px); }
-    .left-panel {
-      width:26%;
-      border-right:1px solid #d1d5db;
-      background:#ffffff;
-      overflow-y:auto;
+    .header {
+      background: #ffffff;
+      border-bottom: 2px solid #1f4e79;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .right-panel { width:74%; display:flex; flex-direction:column; }
 
-    .panel-header {
-      padding:10px 12px;
-      border-bottom:1px solid #e5e7eb;
-      background:#f9fafb;
+    .header-title {
+      font-size: 18px;
+      font-weight: 600;
     }
-    .panel-body { padding:10px 12px; overflow-y:auto; flex:1; }
+
+    .header-sub {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 16px;
+      gap: 16px;
+    }
+
+    .workorders,
+    .active-order {
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 12px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.06);
+    }
+
+    .workorders {
+      flex: 1 1 280px;
+      max-width: 360px;
+    }
+
+    .active-order {
+      flex: 2 1 360px;
+      min-width: 320px;
+    }
+
     .section-title {
-      font-size:13px;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:0.06em;
-      color:#4b5563;
-      margin-bottom:6px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
     }
 
-    .wo-item {
-      padding:10px 12px;
-      border-bottom:1px solid #e5e7eb;
-      cursor:pointer;
-    }
-    .wo-item:hover { background:#f3f4f6; }
-    .wo-item.active { background:#e5f0ff; border-left:3px solid #2563eb; }
-    .wo-id { font-weight:600; font-size:13px; }
-    .wo-addr { font-size:12px; color:#4b5563; margin-top:2px; }
-    .wo-meta { font-size:11px; color:#6b7280; margin-top:4px; }
-    .tag {
-      display:inline-block;
-      padding:2px 6px;
-      border-radius:999px;
-      font-size:11px;
-      background:#e5f0ff;
-      color:#1d4ed8;
-      margin-right:4px;
+    .workorder-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      background: #fafafa;
     }
 
-    .right-top {
-      display:flex;
-      border-bottom:1px solid #e5e7eb;
-      background:#ffffff;
-      height:48%;
+    .workorder-card:hover {
+      background: #f0f7ff;
+      border-color: #1f4e79;
     }
-    .right-bottom { display:flex; height:52%; }
 
-    .rt-left,.rt-right,
-    .rb-left,.rb-right {
-      width:50%;
-      padding:10px 12px;
-      overflow-y:auto;
+    .workorder-title {
+      font-weight: 600;
+      margin-bottom: 4px;
     }
-    .rb-left { background:#ffffff; border-right:1px solid #e5e7eb; }
-    .rb-right { background:#ffffff; }
 
-    .field-label {
-      font-size:12px;
-      font-weight:600;
-      margin-top:8px;
-      margin-bottom:2px;
-      color:#374151;
+    .workorder-meta {
+      font-size: 13px;
+      color: #555;
     }
-    .field-value { font-size:13px; color:#111827; margin-bottom:4px; }
 
-    .status-pill {
-      display:inline-flex;
-      align-items:center;
-      padding:2px 8px;
-      border-radius:999px;
-      font-size:11px;
-      background:#ecfdf3;
-      color:#166534;
-      border:1px solid #bbf7d0;
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
     }
 
     .btn {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:6px 10px;
-      border-radius:4px;
-      border:1px solid transparent;
-      font-size:12px;
-      cursor:pointer;
-      background:#0b3a6a;
-      color:#fff;
-      margin-top:6px;
-      margin-right:4px;
-    }
-    .btn.secondary {
-      background:#ffffff;
-      color:#111827;
-      border-color:#d1d5db;
-    }
-    .btn:disabled { opacity:0.5; cursor:default; }
-
-    .info-block {
-      border:1px solid #e5e7eb;
-      border-radius:4px;
-      padding:6px 8px;
-      margin-bottom:6px;
-      background:#f9fafb;
-    }
-    .info-block ul {
-      list-style:none;
-      font-size:12px;
-      color:#374151;
-    }
-    .info-block li { margin-bottom:2px; }
-
-    .photo-grid {
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:6px;
-    }
-    .photo-thumb {
-      width:80px;
-      height:80px;
-      border-radius:4px;
-      overflow:hidden;
-      border:1px solid #e5e7eb;
-      position:relative;
-      cursor:pointer;
-      background:#f3f4f6;
-    }
-    .photo-thumb img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .photo-tag {
-      position:absolute;
-      bottom:2px;
-      left:2px;
-      right:2px;
-      background:rgba(0,0,0,0.55);
-      color:#fff;
-      font-size:10px;
-      padding:1px 2px;
-      border-radius:2px;
-      text-align:center;
+      flex: 1 1 160px;
+      padding: 10px;
+      border-radius: 4px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
     }
 
-    .compare-wrapper {
-      display:flex;
-      gap:8px;
-      height:100%;
-    }
-    .compare-pane {
-      flex:1;
-      border:1px solid #e5e7eb;
-      border-radius:4px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      background:#f9fafb;
-    }
-    .compare-header {
-      padding:4px 6px;
-      border-bottom:1px solid #e5e7eb;
-      font-size:11px;
-      background:#f3f4f6;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-    .compare-body {
-      flex:1;
-      overflow:hidden;
-      position:relative;
-      background:#000;
-    }
-    .zoom-container {
-      width:100%;
-      height:100%;
-      overflow:auto;
-      background:#000;
-    }
-    .zoom-inner {
-      transform-origin:0 0;
-    }
-    .zoom-inner img {
-      display:block;
-      max-width:100%;
-      height:auto;
-    }
-    .zoom-controls {
-      display:flex;
-      gap:4px;
-      font-size:11px;
-      align-items:center;
+    .btn-primary {
+      background: #1f4e79;
+      color: #fff;
     }
 
-    textarea {
-      width:100%;
-      min-height:80px;
-      font-size:12px;
-      padding:6px;
-      border-radius:4px;
-      border:1px solid #d1d5db;
-      resize:vertical;
+    .btn-secondary {
+      background: #e0e0e0;
+      color: #222;
     }
 
-    .modal-backdrop {
-      position:fixed;
-      inset:0;
-      background:rgba(15,23,42,0.55);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:50;
-    }
-    .modal {
-      background:#ffffff;
-      border-radius:6px;
-      width:90%;
-      max-width:900px;
-      max-height:90vh;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-    }
-    .modal-header {
-      padding:8px 10px;
-      border-bottom:1px solid #e5e7eb;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:#f9fafb;
-    }
-    .modal-body {
-      padding:8px 10px;
-      overflow:auto;
-      flex:1;
-    }
-    .annotator-wrapper {
-      position:relative;
-      border:1px solid #e5e7eb;
-      border-radius:4px;
-      overflow:hidden;
-      background:#000;
-      max-height:60vh;
-    }
-    .annotator-wrapper img {
-      display:block;
-      width:100%;
-      height:auto;
-    }
-    #annotator-canvas {
-      position:absolute;
-      inset:0;
-      cursor:crosshair;
-    }
-    .annotator-toolbar {
-      margin-top:6px;
-      display:flex;
-      gap:6px;
-      align-items:center;
-      flex-wrap:wrap;
-      font-size:12px;
+    .btn-submit {
+      background: #2e7d32;
+      color: #fff;
+      width: 100%;
+      margin-top: 8px;
     }
 
-    @media (max-width:1024px) {
-      .container { flex-direction:column; }
-      .left-panel { width:100%; height:35vh; }
-      .right-panel { width:100%; height:65vh; }
-      .right-top,.right-bottom { height:50%; }
+    .field-group {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .field-label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .field-value {
+      color: #444;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .workorders,
+      .active-order {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-<header>
-  <div>
-    <h1>VERITAS Field Dashboard</h1>
-    <span>dashboard_field · A‑MODE</span>
+
+  <div class="header">
+    <div class="header-title">VERITAS – Field Operator</div>
+    <div class="header-sub">Active Work Orders</div>
   </div>
-  <div>
-    <span id="header-active-wo">No work order selected</span>
-  </div>
-</header>
 
-<div class="container">
-  <aside class="left-panel">
-    <div class="panel-header">
-      <div class="section-title">Work orders</div>
-      <div style="font-size:11px;color:#6b7280;">Tap to load and capture evidence</div>
+  <div class="container">
+    <!-- LEFT: WORKSCHEDULE / WORK ORDERS -->
+    <div class="workorders">
+      <div class="section-title">WorkSchedule</div>
+
+      <div class="workorder-card">
+        <div class="workorder-title">WO‑1001 – Valve Inspection</div>
+        <div class="workorder-meta">12 High Street, Northwich</div>
+        <div class="workorder-meta">Status: In Progress</div>
+      </div>
+
+      <div class="workorder-card">
+        <div class="workorder-title">WO‑1002 – Chamber Condition Check</div>
+        <div class="workorder-meta">4 Riverbank Close, Northwich</div>
+        <div class="workorder-meta">Status: Assigned</div>
+      </div>
+
+      <div class="workorder-card">
+        <div class="workorder-title">WO‑1003 – Manhole Cover Assessment</div>
+        <div class="workorder-meta">22 Weaver Road, Northwich</div>
+        <div class="workorder-meta">Status: Pending</div>
+      </div>
+
+      <!-- Add up to 2 more cards max -->
     </div>
-    <div id="wo-list"></div>
-  </aside>
 
-  <main class="right-panel">
-    <section class="right-top">
-      <div class="rt-left">
-        <div class="section-title">Work order details</div>
-        <div id="wo-details">
-          <div style="font-size:12px;color:#6b7280;">Select a work order from the left to begin.</div>
-        </div>
+    <!-- RIGHT: ACTIVE WORK ORDER -->
+    <div class="active-order">
+      <div class="section-title">Active Work Order</div>
 
-        <div class="field-label">Status</div>
-        <div id="wo-status" class="field-value">
-          <span class="status-pill">No work order active</span>
-        </div>
-
-        <div class="field-label">NUAR</div>
-        <button class="btn secondary" id="btn-nuar" disabled>Open NUAR context</button>
+      <div class="field-group">
+        <span class="field-label">Work Order:</span>
+        <span class="field-value">WO‑1001 – Valve Inspection</span>
       </div>
 
-      <div class="rt-right">
-        <div class="section-title">Automatic evidence</div>
-
-        <div class="field-label">GPS</div>
-        <div class="info-block">
-          <div id="gps-status" style="font-size:12px;color:#0b3a6a;font-weight:600;">GPS pending…</div>
-          <ul id="gps-details"></ul>
-        </div>
-
-        <div class="field-label">Weather snapshot</div>
-        <div id="weather-block" class="info-block">Weather not yet captured.</div>
-
-        <div class="field-label">IoT / SCADA readings</div>
-        <div id="iot-block" class="info-block">IoT not yet captured.</div>
-      </div>
-    </section>
-
-    <section class="right-bottom">
-      <div class="rb-left">
-        <div class="section-title">Photos & scans</div>
-
-        <div class="field-label">Field photos</div>
-        <input type="file" id="photo-input" accept="image/*" capture="environment" style="display:none;">
-        <button class="btn secondary" id="btn-take-photo">Take photo</button>
-        <div id="photo-grid" class="photo-grid"></div>
-
-        <div class="field-label" style="margin-top:10px;">Scans & CAD / PDFs</div>
-        <input type="file" id="scan-input"
-               accept="image/*,application/pdf,image/tiff,image/bmp"
-               style="display:none;">
-        <button class="btn secondary" id="btn-load-scan">Load scan / PDF</button>
-
-        <div class="section-title" style="margin-top:10px;">Scan & OCR comparison</div>
-        <div class="compare-wrapper" style="height:220px;">
-          <div class="compare-pane">
-            <div class="compare-header">
-              <span>Scan / PDF (page 1)</span>
-              <div class="zoom-controls">
-                <button class="btn secondary" style="padding:2px 6px;" id="scan-zoom-out">−</button>
-                <button class="btn secondary" style="padding:2px 6px;" id="scan-zoom-in">+</button>
-                <button class="btn secondary" style="padding:2px 6px;" id="scan-zoom-reset">Reset</button>
-              </div>
-            </div>
-            <div class="compare-body">
-              <div class="zoom-container">
-                <div class="zoom-inner" id="scan-zoom-inner" style="transform:scale(1);">
-                  <img id="scan-image" src="" alt="Scan preview"
-                       style="display:none;max-width:100%;height:auto;border-radius:4px;">
-                  <img id="pdf-preview" src="" alt="PDF preview"
-                       style="display:none;max-width:100%;height:auto;border-radius:4px;">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="compare-pane">
-            <div class="compare-header">
-              <span>Extracted text (OCR)</span>
-            </div>
-            <div class="compare-body" style="background:#f9fafb;">
-              <textarea id="ocr-text"
-                        placeholder="OCR result will appear here. Operator reviews and confirms."
-                        style="width:100%;height:100%;border:none;resize:none;padding:6px;"></textarea>
-            </div>
-          </div>
-        </div>
-        <button class="btn secondary" id="btn-accept-ocr" disabled>Confirm OCR into record</button>
-
-        <div class="section-title" style="margin-top:12px;">Operator notes</div>
-        <textarea id="operator-notes" placeholder="Field notes, observations, condition comments…"></textarea>
-        <button class="btn" id="btn-save-notes" style="margin-top:6px;">Save notes to record</button>
+      <div class="field-group">
+        <span class="field-label">Address:</span>
+        <span class="field-value">12 High Street, Northwich</span>
       </div>
 
-      <div class="rb-right">
-        <div class="section-title">Side‑by‑side comparison</div>
-        <div style="font-size:11px;color:#6b7280;margin-bottom:4px;">
-          Previous vs current evidence · zoom each side for detailed comparison.
-        </div>
-
-        <div class="compare-wrapper">
-          <div class="compare-pane">
-            <div class="compare-header">
-              <span>Previous state</span>
-              <div class="zoom-controls">
-                <button class="btn secondary" style="padding:2px 6px;" id="prev-zoom-out">−</button>
-                <button class="btn secondary" style="padding:2px 6px;" id="prev-zoom-in">+</button>
-                <button class="btn secondary" style="padding:2px 6px;" id="prev-zoom-reset">Reset</button>
-              </div>
-            </div>
-            <div class="compare-body">
-              <div class="zoom-container">
-                <div class="zoom-inner" id="prev-zoom-inner" style="transform:scale(1);">
-                  <img id="prev-image" src="" alt="" style="display:none;">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="compare-pane">
-            <div class="compare-header">
-              <span>Current state</span>
-              <div class="zoom-controls">
-                <button class="btn secondary" style="padding:2px 6px;" id="curr-zoom-out">−</button>
-                <button class="btn secondary" style="padding:2px 6px;" id="curr-zoom-in">+</button>
-                <button class="btn secondary" style="padding:2px 6px;" id="curr-zoom-reset">Reset</button>
-              </div>
-            </div>
-            <div class="compare-body">
-              <div class="zoom-container">
-                <div class="zoom-inner" id="curr-zoom-inner" style="transform:scale(1);">
-                  <img id="curr-image" src="" alt="" style="display:none;">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:10px;">
-          <div class="field-label">Submission</div>
-          <!--
-            SUBMIT / EXPORT BUTTON (A‑MODE)
-            - First click: create evidence record (POST /api/evidence/create)
-            - Subsequent clicks: export evidence (GET /admin/export/:id)
-          -->
-          <button class="btn" id="btn-submit" disabled>Submit evidence </button>
-        </div>
+      <div class="field-group">
+        <span class="field-label">Type:</span>
+        <span class="field-value">Valve Inspection</span>
       </div>
-    </section>
-  </main>
-</div>
 
-<!--
-  PHOTO ANNOTATOR MODAL
-  - Used to draw on photos and save annotated copies as evidence
--->
-<div class="modal-backdrop" id="annotator-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <span style="font-size:13px;font-weight:600;">Annotate photo</span>
-      <button class="btn secondary" id="btn-close-annotator">Close</button>
-    </div>
-    <div class="modal-body">
-      <div class="annotator-wrapper">
-        <img id="annotator-image" src="" alt="">
-        <canvas id="annotator-canvas"></canvas>
+      <div class="field-group">
+        <span class="field-label">Status:</span>
+        <span class="field-value">In Progress</span>
       </div>
-      <div class="annotator-toolbar">
-        <span>Pen colour:</span>
-        <input type="color" id="pen-color" value="#ff0000">
-        <span>Thickness:</span>
-        <input type="range" id="pen-width" min="1" max="12" value="3">
-        <button class="btn secondary" id="btn-annotator-undo">Undo</button>
-        <button class="btn secondary" id="btn-annotator-clear">Clear</button>
-        <button class="btn" id="btn-annotator-save">Save annotated copy</button>
+
+      <div class="section-title" style="margin-top:12px;">Actions</div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary">Take Photo</button>
+        <button class="btn btn-primary">Upload Image / Scan</button>
+        <button class="btn btn-secondary">Add Weather Data</button>
+        <button class="btn btn-secondary">Add Notes</button>
       </div>
+
+      <div class="section-title">Evidence Summary</div>
+
+      <div class="field-group">
+        <span class="field-label">Image:</span>
+        <span class="field-value">Not yet captured</span>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">OCR Text:</span>
+        <span class="field-value">Not yet extracted</span>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Annotations:</span>
+        <span class="field-value">None</span>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Weather:</span>
+        <span class="field-value">Not set</span>
+      </div>
+
+      <button class="btn btn-submit">Submit Record</button>
     </div>
   </div>
-</div>
 
-<script>
-  const API_BASE = "";
-
-  // ---------------------------------------------------------------------------
-  // IN‑MEMORY WORK ORDER MODEL (A‑MODE DEMO DATA)
-  // ---------------------------------------------------------------------------
-  let workOrders = [
-    {
-      id: "WO-1001",
-      address: "12 High Street, Northwich",
-      type: "Valve inspection",
-      priority: "High",
-      scheduled: "2026-05-25T09:00:00Z",
-      previousPhoto: null,
-      gps: null,
-      weather: null,
-      iot: null,
-      photos: [],
-      annotatedPhotos: [],
-      scans: [],
-      ocrNotes: [],
-      notes: "",
-      evidenceId: null
-    },
-    {
-      id: "WO-1002",
-      address: "Station Road, Northwich",
-      type: "Chamber condition check",
-      priority: "Medium",
-      scheduled: "2026-05-25T11:00:00Z",
-      previousPhoto: null,
-      gps: null,
-      weather: null,
-      iot: null,
-      photos: [],
-      annotatedPhotos: [],
-      scans: [],
-      ocrNotes: [],
-      notes: "",
-      evidenceId: null
-    }
-  ];
-
-  let activeWorkOrder = null;
-
-  document.addEventListener("DOMContentLoaded", () => {
-    renderWorkOrderList();
-    wireControls();
-    // A‑MODE: deterministic initial selection
-    loadWorkOrder(0);
-  });
-
-  // ---------------------------------------------------------------------------
-  // WORK ORDER LIST + LOAD
-  // ---------------------------------------------------------------------------
-  function renderWorkOrderList() {
-    const list = document.getElementById("wo-list");
-    list.innerHTML = "";
-    workOrders.forEach((wo, idx) => {
-      const div = document.createElement("div");
-      div.className = "wo-item" + (activeWorkOrder && activeWorkOrder.id === wo.id ? " active" : "");
-      div.dataset.index = idx;
-      div.innerHTML = `
-        <div class="wo-id">${wo.id}</div>
-        <div class="wo-addr">${wo.address}</div>
-        <div class="wo-meta">
-          <span class="tag">${wo.type}</span>
-          <span>${wo.priority} · ${wo.scheduled}</span>
-        </div>
-      `;
-      div.addEventListener("click", () => loadWorkOrder(idx));
-      list.appendChild(div);
-    });
-  }
-
-  function loadWorkOrder(index) {
-    activeWorkOrder = workOrders[index];
-    renderWorkOrderList();
-    document.getElementById("header-active-wo").textContent =
-      `Active: ${activeWorkOrder.id} · ${activeWorkOrder.address}`;
-    document.getElementById("btn-nuar").disabled = false;
-    document.getElementById("btn-submit").disabled = false;
-
-    const details = document.getElementById("wo-details");
-    details.innerHTML = `
-      <div class="field-label">ID</div>
-      <div class="field-value">${activeWorkOrder.id}</div>
-      <div class="field-label">Address</div>
-      <div class="field-value">${activeWorkOrder.address}</div>
-      <div class="field-label">Type</div>
-      <div class="field-value">${activeWorkOrder.type}</div>
-      <div class="field-label">Priority</div>
-      <div class="field-value">${activeWorkOrder.priority}</div>
-      <div class="field-label">Scheduled</div>
-      <div class="field-value">${activeWorkOrder.scheduled}</div>
-    `;
-    document.getElementById("wo-status").innerHTML =
-      `<span class="status-pill">In progress · field evidence capture</span>`;
-
-    document.getElementById("operator-notes").value = activeWorkOrder.notes || "";
-
-    renderPhotos();
-    updateComparisonPrevious();
-
-    document.getElementById("scan-image").style.display = "none";
-    document.getElementById("pdf-preview").style.display = "none";
-    document.getElementById("ocr-text").value = "";
-    resetScanZoom();
-
-    // Automatic evidence on load
-    captureGPS();
-    captureIoT();
-    // Historical weather for scheduled date (baseline)
-    captureHistoricalWeather(activeWorkOrder.scheduled);
-    // Configure submit/export button mode
-    configureSubmitButtonMode();
-  }
-
-  // ---------------------------------------------------------------------------
-  // GPS CAPTURE
-  // ---------------------------------------------------------------------------
-  function captureGPS() {
-    const gpsStatus = document.getElementById("gps-status");
-    const gpsDetails = document.getElementById("gps-details");
-    gpsDetails.innerHTML = "";
-    if (!activeWorkOrder) return;
-
-    if (!navigator.geolocation) {
-      gpsStatus.textContent = "GPS not supported on this device.";
-      gpsStatus.style.color = "#b91c1c";
-      return;
-    }
-
-    gpsStatus.textContent = "Capturing GPS…";
-    gpsStatus.style.color = "#0b3a6a";
-
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        if (!activeWorkOrder) return;
-        activeWorkOrder.gps = {
-          lat: pos.coords.latitude,
-          lon: pos.coords.longitude,
-          accuracy: pos.coords.accuracy,
-          timestamp: new Date().toISOString()
-        };
-        gpsStatus.textContent = "GPS captured ✓";
-        gpsStatus.style.color = "#166534";
-        gpsDetails.innerHTML = `
-          <li><strong>Lat:</strong> ${activeWorkOrder.gps.lat.toFixed(6)}</li>
-          <li><strong>Lon:</strong> ${activeWorkOrder.gps.lon.toFixed(6)}</li>
-          <li><strong>Accuracy:</strong> ${Math.round(activeWorkOrder.gps.accuracy)} m</li>
-          <li><strong>Timestamp:</strong> ${activeWorkOrder.gps.timestamp}</li>
-        `;
-
-        // Backend update for geo evidence
-        fetch(API_BASE + "/api/geo/update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            workOrderId: activeWorkOrder.id,
-            lat: activeWorkOrder.gps.lat,
-            lon: activeWorkOrder.gps.lon,
-            accuracy: activeWorkOrder.gps.accuracy,
-            timestamp: activeWorkOrder.gps.timestamp
-          })
-        }).catch(() => {});
-      },
-      (err) => {
-        gpsStatus.textContent = "GPS error: " + err.message;
-        gpsStatus.style.color = "#b91c1c";
-      },
-      { enableHighAccuracy:true, timeout:8000 }
-    );
-  }
-
-  // ---------------------------------------------------------------------------
-  // HISTORICAL WEATHER (SCHEDULED + LOG TIMESTAMPS)
-  // ---------------------------------------------------------------------------
-  function captureHistoricalWeather(dateString) {
-    if (!activeWorkOrder) return;
-
-    fetch(API_BASE + "/api/weather/historical", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        workOrderId: activeWorkOrder.id,
-        date: dateString
-      })
-    })
-    .then(r => r.ok ? r.json() : Promise.reject())
-    .then(data => {
-      activeWorkOrder.weather = {
-        temperature: data.temperature || "n/a",
-        wind: data.wind || "n/a",
-        rainfall: data.rainfall || "n/a",
-        visibility: data.visibility || "n/a",
-        conditions: data.conditions || "n/a",
-        timestamp: data.timestamp || dateString
-      };
-      renderWeather(activeWorkOrder.weather);
-    })
-    .catch(() => {
-      // A‑MODE: still store a deterministic record even on failure
-      activeWorkOrder.weather = {
-        temperature: "n/a",
-        wind: "n/a",
-        rainfall: "n/a",
-        visibility: "n/a",
-        conditions: "n/a",
-        timestamp: dateString
-      };
-      renderWeather(activeWorkOrder.weather);
-    });
-  }
-
-  function renderWeather(w) {
-    document.getElementById("weather-block").innerHTML = `
-      <ul>
-        <li><strong>Temperature:</strong> ${w.temperature}</li>
-        <li><strong>Wind:</strong> ${w.wind}</li>
-        <li><strong>Rainfall:</strong> ${w.rainfall}</li>
-        <li><strong>Visibility:</strong> ${w.visibility}</li>
-        <li><strong>Conditions:</strong> ${w.conditions}</li>
-        <li><strong>Timestamp:</strong> ${w.timestamp}</li>
-      </ul>
-    `;
-  }
-
-  // ---------------------------------------------------------------------------
-  // IoT / SCADA CAPTURE
-  // ---------------------------------------------------------------------------
-  function captureIoT() {
-    if (!activeWorkOrder) return;
-    const block = document.getElementById("iot-block");
-    block.textContent = "Requesting IoT / SCADA…";
-
-    fetch(API_BASE + `/api/iot/${encodeURIComponent(activeWorkOrder.id)}`)
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => {
-        activeWorkOrder.iot = {
-          psi: data.psi || "n/a",
-          flow: data.flow || "n/a",
-          turbidity: data.turbidity || "n/a",
-          chlorine: data.chlorine || "n/a",
-          battery: data.battery || "n/a",
-          heartbeat: data.heartbeat || "n/a",
-          timestamp: data.timestamp || new Date().toISOString()
-        };
-        renderIoT(activeWorkOrder.iot);
-      })
-      .catch(() => {
-        activeWorkOrder.iot = {
-          psi: "n/a",
-          flow: "n/a",
-          turbidity: "n/a",
-          chlorine: "n/a",
-          battery: "n/a",
-          heartbeat: "n/a",
-          timestamp: new Date().toISOString()
-        };
-        renderIoT(activeWorkOrder.iot);
-      });
-  }
-
-  function renderIoT(i) {
-    document.getElementById("iot-block").innerHTML = `
-      <ul>
-        <li><strong>PSI:</strong> ${i.psi}</li>
-        <li><strong>Flow rate:</strong> ${i.flow}</li>
-        <li><strong>Turbidity:</strong> ${i.turbidity}</li>
-        <li><strong>Chlorine:</strong> ${i.chlorine}</li>
-        <li><strong>Battery:</strong> ${i.battery}</li>
-        <li><strong>Heartbeat:</strong> ${i.heartbeat}</li>
-        <li><strong>Timestamp:</strong> ${i.timestamp}</li>
-      </ul>
-    `;
-  }
-
-  // ---------------------------------------------------------------------------
-  // UI WIRING (BUTTONS, INPUTS)
-  // ---------------------------------------------------------------------------
-  function wireControls() {
-    const photoInput = document.getElementById("photo-input");
-    document.getElementById("btn-take-photo").addEventListener("click", () => {
-      if (!activeWorkOrder) return;
-      photoInput.click();
-    });
-    photoInput.addEventListener("change", function () {
-      if (!activeWorkOrder) return;
-      const file = this.files[0];
-      if (!file) return;
-      const ts = new Date().toISOString();
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const dataUrl = e.target.result;
-        activeWorkOrder.photos.push({
-          data: dataUrl,
-          timestamp: ts
-        });
-        renderPhotos();
-        updateComparisonCurrent(dataUrl);
-
-        // Evidence: raw photo
-        fetch(API_BASE + "/api/evidence/photo", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            workOrderId: activeWorkOrder.id,
-            imageData: dataUrl,
-            timestamp: ts,
-            type: "raw"
-          })
-        }).catch(() => {});
-
-        // Historical weather at photo timestamp
-        captureHistoricalWeather(ts);
-      };
-      reader.readAsDataURL(file);
-    });
-
-    const scanInput = document.getElementById("scan-input");
-    document.getElementById("btn-load-scan").addEventListener("click", () => {
-      if (!activeWorkOrder) return;
-      scanInput.value = "";
-      scanInput.click();
-    });
-    scanInput.addEventListener("change", handleScanLoad);
-
-    document.getElementById("btn-accept-ocr").addEventListener("click", () => {
-      if (!activeWorkOrder) return;
-      const text = document.getElementById("ocr-text").value.trim();
-      if (!text) return;
-      const ts = new Date().toISOString();
-
-      const payload = {
-        workOrderId: activeWorkOrder.id,
-        ocrText: text,
-        timestamp: ts
-      };
-
-      activeWorkOrder.ocrNotes.push(payload);
-
-      // Evidence: OCR text
-      fetch(API_BASE + "/api/evidence/ocr", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      }).catch(() => {});
-
-      document.getElementById("btn-accept-ocr").disabled = true;
-
-      // Historical weather at OCR confirmation timestamp
-      captureHistoricalWeather(ts);
-    });
-
-    document.getElementById("btn-save-notes").addEventListener("click", () => {
-      if (!activeWorkOrder) return;
-      const ts = new Date().toISOString();
-      activeWorkOrder.notes = document.getElementById("operator-notes").value;
-
-      // Evidence: operator notes
-      fetch(API_BASE + "/api/evidence/notes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          workOrderId: activeWorkOrder.id,
-          notes: activeWorkOrder.notes,
-          timestamp: ts
-        })
-      }).catch(() => {});
-    });
-
-    document.getElementById("btn-nuar").addEventListener("click", () => {
-      if (!activeWorkOrder) return;
-      const url = API_BASE + `/nuar/context/${encodeURIComponent(activeWorkOrder.id)}`;
-      window.open(url, "_blank");
-    });
-
-    // Submit / Export button (A‑MODE)
-    document.getElementById("btn-submit").addEventListener("click", handleSubmitClick);
-
-    document.getElementById("btn-close-annotator").addEventListener("click", closeAnnotator);
-    document.getElementById("btn-annotator-clear").addEventListener("click", annotatorClear);
-    document.getElementById("btn-annotator-undo").addEventListener("click", annotatorUndo);
-    document.getElementById("btn-annotator-save").addEventListener("click", annotatorSave);
-
-    setupZoomControls("prev");
-    setupZoomControls("curr");
-    setupScanZoom();
-  }
-
-  // ---------------------------------------------------------------------------
-  // SUBMIT / EXPORT EVIDENCE (A‑MODE)
-  // ---------------------------------------------------------------------------
-  function handleSubmitClick() {
-    if (!activeWorkOrder) return;
-    // If evidence already created → export
-    if (activeWorkOrder.evidenceId) {
-      exportEvidence();
-      return;
-    }
-    // First time → create evidence record
-    createEvidence();
-  }
-
-  function createEvidence() {
-    if (!activeWorkOrder) return;
-
-    const payload = {
-      workOrderId: activeWorkOrder.id,
-      gps: activeWorkOrder.gps,
-      weather: activeWorkOrder.weather,
-      iot: activeWorkOrder.iot,
-      photos: activeWorkOrder.photos,
-      annotatedPhotos: activeWorkOrder.annotatedPhotos,
-      scans: activeWorkOrder.scans,
-      ocrNotes: activeWorkOrder.ocrNotes,
-      notes: activeWorkOrder.notes,
-      submittedAt: new Date().toISOString()
-    };
-
-    // Backend: create evidence record for ADMIN/OFFICE use
-    fetch(API_BASE + "/api/evidence/create", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    })
-    .then(r => r.ok ? r.json() : Promise.reject())
-    .then(data => {
-      // Store evidenceId so ADMIN/OFFICE can load/export later
-      activeWorkOrder.evidenceId = data.id;
-      configureSubmitButtonMode();
-    })
-    .catch(() => {
-      console.error("Evidence creation failed.");
-    });
-  }
-
-  function exportEvidence() {
-    if (!activeWorkOrder || !activeWorkOrder.evidenceId) return;
-    // ADMIN/OFFICE export endpoint (PDF/JSON/dashboard view)
-    const url = API_BASE + `/admin/export/${encodeURIComponent(activeWorkOrder.evidenceId)}`;
-    window.open(url, "_blank");
-  }
-
-  function configureSubmitButtonMode() {
-    const btn = document.getElementById("btn-submit");
-    if (!activeWorkOrder) {
-      btn.disabled = true;
-      btn.textContent = "Submit evidence ";
-      return;
-    }
-    btn.disabled = false;
-    if (activeWorkOrder.evidenceId) {
-      btn.textContent = "Export evidence ";
-    } else {
-      btn.textContent = "Submit evidence ";
-    }
-  }
-
-  // ---------------------------------------------------------------------------
-  // PHOTOS + COMPARISON
-  // ---------------------------------------------------------------------------
-  function renderPhotos() {
-    const grid = document.getElementById("photo-grid");
-    grid.innerHTML = "";
-    if (!activeWorkOrder || !activeWorkOrder.photos.length) return;
-    activeWorkOrder.photos.forEach((p, idx) => {
-      const div = document.createElement("div");
-      div.className = "photo-thumb";
-      div.innerHTML = `
-        <img src="${p.data}" alt="Photo ${idx+1}">
-        <div class="photo-tag">Photo ${idx+1}</div>
-      `;
-      div.addEventListener("click", () => openAnnotator(p.data));
-      grid.appendChild(div);
-    });
-  }
-
-  function updateComparisonPrevious() {
-    if (!activeWorkOrder) return;
-    const prevImg = document.getElementById("prev-image");
-    if (activeWorkOrder.previousPhoto) {
-      prevImg.src = activeWorkOrder.previousPhoto;
-      prevImg.style.display = "block";
-    } else if (activeWorkOrder.photos.length > 0) {
-      prevImg.src = activeWorkOrder.photos[0].data;
-      prevImg.style.display = "block";
-    } else {
-      prevImg.src = "";
-      prevImg.style.display = "none";
-    }
-    resetZoom("prev");
-  }
-
-  function updateComparisonCurrent(dataUrl) {
-    const currImg = document.getElementById("curr-image");
-    currImg.src = dataUrl;
-    currImg.style.display = "block";
-    resetZoom("curr");
-  }
-
-  function setupZoomControls(prefix) {
-    const zoomIn = document.getElementById(prefix + "-zoom-in");
-    const zoomOut = document.getElementById(prefix + "-zoom-out");
-    const zoomReset = document.getElementById(prefix + "-zoom-reset");
-    zoomIn.addEventListener("click", () => adjustZoom(prefix, 0.2));
-    zoomOut.addEventListener("click", () => adjustZoom(prefix, -0.2));
-    zoomReset.addEventListener("click", () => resetZoom(prefix));
-  }
-
-  function adjustZoom(prefix, delta) {
-    const inner = document.getElementById(prefix + "-zoom-inner");
-    const current = getCurrentScale(inner);
-    let next = current + delta;
-    if (next < 0.4) next = 0.4;
-    if (next > 4) next = 4;
-    inner.style.transform = "scale(" + next + ")";
-  }
-
-  function resetZoom(prefix) {
-    const inner = document.getElementById(prefix + "-zoom-inner");
-    inner.style.transform = "scale(1)";
-  }
-
-  function getCurrentScale(el) {
-    const style = window.getComputedStyle(el);
-    const transform = style.transform || "matrix(1, 0, 0, 1, 0, 0)";
-    const match = transform.match(/matrix\(([^,]+),/);
-    if (!match) return 1;
-    const scale = parseFloat(match[1]);
-    return isNaN(scale) ? 1 : scale;
-  }
-
-  // ---------------------------------------------------------------------------
-  // SCAN + OCR HANDLING
-  // ---------------------------------------------------------------------------
-  function handleScanLoad() {
-    if (!activeWorkOrder) return;
-    const file = this.files[0];
-    if (!file) return;
-
-    const ts = new Date().toISOString();
-    const isPDF = file.type === "application/pdf";
-    const scanImg = document.getElementById("scan-image");
-    const pdfImg = document.getElementById("pdf-preview");
-    const ocrText = document.getElementById("ocr-text");
-
-    resetScanZoom();
-    scanImg.style.display = "none";
-    pdfImg.style.display = "none";
-    ocrText.value = "";
-    document.getElementById("btn-accept-ocr").disabled = true;
-
-    if (isPDF) {
-      // Simple static preview placeholder for PDF
-      pdfImg.style.display = "block";
-      pdfImg.src =
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAADICAYAAAB0" +
-        "Q0YVAAAAA3NCSVQICAjb4U/gAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJl" +
-        "YWR5ccllPAAAB0FJREFUeNrs3c1u2kAQBVA1//9nO0tLZ0pQ0iYqXGZp7u4wQp0E" +
-        "S7Yt+fYf7p4ZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4G9u2bZt27Zt2/b/" +
-        "A8v8Cqf5vZ8fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+f" +
-        "X9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+fX9+f";
-      // Demo OCR text
-      ocrText.value =
-        "OCR result (demo):\nExtracted text from PDF page 1.\nOperator reviews and confirms.";
-      document.getElementById("btn-accept-ocr").disabled = false;
-
-      // Evidence: scan metadata
-      fetch(API_BASE + "/api/evidence/scan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          workOrderId: activeWorkOrder.id,
-          fileType: "pdf",
-          timestamp: ts
-        })
-      }).catch(() => {});
-
-      // Historical weather at scan timestamp
-      captureHistoricalWeather(ts);
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const dataUrl = e.target.result;
-      scanImg.src = dataUrl;
-      scanImg.style.display = "block";
-      pdfImg.style.display = "none";
-
-      // Demo OCR content (replace with real OCR in production)
-      const mockExtract = `
-Sonnet 18
-Shall I compare thee to a summer's day?
-Thou art more lovely and more temperate.
-      `;
-      ocrText.value = mockExtract.trim();
-      document.getElementById("btn-accept-ocr").disabled = false;
-
-      // Evidence: scan image
-      fetch(API_BASE + "/api/evidence/scan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          workOrderId: activeWorkOrder.id,
-          imageData: dataUrl,
-          timestamp: ts,
-          fileType: "image"
-        })
-      }).catch(() => {});
-
-      // Historical weather at scan timestamp
-      captureHistoricalWeather(ts);
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function setupScanZoom() {
-    document.getElementById("scan-zoom-in").addEventListener("click", () => adjustScanZoom(0.2));
-    document.getElementById("scan-zoom-out").addEventListener("click", () => adjustScanZoom(-0.2));
-    document.getElementById("scan-zoom-reset").addEventListener("click", () => resetScanZoom());
-  }
-
-  function adjustScanZoom(delta) {
-    const inner = document.getElementById("scan-zoom-inner");
-    const current = getCurrentScale(inner);
-    let next = current + delta;
-    if (next < 0.4) next = 0.4;
-    if (next > 4) next = 4;
-    inner.style.transform = "scale(" + next + ")";
-  }
-
-  function resetScanZoom() {
-    const inner = document.getElementById("scan-zoom-inner");
-    inner.style.transform = "scale(1)";
-  }
-
-  // ---------------------------------------------------------------------------
-  // PHOTO ANNOTATOR
-  // ---------------------------------------------------------------------------
-  let annotatorCtx = null;
-  let annotatorDrawing = false;
-  let annotatorHistory = [];
-  let annotatorImageDataUrl = null;
-
-  function openAnnotator(dataUrl) {
-    annotatorImageDataUrl = dataUrl;
-    const modal = document.getElementById("annotator-modal");
-    const img = document.getElementById("annotator-image");
-    const canvas = document.getElementById("annotator-canvas");
-    img.onload = () => {
-      canvas.width = img.clientWidth;
-      canvas.height = img.clientHeight;
-      annotatorCtx = canvas.getContext("2d");
-      annotatorCtx.clearRect(0, 0, canvas.width, canvas.height);
-      annotatorHistory = [];
-    };
-    img.src = dataUrl;
-    modal.style.display = "flex";
-
-    canvas.onmousedown = (e) => startDraw(e, canvas);
-    canvas.onmousemove = (e) => draw(e, canvas);
-    canvas.onmouseup = () => endDraw();
-    canvas.onmouseleave = () => endDraw();
-
-    canvas.ontouchstart = (e) => startDraw(e.touches[0], canvas);
-    canvas.ontouchmove = (e) => { e.preventDefault(); draw(e.touches[0], canvas); };
-    canvas.ontouchend = () => endDraw();
-  }
-
-  function closeAnnotator() {
-    document.getElementById("annotator-modal").style.display = "none";
-  }
-
-  function startDraw(e, canvas) {
-    annotatorDrawing = true;
-    const rect = canvas.getBoundingClientRect();
-    annotatorCtx.strokeStyle = document.getElementById("pen-color").value;
-    annotatorCtx.lineWidth = parseInt(document.getElementById("pen-width").value, 10);
-    annotatorCtx.lineCap = "round";
-    annotatorCtx.beginPath();
-    annotatorCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-    saveAnnotatorState();
-  }
-
-  function draw(e, canvas) {
-    if (!annotatorDrawing) return;
-    const rect = canvas.getBoundingClientRect();
-    annotatorCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-    annotatorCtx.stroke();
-  }
-
-  function endDraw() {
-    annotatorDrawing = false;
-  }
-
-  function saveAnnotatorState() {
-    const canvas = document.getElementById("annotator-canvas");
-    annotatorHistory.push(canvas.toDataURL());
-    if (annotatorHistory.length > 20) annotatorHistory.shift();
-  }
-
-  function annotatorUndo() {
-    if (!annotatorHistory.length) return;
-    const canvas = document.getElementById("annotator-canvas");
-    const img = new Image();
-    const last = annotatorHistory.pop();
-    img.onload = () => {
-      annotatorCtx.clearRect(0, 0, canvas.width, canvas.height);
-      annotatorCtx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
-    img.src = last;
-  }
-
-  function annotatorClear() {
-    const canvas = document.getElementById("annotator-canvas");
-    annotatorCtx.clearRect(0, 0, canvas.width, canvas.height);
-    annotatorHistory = [];
-  }
-
-  function annotatorSave() {
-    if (!activeWorkOrder || !annotatorImageDataUrl) return;
-    const ts = new Date().toISOString();
-    const baseImg = new Image();
-    baseImg.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = baseImg.width;
-      canvas.height = baseImg.height;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(baseImg, 0, 0, canvas.width, canvas.height);
-
-      const annotCanvas = document.getElementById("annotator-canvas");
-      const tmp = document.createElement("canvas");
-      tmp.width = annotCanvas.width;
-      tmp.height = annotCanvas.height;
-      const tmpCtx = tmp.getContext("2d");
-      tmpCtx.drawImage(annotCanvas, 0, 0);
-
-      ctx.drawImage(tmp, 0, 0, canvas.width, canvas.height);
-
-      const merged = canvas.toDataURL("image/png");
-      activeWorkOrder.annotatedPhotos.push({
-        data: merged,
-        timestamp: ts
-      });
-
-      // Evidence: annotated photo
-      fetch(API_BASE + "/api/evidence/photo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          workOrderId: activeWorkOrder.id,
-          imageData: merged,
-          timestamp: ts,
-          type: "annotated"
-        })
-      }).catch(() => {});
-
-      updateComparisonCurrent(merged);
-      // Historical weather at annotation save timestamp
-      captureHistoricalWeather(ts);
-      closeAnnotator();
-    };
-    baseImg.src = annotatorImageDataUrl;
-  }
-</script>
 </body>
 </html>
