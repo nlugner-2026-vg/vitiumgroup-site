@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — VERITAS</title>
+
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #fff;
+      color: #1a1a1a;
+    }
+
+    .veritas-steps {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .step {
+      border-bottom: 1px solid #ccc;
+      padding: 12px 0;
+      cursor: pointer;
+    }
+
+    .step h3 {
+      margin: 0;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .step p {
+      margin: 8px 0 0 0;
+      color: #333;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+      animation: fadeIn 0.25s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <section id="how-it-works">
+    <div class="veritas-steps">
+      <div class="step" onclick="toggleStep('s1')">
+        <h3>1. Assessment</h3>
+        <p id="s1" class="hidden">
+          See the estate as it is. Map dependencies, risks, and data sources.
+        </p>
+      </div>
+
+      <div class="step" onclick="toggleStep('s2')">
+        <h3>2. Integration</h3>
+        <p id="s2" class="hidden">
+          Connect the fragmented systems into one controlled framework.
+        </p>
+      </div>
+
+      <div class="step" onclick="toggleStep('s3')">
+        <h3>3. Analysis</h3>
+        <p id="s3" class="hidden">
+          Identify failure patterns and operational weaknesses.
+        </p>
+      </div>
+
+      <div class="step" onclick="toggleStep('s4')">
+        <h3>4. Transformation</h3>
+        <p id="s4" class="hidden">
+          Stabilise, modernise, and deliver a coherent Azure estate.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleStep(id) {
+      document.querySelectorAll('.veritas-steps p')
+        .forEach(p => p.className = 'hidden');
+
+      const target = document.getElementById(id);
+      if (target) {
+        target.className = 'visible';
+      }
+    }
+  </script>
+</body>
+</html>
 
