@@ -6,7 +6,6 @@
     <title>Vitium Group | Vitium Veritas™</title>
 
     <link rel="stylesheet" href="styles.css">
-
     <style>
         body {
             margin: 0;
@@ -16,7 +15,6 @@
             text-align: center;
         }
 
-        /* === HEADER BAR === */
         header {
             background-color: #d9d9d9;
             height: 40px;
@@ -26,7 +24,6 @@
             color: #000000;
         }
 
-        /* === ORANGE NAVIGATION BAR === */
         nav {
             background-color: #f57c00;
             height: 40px;
@@ -56,7 +53,6 @@
             text-decoration: underline;
         }
 
-        /* === MAIN CONTAINER === */
         .container {
             margin-top: 30px;
             padding: 0 20px 80px 20px;
@@ -153,7 +149,6 @@
             padding: 0 20px;
         }
 
-        /* === FOOTER (CENTERED, FIXED, BRAND ORANGE LOCKED) === */
         footer {
             position: fixed;
             bottom: 0;
@@ -170,12 +165,10 @@
 
 <body>
 
-    <!-- HEADER -->
     <header>
         VITIUM GROUP
     </header>
 
-    <!-- NAVIGATION -->
     <nav>
         <ul>
             <li><a class="active" href="index.html">Home</a></li>
@@ -191,7 +184,6 @@
         </ul>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <div class="container">
 
         <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
@@ -268,4 +260,37 @@
         </section>
 
         <div class="text-block-center">
-            <a href="learn-more.html" class="button">Learn more about Vitium
+            <a href="learn-more.html" class="button">Learn more about Vitium Veritas™</a>
+        </div>
+
+        <section class="amp8">
+            <h2>AMP8 Delivery</h2>
+            <p>
+                Vitium secure service is running in a controlled environment, delivering infrastructure integrity validation with computing, storage and networking assurance. It supports multi‑cloud, hybrid and on‑premise environments.
+            </p>
+            <p>
+                From friction plan to full‑scale installation, Vitium provides repeatable models, standards and governance‑grade assurance.
+            </p>
+            <a href="amp8.html" class="button">Explore AMP8</a>
+        </section>
+
+    </div>
+
+    <footer>
+        Vitium Veritas™ — Patent Pending. © 2026 Vitium Group Ltd. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleStep(id) {
+            document.querySelectorAll('.veritas-steps p')
+                .forEach(function (p) { p.className = 'hidden'; });
+
+            var target = document.getElementById(id);
+            if (target) {
+                target.className = 'visible';
+            }
+        }
+    </script>
+
+</body>
+</html>
