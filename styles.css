@@ -131,18 +131,20 @@ h2 {
 
 /* ---------- SECTION DIVIDERS ---------- */
 .section-divider {
-  width: 100%;
+  width: 900px;
+  max-width: 90%;
   height: 2px;
   background-color: var(--vitium-orange);
-  margin: var(--space-lg) 0;
+  margin: var(--space-lg) auto;
   border: none;
 }
 
 .section-divider-thick {
-  width: 100%;
+  width: 900px;
+  max-width: 90%;
   height: 8px;
   background-color: var(--vitium-orange);
-  margin: var(--space-xl) 0;
+  margin: var(--space-xl) auto;
   border: none;
 }
 
@@ -171,5 +173,10 @@ footer {
   .visl-logo,
   .veritas-logo {
     width: 130px;
+  }
+
+  .section-divider,
+  .section-divider-thick {
+    width: 100%;
   }
 }
