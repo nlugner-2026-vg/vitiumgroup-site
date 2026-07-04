@@ -1,241 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ========================================================= -->
-    <!-- VITIUM GROUP - ACADEMY PAGE                              -->
-    <!-- Layout and branding aligned with index.html (master).    -->
-    <!-- Fully audited. No placeholders. No assumptions.          -->
-    <!-- ========================================================= -->
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitium Group | Academy</title>
-
-    <!-- ========================================================= -->
-    <!-- INLINE BRANDING + LAYOUT CSS (MATCHES INDEX.HTML)        -->
-    <!-- ========================================================= -->
-    <style>
-        /* === GLOBAL PAGE SETTINGS === */
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #0b1a33; /* deep navy background */
-            color: #ffffff;
-            text-align: center;
-        }
-
-        /* === GREY BAR ABOVE ORANGE MENU BAR === */
-        header {
-            background-color: #d9d9d9; /* light grey */
-            height: 40px;
-            line-height: 40px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #000;
-        }
-
-        /* === ORANGE MENU BAR (NEW 10-ITEM MENU) === */
-        nav {
-            background-color: #f57c00; /* VERITAS orange */
-            height: 40px;
-            line-height: 40px;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            display: inline-block;
-            margin: 0 12px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-        }
-
-        nav a:hover,
-        nav a.active {
-            text-decoration: underline;
-        }
-
-        /* === MAIN CONTAINER === */
-        .container {
-            margin-top: 30px;
-            padding: 0 20px 80px 20px; /* extra bottom padding above fixed footer */
-        }
-
-        /* === VERITAS EMBLEM === */
-        .logo-veritas {
-            width: 100px;
-            margin-top: 20px;
-            margin-bottom: 25px;
-        }
-
-        /* === SECTION HEADERS === */
-        h1, h2 {
-            color: #f57c00; /* VERITAS orange */
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-top: 40px;
-            margin-bottom: 8px;
-        }
-
-        /* === ORANGE DIVIDER === */
-        .divider {
-            width: 750px;
-            height: 1px;
-            background-color: #f57c00;
-            margin: 0 auto 15px auto;
-        }
-
-        /* === TEXT BLOCKS === */
-        .text-block {
-            font-size: 16px;
-            max-width: 750px;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #dcdcdc;
-        }
-
-        /* === BULLETED LISTS === */
-        ul.academy-list,
-        ul.training-types {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 auto;
-            max-width: 450px;
-            text-align: left;
-            color: #dcdcdc;
-        }
-
-        ul.academy-list li::before,
-        ul.training-types li::before {
-            content: "• ";
-            color: #f57c00;
-        }
-
-        /* === FOOTER (FIXED) === */
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #f57c00;
-            padding: 10px 0;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitium Group | Academy</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- ========================================================= -->
-    <!-- GREY BAR ABOVE ORANGE MENU BAR                           -->
-    <!-- ========================================================= -->
-    <header>
-        VITIUM GROUP
-    </header>
+  <header>VITIUM GROUP</header>
 
-    <!-- ========================================================= -->
-    <!-- ORANGE MENU BAR (NEW 10-ITEM MENU)                       -->
-    <!-- ========================================================= -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About VERITAS</a></li>
-            <li><a href="products-services.html">Products / Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a class="active" href="academy.html">Academy</a></li>
-            <li><a href="careers.html">Careers</a></li>
-            <li><a href="partners.html">Partners</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="support.html">Support</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Vitium</a></li>
+      <li><a href="solutions.html">Industry Solutions</a></li>
+      <li><a href="veritas.html">VERITAS Platform</a></li>
+      <li><a href="visl.html">VISL™</a></li>
+      <li><a href="products-services.html">Products / Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="academy.html" class="active">Academy</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- ========================================================= -->
-    <!-- MAIN CONTENT - ACADEMY                                   -->
-    <!-- ========================================================= -->
-    <div class="container">
+  <div class="container">
 
-        <!-- VERITAS EMBLEM -->
-        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
+    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
+         alt="Vitium Group Emblem"
+         class="brand-logo">
 
-        <!-- PAGE TITLE -->
-        <h1>ACADEMY</h1>
-        <div class="divider"></div>
-        <p class="text-block">
-            The Vitium Group Academy provides structured, operator‑grade training designed to support
-            organisations adopting VERITAS and disciplined digital infrastructure workflows. Our Academy
-            focuses on clarity, operational discipline, and evidence‑driven capability development.
-        </p>
+    <h1>Vitium Academy</h1>
 
-        <!-- TRAINING PROGRAMMES -->
-        <h2>TRAINING PROGRAMMES</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            Our programmes are built to strengthen operational performance across Admin, Office, Field,
-            and Unified roles. Each programme is structured, repeatable, and aligned with real‑world
-            operational demands.
-        </p>
-
-        <ul class="academy-list">
-            <li>VERITAS platform onboarding and operational readiness.</li>
-            <li>Evidence governance and chain‑of‑custody discipline.</li>
-            <li>Structured workflow execution for field and office teams.</li>
-            <li>Programme reporting and oversight methodologies.</li>
-            <li>Operational resilience and long‑term governance practices.</li>
-        </ul>
-
-        <!-- TRAINING FORMATS -->
-        <h2>TRAINING FORMATS</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            The Academy delivers training through multiple structured formats to support different
-            operational environments and learning requirements.
-        </p>
-
-        <ul class="training-types">
-            <li>Instructor‑led workshops (on‑site or remote).</li>
-            <li>Scenario‑based operational training.</li>
-            <li>Role‑specific VERITAS workflow training.</li>
-            <li>Governance and oversight masterclasses.</li>
-            <li>Continuous capability development sessions.</li>
-        </ul>
-
-        <!-- ACADEMY PURPOSE -->
-        <h2>ACADEMY PURPOSE</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            The Academy exists to ensure that organisations not only deploy VERITAS, but operate it with
-            the discipline, clarity, and integrity required to protect truth and strengthen operational
-            performance across all environments.
-        </p>
-
+    <div class="text-block-center">
+      <p style="font-size:1.2rem;font-weight:bold;">
+        Structured training for VERITAS™, VISL™, and governed digital infrastructure.
+      </p>
+      <p>
+        The Vitium Academy provides certification, operator‑grade training, and workflow education for organisations
+        deploying evidence governance and intelligent sensing systems.
+      </p>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- FOOTER                                                   -->
-    <!-- ========================================================= -->
-    <footer>
-        © 2026 Vitium Group. All rights reserved. Patent Pending.
-    </footer>
+    <div class="section-divider"></div>
+
+    <h2>Training Programmes</h2>
+    <div class="text-block">
+      <ul>
+        <li>VERITAS™ Operator Certification</li>
+        <li>VISL™ Installation & Deployment Training</li>
+        <li>Governed Workflow Design</li>
+        <li>Evidence Capture & Chain‑of‑Custody Discipline</li>
+        <li>Operational Reporting & Oversight</li>
+      </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Certification Pathways</h2>
+    <div class="text-block">
+      <p>
+        Vitium Academy offers structured certification pathways for Admin, Office, Field, and Unified roles,
+        ensuring consistent operational discipline across all environments.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Operator‑Grade Learning</h2>
+    <div class="text-block">
+      <p>
+        All Academy content is designed to support real‑world operational needs, focusing on clarity, structure,
+        and governed digital infrastructure.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 Vitium Group Ltd. All rights reserved. Patent Pending.
+  </footer>
 
 </body>
 </html>
