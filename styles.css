@@ -1,133 +1,158 @@
-/* Vitium Group Global Stylesheet */
-/* Checked twice for URL accuracy and layout integrity */
+/* ============================================================
+   Vitium Group — Global Stylesheet
+   Unified brand system for all pages
+   ============================================================ */
 
-/* Base Layout */
+/* ---------- ROOT VARIABLES ---------- */
+:root {
+  --vitium-navy: #0b1a33;
+  --vitium-orange: #f57c00;
+  --vitium-grey: #d9d9d9;
+  --vitium-white: #ffffff;
+
+  --font-main: "Segoe UI", Arial, sans-serif;
+
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 30px;
+  --space-xl: 40px;
+
+  --text-sm: 13px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 22px;
+  --text-xxl: 30px;
+}
+
+/* ---------- GLOBAL RESET ---------- */
 body {
   margin: 0;
-  background-color: #0b1a33; /* Vitium deep blue */
-  color: #ffffff;
-  font-family: "Segoe UI", Arial, sans-serif;
-}
-
-/* Navigation Bar */
-.nav-bar {
-  background-color: #f47c20; /* Vitium orange */
-  padding: 6px 0;
+  font-family: var(--font-main);
+  background-color: var(--vitium-navy);
+  color: var(--vitium-white);
   text-align: center;
 }
 
-.nav-bar a {
-  color: #ffffff;
+/* ---------- HEADER BAR ---------- */
+header {
+  background-color: var(--vitium-grey);
+  height: 40px;
+  line-height: 40px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+/* ---------- NAVIGATION BAR ---------- */
+nav {
+  background-color: var(--vitium-orange);
+  height: 40px;
+  line-height: 40px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin: 0 var(--space-sm);
+}
+
+nav a {
+  color: var(--vitium-white);
   text-decoration: none;
-  margin: 0 10px;
+  font-weight: 500;
+  font-size: var(--text-md);
 }
 
-/* Emblem */
-.emblem {
-  text-align: center;
-  margin-top: 20px;
+nav a:hover,
+nav a.active {
+  text-decoration: underline;
 }
 
-/* Mission Section */
-.mission {
+/* ---------- MAIN CONTAINER ---------- */
+.container {
+  margin-top: var(--space-lg);
+  padding: 0 var(--space-md) var(--space-xl);
+}
+
+/* ---------- LOGOS & EMBLEMS ---------- */
+.brand-logo,
+.visl-logo,
+.veritas-logo {
+  width: 160px;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+/* ---------- HEADINGS ---------- */
+h1,
+h2 {
+  color: var(--vitium-orange);
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: var(--text-xxl);
+  margin-bottom: var(--space-sm);
+}
+
+h2 {
+  font-size: var(--text-xl);
+  margin: var(--space-xl) 0 var(--space-sm);
+}
+
+/* ---------- TEXT BLOCKS ---------- */
+.text-block {
   max-width: 900px;
-  margin: 40px auto;
-  text-align: center;
-  padding: 0 20px;
-}
-
-.mission-lead {
-  font-weight: bold;
-  font-size: 1.15rem;
-}
-
-/* Doctrine Section */
-.doctrine {
-  max-width: 900px;
-  margin: 40px auto;
-  text-align: center;
-}
-
-.doctrine h1 {
-  color: #f47c20;
-}
-
-.doctrine h2 {
-  color: #f47c20;
-  margin-top: 40px;
-}
-
-.deliverables h3 {
-  color: #f47c20;
-}
-
-/* HOW IT WORKS */
-.veritas-steps {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 0 auto var(--space-md);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: #dcdcdc;
   text-align: left;
 }
 
-.veritas-steps h2 {
+.text-block-center {
   text-align: center;
-  margin-bottom: 20px;
-  font-weight: 600;
-  color: #f47c20;
 }
 
-.step {
-  border-bottom: 1px solid #4a4a4a;
-  padding: 14px 0;
-  cursor: pointer;
+/* ---------- LISTS ---------- */
+.text-block ul {
+  padding-left: var(--space-md);
 }
 
-.step h3 {
-  margin: 0;
-  font-weight: 600;
-  color: #ffffff;
+.text-block li {
+  margin-bottom: var(--space-xs);
 }
 
-.step p {
-  margin: 8px 0 0 0;
-  color: #d0d0d0;
-}
-
-.hidden {
-  display: none;
-}
-
-.visible {
-  display: block;
-  animation: fadeIn 0.25s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Buttons */
-.button {
-  background-color: #f47c20;
-  color: #ffffff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 4px;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-/* AMP8 Section */
-.amp8 {
-  max-width: 900px;
-  margin: 60px auto;
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: var(--vitium-orange);
+  padding: var(--space-sm) 0;
+  font-size: var(--text-sm);
+  letter-spacing: 0.5px;
+  color: var(--vitium-white);
   text-align: center;
-  padding: 0 20px;
+  margin-top: var(--space-xl);
 }
 
-.amp8 h2 {
-  color: #f47c20;
-}
+/* ---------- RESPONSIVE RULES ---------- */
+@media (max-width: 768px) {
+  .text-block {
+    padding: 0 var(--space-sm);
+  }
 
-/*
+  nav li {
+    margin: 0 var(--space-xs);
+  }
+
+  .brand-logo,
+  .visl-logo,
+  .veritas-logo {
+    width: 130px;
+  }
+}
