@@ -2,650 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VERITAS – Field Operator Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!--
-    VERITAS Field Operator Dashboard
-    - Responsive two-column layout
-    - Work orders on the left
-    - Active work order + actions on the right
-    - Real image upload + real OCR (Optical Character Recognition) using Tesseract.js
-    - No placeholders, all actions update visible state
-  -->
-
-  <style>
-    /* Base layout and typography */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Segoe UI, system-ui, -apple-system, sans-serif;
-      background: #f5f5f5;
-      color: #222222;
-    }
-
-    .header {
-      background: #ffffff;
-      border-bottom: 2px solid #1f4e79;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .header-title {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .header-sub {
-      font-size: 14px;
-      color: #555555;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 16px;
-      gap: 16px;
-    }
-
-    /* Panels */
-    .panel {
-      background: #ffffff;
-      border-radius: 6px;
-      padding: 12px;
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.06);
-    }
-
-    .workorders {
-      flex: 1 1 280px;
-      max-width: 360px;
-    }
-
-    .active-order {
-      flex: 2 1 360px;
-      min-width: 320px;
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #dddddd;
-      padding-bottom: 4px;
-    }
-
-    /* Work order cards */
-    .workorder-card {
-      border: 1px solid #dddddd;
-      border-radius: 4px;
-      padding: 8px;
-      margin-bottom: 8px;
-      cursor: pointer;
-      background: #fafafa;
-      transition: background 0.15s ease, border-color 0.15s ease;
-    }
-
-    .workorder-card:hover {
-      background: #f0f7ff;
-      border-color: #1f4e79;
-    }
-
-    .workorder-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .workorder-meta {
-      font-size: 13px;
-      color: #555555;
-    }
-
-    /* Fields */
-    .field-group {
-      margin: 8px 0;
-      font-size: 14px;
-    }
-
-    .field-label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .field-value {
-      color: #444444;
-    }
-
-    /* Buttons */
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 12px 0;
-    }
-
-    .btn {
-      flex: 1 1 160px;
-      padding: 10px;
-      border-radius: 4px;
-      border: none;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-
-    .btn-primary {
-      background: #1f4e79;
-      color: #ffffff;
-    }
-
-    .btn-primary:hover {
-      background: #163655;
-    }
-
-    .btn-secondary {
-      background: #e0e0e0;
-      color: #222222;
-    }
-
-    .btn-secondary:hover {
-      background: #cccccc;
-    }
-
-    .btn-submit {
-      background: #2e7d32;
-      color: #ffffff;
-      width: 100%;
-      margin-top: 8px;
-    }
-
-    .btn-submit:hover {
-      background: #225924;
-    }
-
-    /* Status badges */
-    .status-badge {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 12px;
-      margin-left: 4px;
-    }
-
-    .status-in-progress {
-      background: #fff3cd;
-      color: #856404;
-    }
-
-    .status-assigned {
-      background: #e2e3e5;
-      color: #383d41;
-    }
-
-    .status-pending {
-      background: #d1ecf1;
-      color: #0c5460;
-    }
-
-    /* Image preview and OCR text */
-    .image-preview-container {
-      margin-top: 8px;
-      border: 1px solid #dddddd;
-      border-radius: 4px;
-      padding: 8px;
-      background: #fafafa;
-    }
-
-    .image-preview-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .image-preview-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .image-preview-wrapper img {
-      max-width: 160px;
-      max-height: 160px;
-      border-radius: 4px;
-      border: 1px solid #cccccc;
-      object-fit: contain;
-      background: #ffffff;
-    }
-
-    .ocr-text-block {
-      flex: 1 1 160px;
-      max-height: 160px;
-      overflow: auto;
-      border-radius: 4px;
-      border: 1px solid #cccccc;
-      background: #ffffff;
-      padding: 6px;
-      font-size: 12px;
-      white-space: pre-wrap;
-    }
-
-    .ocr-text-title {
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    /* Responsive behaviour */
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .workorders,
-      .active-order {
-        max-width: 100%;
-      }
-
-      .image-preview-wrapper {
-        flex-direction: column;
-      }
-
-      .image-preview-wrapper img {
-        max-width: 100%;
-      }
-    }
-  </style>
-
-  <!-- Real OCR engine (Tesseract.js) -->
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitium Group | Field Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-  <div class="header">
-    <div class="header-title">VERITAS – Field Operator</div>
-    <div class="header-sub">Active Work Orders</div>
-  </div>
+  <header>VITIUM GROUP</header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Vitium</a></li>
+      <li><a href="solutions.html">Industry Solutions</a></li>
+      <li><a href="veritas.html">VERITAS Platform</a></li>
+      <li><a href="visl.html">VISL™</a></li>
+      <li><a href="products-services.html">Products / Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="academy.html">Academy</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="dashboard_admin.html">Admin</a></li>
+      <li><a href="dashboard_office.html">Office</a></li>
+      <li><a href="dashboard_field.html" class="active">Field</a></li>
+      <li><a href="amp8.html">AMP8</a></li>
+    </ul>
+  </nav>
 
   <div class="container">
-    <!-- LEFT: WorkSchedule / Work Orders -->
-    <div class="panel workorders">
-      <div class="section-title">WorkSchedule</div>
 
-      <!-- Work order cards (2–5 items max) -->
-      <div class="workorder-card"
-           data-wo-id="WO-1001"
-           data-wo-title="Valve Inspection"
-           data-wo-address="12 High Street, Northwich"
-           data-wo-type="Valve Inspection"
-           data-wo-status="In Progress">
-        <div class="workorder-title">
-          WO‑1001 – Valve Inspection
-          <span class="status-badge status-in-progress">In Progress</span>
-        </div>
-        <div class="workorder-meta">12 High Street, Northwich</div>
-      </div>
+    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
+         alt="Vitium Group Emblem"
+         class="brand-logo">
 
-      <div class="workorder-card"
-           data-wo-id="WO-1002"
-           data-wo-title="Chamber Condition Check"
-           data-wo-address="4 Riverbank Close, Northwich"
-           data-wo-type="Chamber Condition Check"
-           data-wo-status="Assigned">
-        <div class="workorder-title">
-          WO‑1002 – Chamber Condition Check
-          <span class="status-badge status-assigned">Assigned</span>
-        </div>
-        <div class="workorder-meta">4 Riverbank Close, Northwich</div>
-      </div>
+    <h1>Field Dashboard</h1>
 
-      <div class="workorder-card"
-           data-wo-id="WO-1003"
-           data-wo-title="Manhole Cover Assessment"
-           data-wo-address="22 Weaver Road, Northwich"
-           data-wo-type="Manhole Cover Assessment"
-           data-wo-status="Pending">
-        <div class="workorder-title">
-          WO‑1003 – Manhole Cover Assessment
-          <span class="status-badge status-pending">Pending</span>
-        </div>
-        <div class="workorder-meta">22 Weaver Road, Northwich</div>
-      </div>
-
-      <!-- Additional work orders can be added here if required -->
+    <div class="text-block-center">
+      <p style="font-size:1.2rem;font-weight:bold;">
+        Evidence capture, VISL™ deployment, and governed field operations.
+      </p>
+      <p>
+        Field users execute structured workflows, capture governed evidence, and deploy VISL™ sensing systems
+        across operational environments.
+      </p>
     </div>
 
-    <!-- RIGHT: Active Work Order -->
-    <div class="panel active-order">
-      <div class="section-title">Active Work Order</div>
+    <div class="section-divider"></div>
 
-      <div class="field-group">
-        <span class="field-label">Work Order:</span>
-        <span class="field-value" id="woId">WO‑1001 – Valve Inspection</span>
-      </div>
-
-      <div class="field-group">
-        <span class="field-label">Address:</span>
-        <span class="field-value" id="woAddress">12 High Street, Northwich</span>
-      </div>
-
-      <div class="field-group">
-        <span class="field-label">Type:</span>
-        <span class="field-value" id="woType">Valve Inspection</span>
-      </div>
-
-      <div class="field-group">
-        <span class="field-label">Status:</span>
-        <span class="field-value" id="woStatus">In Progress</span>
-      </div>
-
-      <div class="section-title" style="margin-top: 12px;">Actions</div>
-
-      <div class="btn-row">
-        <button class="btn btn-primary" id="btnTakePhoto">Take Photo</button>
-        <button class="btn btn-primary" id="btnUploadImage">Upload Image / Scan</button>
-        <button class="btn btn-secondary" id="btnWeather">Add Weather Data</button>
-        <button class="btn btn-secondary" id="btnNotes">Add Notes</button>
-      </div>
-
-      <!-- Hidden file input for upload / scan -->
-      <input type="file"
-             id="fileInput"
-             accept="image/*"
-             style="display: none;">
-
-      <div class="section-title">Evidence Summary</div>
-
-      <div class="field-group">
-        <span class="field-label">Image:</span>
-        <span class="field-value" id="imageStatus">Not yet captured</span>
-      </div>
-
-      <div class="field-group">
-        <span class="field-label">OCR Text:</span>
-        <span class="field-value" id="ocrStatus">Not yet extracted</span>
-      </div>
-
-      <div class="field-group">
-        <span class="field-label">Annotations:</span>
-        <span class="field-value" id="annotationsStatus">None</span>
-      </div>
-
-      <div class="field-group">
-        <span class="field-label">Weather:</span>
-        <span class="field-value" id="weatherStatus">Not set</span>
-      </div>
-
-      <div class="field-group">
-        <span class="field-label">Notes:</span>
-        <span class="field-value" id="notesStatus">None</span>
-      </div>
-
-      <!-- Image preview and OCR text area -->
-      <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
-        <div class="image-preview-title">Image Preview and OCR Result</div>
-        <div class="image-preview-wrapper">
-          <img id="imagePreview" alt="Uploaded image preview">
-          <div class="ocr-text-block">
-            <div class="ocr-text-title">Extracted Text</div>
-            <div id="ocrText"></div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn btn-submit" id="btnSubmit">Submit Record</button>
+    <h2>Field Operations</h2>
+    <div class="text-block">
+      <ul>
+        <li><strong>Evidence Capture</strong> — governed intake, chain‑of‑custody, and provenance control.</li>
+        <li><strong>VISL™ Deployment</strong> — installation, activation, and sensing verification.</li>
+        <li><strong>Operational Tasks</strong> — structured workflows defined by Admin and Office roles.</li>
+        <li><strong>Reporting</strong> — field‑level operational summaries and anomaly notifications.</li>
+      </ul>
     </div>
+
+    <div class="section-divider"></div>
+
+    <h2>VISL™ Field Tools</h2>
+    <div class="text-block">
+      <p>
+        Field users interact directly with VISL™ sensing systems across marine, EV, aerospace, defence,
+        infrastructure, and space environments.
+      </p>
+      <ul>
+        <li>Activation & calibration</li>
+        <li>Multi‑modal sensing checks</li>
+        <li>VMU telemetry verification</li>
+        <li>Deployment logging</li>
+      </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Governed Workflow Execution</h2>
+    <div class="text-block">
+      <p>
+        All field activity follows VERITAS™ workflows, ensuring evidence integrity, operational discipline,
+        and AMP8 alignment across physical and telemetry layers.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Role Navigation</h2>
+    <div class="text-block">
+      <ul>
+        <li><a href="dashboard_admin.html" style="color: var(--vitium-orange);">Admin Dashboard</a></li>
+        <li><a href="dashboard_office.html" style="color: var(--vitium-orange);">Office Dashboard</a></li>
+        <li><a href="dashboard_unified.html" style="color: var(--vitium-orange);">Unified Dashboard</a></li>
+      </ul>
+    </div>
+
   </div>
 
-  <!--
-    Interaction logic
-    - Work order selection updates Active Work Order panel
-    - Take Photo updates evidence status (logical state only)
-    - Upload Image / Scan opens file picker, shows preview, runs real OCR, displays text
-    - Weather and Notes update their respective status fields
-    - Submit Record marks all evidence fields as completed
-  -->
-  <script>
-    (function () {
-      "use strict";
+  <footer>
+    © 2026 Vitium Group Ltd. All rights reserved. Patent Pending.
+  </footer>
 
-      /**
-       * Safely set text content of an element by identifier.
-       * @param {string} id - Element identifier.
-       * @param {string} value - Text value to set.
-       */
-      function setText(id, value) {
-        var el = document.getElementById(id);
-        if (el) {
-          el.textContent = value;
-        }
-      }
-
-      /**
-       * Safely get text content of an element by identifier.
-       * @param {string} id - Element identifier.
-       * @returns {string} - Text content or empty string.
-       */
-      function getText(id) {
-        var el = document.getElementById(id);
-        return el ? el.textContent : "";
-      }
-
-      /**
-       * Reset evidence summary fields to initial state.
-       */
-      function resetEvidenceSummary() {
-        setText("imageStatus", "Not yet captured");
-        setText("ocrStatus", "Not yet extracted");
-        setText("annotationsStatus", "None");
-        setText("weatherStatus", "Not set");
-        setText("notesStatus", "None");
-
-        var previewContainer = document.getElementById("imagePreviewContainer");
-        var previewImage = document.getElementById("imagePreview");
-        var ocrText = document.getElementById("ocrText");
-
-        if (previewContainer) {
-          previewContainer.style.display = "none";
-        }
-        if (previewImage) {
-          previewImage.removeAttribute("src");
-        }
-        if (ocrText) {
-          ocrText.textContent = "";
-        }
-      }
-
-      /**
-       * Initialise work order card click behaviour.
-       */
-      function initWorkOrderSelection() {
-        var cards = document.querySelectorAll(".workorder-card");
-        cards.forEach(function (card) {
-          card.addEventListener("click", function () {
-            var woId = card.getAttribute("data-wo-id") || "";
-            var woTitle = card.getAttribute("data-wo-title") || "";
-            var woAddress = card.getAttribute("data-wo-address") || "";
-            var woType = card.getAttribute("data-wo-type") || "";
-            var woStatus = card.getAttribute("data-wo-status") || "";
-
-            setText("woId", woId + " – " + woTitle);
-            setText("woAddress", woAddress);
-            setText("woType", woType);
-            setText("woStatus", woStatus);
-
-            resetEvidenceSummary();
-          });
-        });
-      }
-
-      /**
-       * Handle Take Photo button.
-       * This updates logical evidence state only.
-       * Actual camera integration can be added later if required.
-       */
-      function initTakePhoto() {
-        var btnTakePhoto = document.getElementById("btnTakePhoto");
-        if (!btnTakePhoto) {
-          return;
-        }
-
-        btnTakePhoto.addEventListener("click", function () {
-          setText("imageStatus", "Photo captured (field device)");
-          setText("annotationsStatus", "Ready for annotation");
-        });
-      }
-
-      /**
-       * Handle Weather button.
-       */
-      function initWeather() {
-        var btnWeather = document.getElementById("btnWeather");
-        if (!btnWeather) {
-          return;
-        }
-
-        btnWeather.addEventListener("click", function () {
-          setText("weatherStatus", "Weather data attached (auto from device)");
-        });
-      }
-
-      /**
-       * Handle Notes button.
-       */
-      function initNotes() {
-        var btnNotes = document.getElementById("btnNotes");
-        if (!btnNotes) {
-          return;
-        }
-
-        btnNotes.addEventListener("click", function () {
-          setText("notesStatus", "Operator notes added");
-        });
-      }
-
-      /**
-       * Handle Submit Record button.
-       * Marks all evidence fields as completed.
-       */
-      function initSubmit() {
-        var btnSubmit = document.getElementById("btnSubmit");
-        if (!btnSubmit) {
-          return;
-        }
-
-        btnSubmit.addEventListener("click", function () {
-          setText("imageStatus", getText("imageStatus") + " ✓");
-          setText("ocrStatus", getText("ocrStatus") + " ✓");
-          setText("annotationsStatus", getText("annotationsStatus") + " ✓");
-          setText("weatherStatus", getText("weatherStatus") + " ✓");
-          setText("notesStatus", getText("notesStatus") + " ✓");
-        });
-      }
-
-      /**
-       * Handle Upload Image / Scan button and real OCR workflow.
-       * - Opens file picker
-       * - Shows image preview
-       * - Runs Tesseract.js OCR
-       * - Displays extracted text
-       */
-      function initUploadAndOCR() {
-        var btnUploadImage = document.getElementById("btnUploadImage");
-        var fileInput = document.getElementById("fileInput");
-        var previewContainer = document.getElementById("imagePreviewContainer");
-        var previewImage = document.getElementById("imagePreview");
-        var ocrText = document.getElementById("ocrText");
-
-        if (!btnUploadImage || !fileInput || !previewContainer || !previewImage || !ocrText) {
-          return;
-        }
-
-        // When user clicks the Upload Image / Scan button, open the file picker.
-        btnUploadImage.addEventListener("click", function () {
-          fileInput.value = "";
-          fileInput.click();
-        });
-
-        // When a file is selected, show preview and run OCR.
-        fileInput.addEventListener("change", function () {
-          if (!fileInput.files || fileInput.files.length === 0) {
-            return;
-          }
-
-          var file = fileInput.files[0];
-          if (!file) {
-            return;
-          }
-
-          // Update evidence status to reflect upload in progress.
-          setText("imageStatus", "Image uploaded (scan) – processing");
-          setText("ocrStatus", "OCR running…");
-          ocrText.textContent = "";
-          previewContainer.style.display = "block";
-
-          // Show image preview using a temporary object URL.
-          var objectUrl = URL.createObjectURL(file);
-          previewImage.src = objectUrl;
-
-          // Run real OCR using Tesseract.js.
-          // Language is set to English ("eng") by default.
-          if (window.Tesseract && typeof window.Tesseract.recognize === "function") {
-            window.Tesseract.recognize(file, "eng")
-              .then(function (result) {
-                var text = (result && result.data && result.data.text) ? result.data.text.trim() : "";
-                if (text.length === 0) {
-                  ocrText.textContent = "[No text detected in image]";
-                  setText("ocrStatus", "OCR completed – no text detected");
-                } else {
-                  ocrText.textContent = text;
-                  setText("ocrStatus", "OCR completed – text extracted");
-                }
-                setText("imageStatus", "Image uploaded (scan)");
-              })
-              .catch(function () {
-                ocrText.textContent = "[OCR failed – unable to process image]";
-                setText("ocrStatus", "OCR failed");
-                setText("imageStatus", "Image uploaded (scan)");
-              })
-              .finally(function () {
-                // Release object URL to avoid memory leaks.
-                URL.revokeObjectURL(objectUrl);
-              });
-          } else {
-            // Fallback if Tesseract.js is not available.
-            ocrText.textContent = "[OCR engine not available]";
-            setText("ocrStatus", "OCR engine not available");
-            setText("imageStatus", "Image uploaded (scan)");
-            URL.revokeObjectURL(objectUrl);
-          }
-        });
-      }
-
-      /**
-       * Initialise all interaction handlers.
-       */
-      function init() {
-        initWorkOrderSelection();
-        initTakePhoto();
-        initUploadAndOCR();
-        initWeather();
-        initNotes();
-        initSubmit();
-      }
-
-      // Initialise when document is ready.
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
-      } else {
-        init();
-      }
-    })();
-  </script>
 </body>
 </html>
