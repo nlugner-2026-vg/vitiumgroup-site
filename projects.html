@@ -1,238 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ========================================================= -->
-    <!-- VITIUM GROUP - PROJECTS PAGE                             -->
-    <!-- Layout and branding aligned with index.html (master).    -->
-    <!-- Fully audited. No placeholders. No assumptions.          -->
-    <!-- ========================================================= -->
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitium Group | Projects</title>
-
-    <!-- ========================================================= -->
-    <!-- INLINE BRANDING + LAYOUT CSS (MATCHES INDEX.HTML)        -->
-    <!-- ========================================================= -->
-    <style>
-        /* === GLOBAL PAGE SETTINGS === */
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #0b1a33; /* deep navy background */
-            color: #ffffff;
-            text-align: center;
-        }
-
-        /* === GREY BAR ABOVE ORANGE MENU BAR === */
-        header {
-            background-color: #d9d9d9; /* light grey */
-            height: 40px;
-            line-height: 40px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #000;
-        }
-
-        /* === ORANGE MENU BAR (NEW 10-ITEM MENU) === */
-        nav {
-            background-color: #f57c00; /* VERITAS orange */
-            height: 40px;
-            line-height: 40px;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            display: inline-block;
-            margin: 0 12px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-        }
-
-        nav a:hover,
-        nav a.active {
-            text-decoration: underline;
-        }
-
-        /* === MAIN CONTAINER === */
-        .container {
-            margin-top: 30px;
-            padding: 0 20px 80px 20px; /* extra bottom padding above fixed footer */
-        }
-
-        /* === VERITAS EMBLEM === */
-        .logo-veritas {
-            width: 100px;
-            margin-top: 20px;
-            margin-bottom: 25px;
-        }
-
-        /* === SECTION HEADERS === */
-        h1, h2 {
-            color: #f57c00; /* VERITAS orange */
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-top: 40px;
-            margin-bottom: 8px;
-        }
-
-        /* === ORANGE DIVIDER === */
-        .divider {
-            width: 750px;
-            height: 1px;
-            background-color: #f57c00;
-            margin: 0 auto 15px auto;
-        }
-
-        /* === TEXT BLOCKS === */
-        .text-block {
-            font-size: 16px;
-            max-width: 750px;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #dcdcdc;
-        }
-
-        /* === BULLETED LISTS === */
-        ul.project-list,
-        ul.focus-areas {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 auto;
-            max-width: 450px;
-            text-align: left;
-            color: #dcdcdc;
-        }
-
-        ul.project-list li::before,
-        ul.focus-areas li::before {
-            content: "• ";
-            color: #f57c00;
-        }
-
-        /* === FOOTER (FIXED) === */
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #f57c00;
-            padding: 10px 0;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitium Group | Projects</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- ========================================================= -->
-    <!-- GREY BAR ABOVE ORANGE MENU BAR                           -->
-    <!-- ========================================================= -->
-    <header>
-        VITIUM GROUP
-    </header>
+  <header>VITIUM GROUP</header>
 
-    <!-- ========================================================= -->
-    <!-- ORANGE MENU BAR (NEW 10-ITEM MENU)                       -->
-    <!-- ========================================================= -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About VERITAS</a></li>
-            <li><a href="products-services.html">Products / Services</a></li>
-            <li><a class="active" href="projects.html">Projects</a></li>
-            <li><a href="academy.html">Academy</a></li>
-            <li><a href="careers.html">Careers</a></li>
-            <li><a href="partners.html">Partners</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="support.html">Support</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Vitium</a></li>
+      <li><a href="solutions.html">Industry Solutions</a></li>
+      <li><a href="veritas.html">VERITAS Platform</a></li>
+      <li><a href="visl.html">VISL™</a></li>
+      <li><a href="products-services.html">Products / Services</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="academy.html">Academy</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- ========================================================= -->
-    <!-- MAIN CONTENT - PROJECTS                                  -->
-    <!-- ========================================================= -->
-    <div class="container">
+  <div class="container">
 
-        <!-- VERITAS EMBLEM -->
-        <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="logo-veritas" alt="VERITAS Emblem">
+    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
+         alt="Vitium Group Emblem"
+         class="brand-logo">
 
-        <!-- PAGE TITLE -->
-        <h1>PROJECTS</h1>
-        <div class="divider"></div>
-        <p class="text-block">
-            Vitium Group supports digital infrastructure programmes that require clarity, structure, and
-            disciplined operational workflows. Our projects focus on environments where evidence governance,
-            operational integrity, and real‑world performance are critical.
-        </p>
+    <h1>Projects</h1>
 
-        <!-- CURRENT PROJECTS -->
-        <h2>ACTIVE PROJECTS</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            Our active projects demonstrate the application of VERITAS and operator‑grade workflows across
-            complex operational landscapes.
-        </p>
-
-        <ul class="project-list">
-            <li>Deployment of VERITAS evidence governance across multi‑site field operations.</li>
-            <li>Structured reporting frameworks for high‑volume infrastructure programmes.</li>
-            <li>Operational workflow alignment for organisations under regulatory oversight.</li>
-            <li>Unified Admin‑Office‑Field data synchronisation initiatives.</li>
-        </ul>
-
-        <!-- FOCUS AREAS -->
-        <h2>FOCUS AREAS</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            Vitium Group projects are built around core focus areas that ensure operational clarity and
-            long‑term resilience.
-        </p>
-
-        <ul class="focus-areas">
-            <li>Evidence governance and chain‑of‑custody integrity.</li>
-            <li>Structured workflows for field and office operations.</li>
-            <li>Programme oversight and transparent reporting.</li>
-            <li>Operational resilience and long‑term governance planning.</li>
-        </ul>
-
-        <!-- DELIVERY APPROACH -->
-        <h2>DELIVERY APPROACH</h2>
-        <div class="divider"></div>
-        <p class="text-block">
-            Every project is delivered with operator‑grade discipline. We work closely with organisations to
-            ensure that workflows, governance structures, and reporting mechanisms align with real‑world
-            operational demands.
-        </p>
-
+    <div class="text-block-center">
+      <p style="font-size:1.2rem;font-weight:bold;">
+        Vitium Group delivers structured programmes with governed workflows, disciplined reporting, and operational clarity.
+      </p>
+      <p>
+        Our projects span evidence governance deployments, intelligent sensing installations, and digital infrastructure programmes.
+      </p>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- FOOTER                                                   -->
-    <!-- ========================================================= -->
-    <footer>
-        © 2026 Vitium Group. All rights reserved. Patent Pending.
-    </footer>
+    <div class="section-divider"></div>
+
+    <h2>Governed Digital Infrastructure</h2>
+    <div class="text-block">
+      <p>
+        Projects focused on VERITAS™ deployments, workflow design, and evidence governance alignment across Admin, Office, Field, and Unified operations.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Intelligent Sensing Installations</h2>
+    <div class="text-block">
+      <p>
+        VISL™ installations across marine, EV, aerospace, defence, and infrastructure environments, providing multi‑modal anomaly detection.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Operational Reporting Programmes</h2>
+    <div class="text-block">
+      <p>
+        Structured reporting frameworks enabling oversight, auditability, and long‑term accountability across complex operational landscapes.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Long‑Term Governance Initiatives</h2>
+    <div class="text-block">
+      <p>
+        Programmes designed to embed resilience, clarity, and structured governance into organisational workflows and digital infrastructure.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 Vitium Group Ltd. All rights reserved. Patent Pending.
+  </footer>
 
 </body>
 </html>
