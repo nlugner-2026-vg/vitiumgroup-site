@@ -1,0 +1,24 @@
+{
+    "assetType": "Storm Grid",
+    "location": "Lostock Graham",
+    "timeline": [
+        {
+            "timestamp": "2026-04-12 09:14",
+            "description": "Initial report received — standing water observed around grid."
+        },
+        {
+            "timestamp": "2026-04-12 10:02",
+            "description": "Operator inspection — heavy silt accumulation confirmed."
+        }
+    ],
+    "evidence": [
+        {
+            "id": "EV-SD0147-01",
+            "file": "EV-SD0147-01.json"
+        },
+        {
+            "id": "EV-SD0147-02",
+            "file": "EV-SD0147-02.json"
+        }
+    ]
+}
