@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "urn": "wij-001",
+    "title": "Test Incident",
+    "description": "Test case for Panasonic demo.",
+    "status": "open",
+    "createdAt": "2026-05-10T11:40:38.099Z",
+    "updatedAt": "2026-05-10T11:40:38.099Z",
+    "corridor": {
+      "id": null,
+      "name": null,
+      "location": null
+    },
+    "weather": {
+      "condition": null,
+      "temperature": null,
+      "source": null,
+      "observedAt": null
+    },
+    "operator": {
+      "id": null,
+      "name": null,
+      "organisation": null
+    },
+    "nuar": {
+      "assets": [],
+      "corridorRef": null,
+      "nuarDatasetVersion": null,
+      "notes": null
+    }
+  }
+]

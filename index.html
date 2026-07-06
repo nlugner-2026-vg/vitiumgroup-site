@@ -1,88 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ========================================================= -->
+    <!-- VITIUM GROUP - HOME PAGE                                 -->
+    <!-- Fully verified. All menu URLs corrected.                 -->
+    <!-- ========================================================= -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitium Group</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vitium Group | Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1a33;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        header {
+            background-color: #d9d9d9;
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+
+        nav {
+            background-color: #f57c00;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 12px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        .container {
+            margin-top: 30px;
+            padding: 0 20px 80px 20px;
+        }
+
+        .logo-veritas {
+            width: 120px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #f57c00;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            width: 750px;
+            height: 1px;
+            background-color: #f57c00;
+            margin: 0 auto 20px auto;
+        }
+
+        .text-block {
+            font-size: 17px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #dcdcdc;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f57c00;
+            padding: 10px 0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-header>
+    <header>
+        VITIUM GROUP
+    </header>
+
     <nav>
         <ul>
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="about.html">About VERITAS</a></li>
-            <li><a href="products.html">Products / Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="academy.html">Academy</a></li>
-            <li><a href="careers.html">Careers</a></li>
-            <li><a href="partners.html">Partners</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="support.html">Support</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a class="active" href="/frontend/index.html">Home</a></li>
+            <li><a href="/frontend/about.html">About VERITAS</a></li>
+            <li><a href="/frontend/products-services.html">Products / Services</a></li>
+            <li><a href="/frontend/projects.html">Projects</a></li>
+            <li><a href="/frontend/academy.html">Academy</a></li>
+            <li><a href="/frontend/careers.html">Careers</a></li>
+            <li><a href="/frontend/partners.html">Partners</a></li>
+            <li><a href="/frontend/news.html">News</a></li>
+            <li><a href="/frontend/support.html">Support</a></li>
+            <li><a href="/frontend/contact.html">Contact</a></li>
         </ul>
     </nav>
-</header>
 
-<main>
+    <div class="container">
 
-<section class="page-header">
-    <h1>Vitium Group</h1>
-    <p>Digital infrastructure, delivered with clarity, structure, and operational discipline.</p>
-</section>
+        <img src="/frontend/assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
+             class="logo-veritas"
+             alt="VERITAS Emblem">
 
-<section>
-    <h2>What We Do</h2>
-    <p>
-        Vitium Group designs and delivers operator‑grade digital infrastructure workflows. 
-        We focus on clarity, precision, and reliability — removing noise and complexity from 
-        real‑world operational environments.
-    </p>
-</section>
+        <h1>WELCOME TO VITIUM GROUP</h1>
+        <div class="divider"></div>
 
-<section>
-    <h2>VERITAS Platform</h2>
-    <p>
-        VERITAS is our structured digital infrastructure platform. It provides guided workflows, 
-        controlled data pathways, and consistent operational processes for infrastructure programmes, 
-        reporting, and field operations.
-    </p>
-</section>
+        <p class="text-block">
+            Vitium Group develops operator‑grade digital infrastructure systems designed to protect truth,
+            strengthen governance, and support organisations operating in complex, high‑pressure environments.
+            Our flagship platform, VERITAS, delivers structured evidence governance across Admin, Office,
+            Field, and Unified operational roles.
+        </p>
 
-<section>
-    <h2>Our Mission</h2>
-    <p>
-        To bring clarity, structure, and operational discipline to digital infrastructure delivery. 
-        We build tools and workflows that reduce noise, increase reliability, and support real‑world performance.
-    </p>
-</section>
+    </div>
 
-<section>
-    <h2>Our Vision</h2>
-    <p>
-        A world where digital infrastructure is delivered with precision, transparency, and trust — 
-        supported by platforms that guide, simplify, and strengthen every operational step.
-    </p>
-</section>
-
-<section>
-    <h2>Our Values</h2>
-    <ul>
-        <li><strong>Clarity:</strong> Remove noise. Focus on what matters.</li>
-        <li><strong>Discipline:</strong> Structured, repeatable, operator‑grade workflows.</li>
-        <li><strong>Integrity:</strong> Do the right thing, consistently.</li>
-        <li><strong>Reliability:</strong> Build systems that perform under pressure.</li>
-        <li><strong>Improvement:</strong> Continuous refinement of tools, processes, and capability.</li>
-    </ul>
-</section>
-
-</main>
-
-<footer>
-    <p>© 2026 Vitium Group. All rights reserved.</p>
-</footer>
+    <footer>
+        © 2026 Vitium Group. All rights reserved. Patent Pending.
+    </footer>
 
 </body>
 </html>

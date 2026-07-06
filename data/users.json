@@ -1,0 +1,19 @@
+
+fetch('/data/users.json')
+  .then(res => res.json())
+  .then(data => {
+    const tableBody = document.querySelector('#usersTable tbody');
+
+    tableBody.innerHTML = data.map(user => `
+      <tr>
+        <td>${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td>${user.role}</td>
+        <td>${user.status}</td>
+        <td>${user.lastActivity}</td>
+      </tr>
+    `).join('');
+  })
+  .catch(err => console.error(err));
+
