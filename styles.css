@@ -1,159 +1,182 @@
-/* 
-    =====================================================================
-    VITIUM GROUP — GLOBAL STYLESHEET
-    Fully compliant with user rules:
-    - Full file replacement only
-    - No placeholders
-    - Fully commented and audit‑ready
-    - No abbreviations without definition
-    - All selectors validated
-    =====================================================================
-*/
+/* ============================================================
+   Vitium Group — Global Stylesheet
+   Unified brand system for all pages
+   ============================================================ */
 
-/* ------------------------------------------------------------- */
-/* ROOT VARIABLES — BRAND COLOURS                                */
-/* ------------------------------------------------------------- */
+/* ---------- ROOT VARIABLES ---------- */
 :root {
-    --brand-dark: #0A0F1F;          /* Deep navy for headers and navigation */
-    --brand-light: #F5F7FA;         /* Light grey background */
-    --brand-accent: #FF6A00;        /* Orange accent for highlights */
-    --brand-text: #1A1A1A;          /* Primary text colour */
-    --brand-muted: #555555;         /* Secondary text colour */
+  --vitium-navy: #0b1a33;
+  --vitium-orange: #f57c00;
+  --vitium-grey: #d9d9d9;
+  --vitium-white: #ffffff;
+
+  --font-main: "Segoe UI", Arial, sans-serif;
+
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 30px;
+  --space-xl: 40px;
+
+  --text-sm: 13px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 22px;
+  --text-xxl: 30px;
 }
 
-/* ------------------------------------------------------------- */
-/* GLOBAL RESET                                                  */
-/* ------------------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* ---------- GLOBAL RESET ---------- */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--brand-light);
-    color: var(--brand-text);
-    line-height: 1.6;
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--vitium-navy);
+  color: var(--vitium-white);
+  text-align: center;
 }
 
-/* ------------------------------------------------------------- */
-/* NAVIGATION BAR                                                */
-/* ------------------------------------------------------------- */
-.navbar {
-    background-color: var(--brand-dark);
-    padding: 15px 0;
-    width: 100%;
+/* ---------- HEADER BAR ---------- */
+header {
+  background-color: var(--vitium-grey);
+  height: 40px;
+  line-height: 40px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #000000;
 }
 
-.navbar-container {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* ---------- NAVIGATION BAR ---------- */
+nav {
+  background-color: var(--vitium-orange);
+  height: 40px;
+  line-height: 40px;
 }
 
-.navbar-logo {
-    color: white;
-    font-size: 1.4rem;
-    text-decoration: none;
-    font-weight: bold;
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.navbar-menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+nav li {
+  display: inline-block;
+  margin: 0 var(--space-sm);
 }
 
-.navbar-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
+nav a {
+  color: var(--vitium-white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: var(--text-md);
 }
 
-.navbar-menu a.active,
-.navbar-menu a:hover {
-    color: var(--brand-accent);
+nav a:hover,
+nav a.active {
+  text-decoration: underline;
 }
 
-/* ------------------------------------------------------------- */
-/* HERO SECTION                                                  */
-/* ------------------------------------------------------------- */
-.hero-section {
-    background-color: var(--brand-dark);
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
+/* ---------- MAIN CONTAINER ---------- */
+.container {
+  margin-top: var(--space-lg);
+  padding: 0 var(--space-md) var(--space-xl);
 }
 
-.hero-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+/* ---------- LOGOS & EMBLEMS ---------- */
+.brand-logo,
+.visl-logo,
+.veritas-logo {
+  width: 160px;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
-.hero-section p {
-    font-size: 1.2rem;
-    color: var(--brand-accent);
+/* ---------- HEADINGS ---------- */
+h1,
+h2 {
+  color: var(--vitium-orange);
+  letter-spacing: 1px;
 }
 
-/* ------------------------------------------------------------- */
-/* CONTENT SECTIONS                                              */
-/* ------------------------------------------------------------- */
-.content-section {
-    width: 90%;
-    margin: 40px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+h1 {
+  font-size: var(--text-xxl);
+  margin-bottom: var(--space-sm);
 }
 
-.section-title,
-.content-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: var(--brand-dark);
+h2 {
+  font-size: var(--text-xl);
+  margin: var(--space-xl) 0 var(--space-sm);
 }
 
+/* ---------- TEXT BLOCKS ---------- */
+.text-block {
+  max-width: 900px;
+  margin: 0 auto var(--space-md);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: #dcdcdc;
+  text-align: left;
+}
+
+.text-block-center {
+  text-align: center;
+}
+
+/* ---------- LISTS ---------- */
+.text-block ul {
+  padding-left: var(--space-md);
+}
+
+.text-block li {
+  margin-bottom: var(--space-xs);
+}
+
+/* ---------- SECTION DIVIDERS ---------- */
 .section-divider {
-    border: none;
-    height: 2px;
-    background-color: var(--brand-accent);
-    width: 60px;
-    margin-bottom: 20px;
+  width: 900px;
+  max-width: 90%;
+  height: 2px;
+  background-color: var(--vitium-orange);
+  margin: var(--space-lg) auto;
+  border: none;
 }
 
-.content-section p {
-    font-size: 1rem;
-    color: var(--brand-muted);
-    margin-bottom: 20px;
+.section-divider-thick {
+  width: 900px;
+  max-width: 90%;
+  height: 8px;
+  background-color: var(--vitium-orange);
+  margin: var(--space-xl) auto;
+  border: none;
 }
 
-/* ------------------------------------------------------------- */
-/* LISTS (MARKETS, FEATURES, ETC.)                              */
-/* ------------------------------------------------------------- */
-.markets-list {
-    list-style: none;
-    padding-left: 0;
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: var(--vitium-orange);
+  padding: var(--space-sm) 0;
+  font-size: var(--text-sm);
+  letter-spacing: 0.5px;
+  color: var(--vitium-white);
+  text-align: center;
+  margin-top: var(--space-xl);
 }
 
-.markets-list li {
-    margin-bottom: 15px;
-    padding-left: 10px;
-    border-left: 4px solid var(--brand-accent);
-    color: var(--brand-text);
-}
+/* ---------- RESPONSIVE RULES ---------- */
+@media (max-width: 768px) {
+  .text-block {
+    padding: 0 var(--space-sm);
+  }
 
-/* ------------------------------------------------------------- */
-/* FOOTER                                                        */
-/* ------------------------------------------------------------- */
-.footer {
-    background-color: var(--brand-dark);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    font-size: 0.9rem;
+  nav li {
+    margin: 0 var(--space-xs);
+  }
+
+  .brand-logo,
+  .visl-logo,
+  .veritas-logo {
+    width: 130px;
+  }
+
+  .section-divider,
+  .section-divider-thick {
+    width: 100%;
+  }
 }
