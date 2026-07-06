@@ -1,93 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vitium Group | Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+    <!-- HTML stands for HyperText Markup Language -->
+    <!-- CSS stands for Cascading Style Sheets -->
+    <!-- JS stands for JavaScript -->
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERITAS Platform Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
 <body>
 
-  <header>VITIUM GROUP</header>
+    <!-- LOGIN SCREEN (PIN ENTRY) -->
+    <section id="login-screen">
+        <div class="login-container">
+            <h1>VERITAS Platform</h1>
+            <p class="login-subtitle">Enter PIN to continue</p>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Vitium</a></li>
-      <li><a href="solutions.html">Industry Solutions</a></li>
-      <li><a href="veritas.html">VERITAS Platform</a></li>
-      <li><a href="visl.html">VISL™</a></li>
-      <li><a href="products-services.html">Products / Services</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="academy.html">Academy</a></li>
-      <li><a href="careers.html">Careers</a></li>
-      <li><a href="partners.html">Partners</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="support.html">Support</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="privacy.html">Privacy</a></li>
-      <li><a href="terms.html">Terms</a></li>
-      <li><a href="dashboard.html" class="active">Dashboard</a></li>
-      <li><a href="amp8.html">AMP8</a></li>
-    </ul>
-  </nav>
+            <form id="login-form">
+                <label for="pin-input">PIN Code</label>
+                <input
+                    type="password"
+                    id="pin-input"
+                    name="pin"
+                    maxlength="6"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" id="login-button">Unlock Dashboard</button>
+            </form>
 
-  <div class="container">
+            <p id="login-error" class="error-message" hidden>Invalid PIN. Try again.</p>
+        </div>
+    </section>
 
-    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png"
-         alt="Vitium Group Emblem"
-         class="brand-logo">
+    <!-- DASHBOARD SCREEN -->
+    <section id="dashboard-screen" hidden>
 
-    <h1>Vitium Dashboard</h1>
+        <header id="veritas-header">
+            <div class="header-brand">
+                <h1>VERITAS Platform</h1>
+                <p class="header-subtitle">Operational Integrity and Evidence Dashboard</p>
 
-    <div class="text-block-center">
-      <p style="font-size:1.2rem;font-weight:bold;">
-        Governed operational dashboards for Admin, Office, Field, and Unified roles.
-      </p>
-      <p>
-        Each dashboard provides structured workflows, evidence governance, and operational clarity
-        aligned with VERITAS™ and AMP8.
-      </p>
-    </div>
+                <!-- OPERATOR ID DISPLAY -->
+                <p class="operator-display">
+                    Operator: <span id="operator-id-display">Not set</span>
+                </p>
+            </div>
 
-    <div class="section-divider"></div>
+            <nav class="header-nav">
+                <button type="button" class="nav-button" data-view="overview">Overview</button>
+                <button type="button" class="nav-button" data-view="operations">Operations</button>
+                <button type="button" class="nav-button" data-view="enrichment">Enrichment</button>
+                <button type="button" class="nav-button" data-view="export">Export Pipeline</button>
+                <button type="button" class="nav-button" data-view="audit">Audit Trail</button>
+            </nav>
+        </header>
 
-    <h2>Select Your Dashboard</h2>
-    <div class="text-block">
-      <ul>
-        <li><a href="dashboard_admin.html" style="color: var(--vitium-orange);">Admin Dashboard</a></li>
-        <li><a href="dashboard_office.html" style="color: var(--vitium-orange);">Office Dashboard</a></li>
-        <li><a href="dashboard_field.html" style="color: var(--vitium-orange);">Field Dashboard</a></li>
-        <li><a href="dashboard_unified.html" style="color: var(--vitium-orange);">Unified Dashboard</a></li>
-      </ul>
-    </div>
+        <main id="veritas-main">
 
-    <div class="section-divider"></div>
+            <section id="operator-panel">
+                <h2>Operator Control Panel</h2>
 
-    <h2>Governed Workflow Access</h2>
-    <div class="text-block">
-      <p>
-        Each dashboard enforces role‑specific governed workflows, ensuring evidence integrity,
-        operational discipline, and structured reporting across all environments.
-      </p>
-    </div>
+                <form id="operator-form">
 
-    <div class="section-divider"></div>
+                    <fieldset class="form-block">
+                        <legend>Operator Identity</legend>
 
-    <h2>VERITAS™ Integration</h2>
-    <div class="text-block">
-      <p>
-        All dashboards are powered by VERITAS™, providing chain‑of‑custody, provenance control,
-        and governed digital infrastructure for Admin, Office, Field, and Unified operations.
-      </p>
-    </div>
+                        <label for="operator-id">Operator Identifier</label>
+                        <input type="text" id="operator-id" required autocomplete="off">
 
-  </div>
+                        <label for="operator-role">Operator Role</label>
+                        <select id="operator-role" required>
+                            <option value="">Select role</option>
+                            <option value="machine-operator">Machine Operator</option>
+                            <option value="site-supervisor">Site Supervisor</option>
+                            <option value="field-engineer">Field Engineer</option>
+                            <option value="auditor">Auditor</option>
+                        </select>
+                    </fieldset>
 
-  <footer>
-    © 2026 Vitium Group Ltd. All rights reserved. Patent Pending.
-  </footer>
+                    <fieldset class="form-block">
+                        <legend>Job and Asset Context</legend>
 
+                        <label for="job-id">Job Identifier</label>
+                        <input type="text" id="job-id" required autocomplete="off">
+
+                        <label for="asset-id">Asset Identifier</label>
+                        <input type="text" id="asset-id" required autocomplete="off">
+
+                        <label for="location-name">Location Name</label>
+                        <input type="text" id="location-name" required autocomplete="off">
+                    </fieldset>
+
+                    <fieldset class="form-block">
+                        <legend>Recording and Validation Controls</legend>
+
+                        <div class="control-row">
+                            <button type="button" id="start-recording-button" class="primary-button">Start Recording</button>
+                            <button type="button" id="stop-recording-button" class="secondary-button">Stop Recording</button>
+                        </div>
+
+                        <div class="control-row">
+                            <button type="button" id="run-validation-button" class="primary-button">Run Validators</button>
+                            <button type="button" id="generate-hash-button" class="secondary-button">Generate Deterministic Hash</button>
+                        </div>
+
+                        <div class="control-row">
+                            <button type="button" id="prepare-export-button" class="primary-button">Prepare Export Object</button>
+                            <button type="button" id="push-to-lake-button" class="secondary-button">Push to Estate Lake</button>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </section>
+
+            <section id="dashboard-layout">
+
+                <section id="overview-panel" class="dashboard-panel" data-view="overview">
+                    <h2>Overview</h2>
+
+                    <div class="metrics-grid">
+                        <article class="metric-card">
+                            <h3>Recorded Events</h3>
+                            <p class="metric-value" id="metric-records-value">0</p>
+                        </article>
+
+                        <article class="metric-card">
+                            <h3>Validation Status</h3>
+                            <p class="metric-value" id="metric-validations-value">Pending</p>
+                        </article>
+
+                        <article class="metric-card">
+                            <h3>Enrichment Coverage</h3>
+                            <p class="metric-value" id="metric-enrichment-value">0%</p>
+                        </article>
+
+                        <article class="metric-card">
+                            <h3>Export Readiness</h3>
+                            <p class="metric-value" id="metric-export-value">Not prepared</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="operations-panel" class="dashboard-panel" data-view="operations" hidden>
+                    <h2>Operations Timeline</h2>
+                    <div id="operations-timeline"></div>
+                </section>
+
+                <section id="enrichment-panel" class="dashboard-panel" data-view="enrichment" hidden>
+                    <h2>Enrichment Status</h2>
+
+                    <div class="enrichment-grid">
+                        <article class="enrichment-card">
+                            <h3>Weather Data</h3>
+                            <p id="enrichment-weather-status">Not requested</p>
+                        </article>
+
+                        <article class="enrichment-card">
+                            <h3>Global Positioning Data</h3>
+                            <p id="enrichment-gps-status">Not requested</p>
+                        </article>
+
+                        <article class="enrichment-card">
+                            <h3>Field Data</h3>
+                            <p id="enrichment-field-status">Not requested</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="export-panel" class="dashboard-panel" data-view="export" hidden>
+                    <h2>Export Pipeline</h2>
+
+                    <ol id="export-pipeline-steps">
+                        <li><strong>Record</strong></li>
+                        <li><strong>Enrich</strong></li>
+                        <li><strong>Hash</strong></li>
+                        <li><strong>Push</strong></li>
+                    </ol>
+
+                    <section id="export-object-preview">
+                        <h3>Export Object Preview</h3>
+                        <pre id="export-object-json"></pre>
+                    </section>
+                </section>
+
+                <section id="audit-panel" class="dashboard-panel" data-view="audit" hidden>
+                    <h2>Audit Trail</h2>
+                    <div id="audit-log"></div>
+                </section>
+
+            </section>
+
+        </main>
+
+        <footer id="veritas-footer">
+            <p>VERITAS Platform — Evidence, Integrity, and Operational Insight.</p>
+            <p>Session Identifier: <span id="session-id-display">Not initialised</span></p>
+        </footer>
+
+    </section>
+
+    <script src="dashboard.js"></script>
 </body>
 </html>

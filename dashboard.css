@@ -1,0 +1,265 @@
+/* Cascading Style Sheets */
+
+/* GLOBAL */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, sans-serif;
+    background-color: #0b0c10;
+    color: #e5e5e5;
+}
+
+/* LOGIN SCREEN */
+#login-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #0b0c10;
+}
+
+.login-container {
+    background-color: #111217;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #22252f;
+    width: 320px;
+    text-align: center;
+}
+
+.login-container h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.login-subtitle {
+    margin: 0.5rem 0 1rem;
+    color: #a0a4b8;
+}
+
+#login-form label {
+    display: block;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+#pin-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid #3a3f4f;
+    background-color: #181a22;
+    color: #e5e5e5;
+}
+
+#login-button {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #2b7cff;
+    border: none;
+    border-radius: 0.25rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.error-message {
+    margin-top: 1rem;
+    color: #ff4d4d;
+}
+
+/* DASHBOARD */
+#dashboard-screen {
+    display: block;
+}
+
+/* HEADER */
+#veritas-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    background-color: #111217;
+    border-bottom: 1px solid #22252f;
+}
+
+.header-brand h1 {
+    margin: 0;
+}
+
+.header-subtitle {
+    margin: 0.25rem 0 0;
+    color: #a0a4b8;
+}
+
+.header-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-button {
+    padding: 0.5rem 0.9rem;
+    background-color: #181a22;
+    border: 1px solid #3a3f4f;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.nav-button.active {
+    background-color: #2b7cff;
+    border-color: #2b7cff;
+    color: #ffffff;
+}
+
+/* MAIN LAYOUT */
+#veritas-main {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+}
+
+/* OPERATOR PANEL */
+#operator-panel {
+    background-color: #111217;
+    border-radius: 0.5rem;
+    border: 1px solid #22252f;
+    padding: 1.25rem;
+}
+
+.form-block {
+    border: 1px solid #22252f;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.form-block label {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.form-block input,
+.form-block select {
+    width: 100%;
+    padding: 0.4rem;
+    margin-top: 0.25rem;
+    background-color: #181a22;
+    border: 1px solid #3a3f4f;
+    border-radius: 0.25rem;
+    color: #e5e5e5;
+}
+
+.control-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.primary-button {
+    background-color: #2b7cff;
+    border: 1px solid #2b7cff;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.secondary-button {
+    background-color: #181a22;
+    border: 1px solid #3a3f4f;
+    color: #e5e5e5;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+/* DASHBOARD PANELS */
+#dashboard-layout {
+    background-color: #111217;
+    border-radius: 0.5rem;
+    border: 1px solid #22252f;
+    padding: 1.25rem;
+}
+
+.dashboard-panel[hidden] {
+    display: none;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.metric-card {
+    background-color: #181a22;
+    border: 1px solid #22252f;
+    border-radius: 0.5rem;
+    padding: 0.9rem;
+}
+
+.metric-value {
+    font-size: 1.3rem;
+    color: #2b7cff;
+}
+
+/* TIMELINE */
+#operations-timeline {
+    background-color: #181a22;
+    border: 1px solid #22252f;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    min-height: 160px;
+}
+
+/* ENRICHMENT */
+.enrichment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.enrichment-card {
+    background-color: #181a22;
+    border: 1px solid #22252f;
+    border-radius: 0.5rem;
+    padding: 0.9rem;
+}
+
+/* EXPORT */
+#export-object-preview {
+    background-color: #181a22;
+    border: 1px solid #22252f;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+}
+
+#export-object-json {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* AUDIT */
+#audit-log {
+    background-color: #181a22;
+    border: 1px solid #22252f;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    min-height: 160px;
+}
+
+/* FOOTER */
+#veritas-footer {
+    padding: 0.75rem 2rem;
+    background-color: #111217;
+    border-top: 1px solid #22252f;
+    color: #a0a4b8;
+}
