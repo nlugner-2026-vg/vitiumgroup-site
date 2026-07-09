@@ -1,3 +1,4 @@
+<!-- veritas.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +41,29 @@
          class="brand-logo">
 
     <h1>VERITAS™ Platform</h1>
+
+    <!-- VERITAS PIN LOGIN BLOCK -->
+    <div class="veritas-login">
+      <h2>VERITAS Access</h2>
+      <p class="veritas-login-intro">
+        Enter your VERITAS PIN to access the governed operational environment.
+      </p>
+      <form id="veritasLoginForm" class="veritas-login-form" autocomplete="off">
+        <label for="veritasPinInput">VERITAS PIN</label>
+        <input
+          id="veritasPinInput"
+          name="veritasPinInput"
+          type="password"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          maxlength="8"
+          required
+        >
+        <button type="submit">Enter VERITAS</button>
+        <p id="veritasLoginMessage" class="veritas-login-message" aria-live="polite"></p>
+      </form>
+    </div>
+    <!-- END VERITAS PIN LOGIN BLOCK -->
 
     <div class="text-block-center">
       <p style="font-size:1.2rem;font-weight:bold;">
@@ -128,6 +152,6 @@
     © 2026 Vitium Group Ltd. All rights reserved. Patent Pending.
   </footer>
 
+  <script src="veritas.js"></script>
 </body>
 </html>
-
