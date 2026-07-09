@@ -109,3 +109,25 @@ body {
     border-radius: 6px;
     text-align: left;
 }
+
+/* ============================
+   GLOBAL FOOTER
+   ============================ */
+
+.footer {
+    width: 100%;
+    background-color: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #333;
+}
+
+.footer span {
+    color: #f97316;
+    font-weight: 600;
+}
