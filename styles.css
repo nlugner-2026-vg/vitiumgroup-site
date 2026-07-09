@@ -1,12 +1,12 @@
 /* ============================
-   GLOBAL SITE STYLES
+   VITIUM GLOBAL BRANDING
    ============================ */
 
 body {
     margin: 0;
     font-family: "Segoe UI", Inter, sans-serif;
-    background-color: #fff;
-    color: #111;
+    background-color: #0a0a0a; /* restored dark background */
+    color: #e5e5e5;
 }
 
 a {
@@ -54,7 +54,7 @@ main {
 }
 
 h1, h2, h3 {
-    color: #000;
+    color: #f97316;
 }
 
 p {
