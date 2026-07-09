@@ -32,6 +32,7 @@
         <button class="menu-btn" onclick="openModal('supplierCatalogModal')">Supplier Catalogs</button>
     </div>
 
+    <!-- Governance Modal -->
     <div id="governanceModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('governanceModal')">&times;</span>
@@ -43,6 +44,7 @@
         </div>
     </div>
 
+    <!-- Catalog Modal -->
     <div id="catalogModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('catalogModal')">&times;</span>
@@ -54,6 +56,7 @@
         </div>
     </div>
 
+    <!-- Operations Modal -->
     <div id="operationsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('operationsModal')">&times;</span>
@@ -65,6 +68,7 @@
         </div>
     </div>
 
+    <!-- Intelligence Modal -->
     <div id="intelligenceModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('intelligenceModal')">&times;</span>
@@ -76,6 +80,7 @@
         </div>
     </div>
 
+    <!-- Notifications Modal -->
     <div id="notificationsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('notificationsModal')">&times;</span>
@@ -87,6 +92,37 @@
         </div>
     </div>
 
+    <!-- Import / Export Modal -->
     <div id="importExportModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal
+            <span class="close-btn" onclick="closeModal('importExportModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Import / Export</h3>
+            <div class="section-block"><strong>Recommended Formats:</strong><br>Excel (.xlsx), Excel (.xls), CSV (.csv), PDF (.pdf)</div>
+            <div class="section-block">Import Catalog</div>
+            <div class="section-block">Export Catalog</div>
+            <div class="section-block">Import Evidence</div>
+            <div class="section-block">Export Evidence</div>
+        </div>
+    </div>
+
+    <!-- Supplier Catalogs Modal -->
+    <div id="supplierCatalogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('supplierCatalogModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Supplier Catalogs</h3>
+            <div class="section-block"><strong>Supported Formats:</strong><br>Excel (.xlsx), Excel (.xls), CSV (.csv), PDF (.pdf)</div>
+            <div class="section-block">KALSIS (current + legacy)</div>
+            <div class="section-block">Panasonic</div>
+            <div class="section-block">Vitium Internal</div>
+            <div class="section-block">Third‑Party Suppliers</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>Vitium Group</span> — VERITAS Admin Console | All operations monitored and governed.
+    </div>
+
+</body>
+</html>
