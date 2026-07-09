@@ -1,1011 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>VERITAS Admin Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>Vitium VERITAS — Admin Console</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--
-    VERITAS ADMIN DASHBOARD
-    - Button-triggered right-side slide-in Admin Panel
-    - Admin-only governance of catalog, schedules, sensors, machines, evidence
-    - KALSIS catalog used as authoritative product source for demo/operations
-  -->
+    <!-- Vitium Branding -->
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Inter, sans-serif;
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+        }
 
-  <style>
-    :root {
-      --bg-main: #0b0c10;
-      --bg-panel: #111827;
-      --bg-panel-alt: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.15);
-      --border-soft: #1f2937;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --danger: #ef4444;
-      --success: #22c55e;
-      --warning: #f97316;
-      --shadow-strong: 0 0 40px rgba(0, 0, 0, 0.65);
-      --radius: 8px;
-      --transition-fast: 0.25s ease-out;
-    }
+        /* Top Navigation Bar */
+        .topbar {
+            width: 100%;
+            background-color: #f97316;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        /* Vitium Emblem (always top-centered) */
+        .emblem {
+            width: 100px;
+            margin: 20px auto 10px auto;
+            display: block;
+        }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 40%, #000000 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        /* Admin Panel Slide-In */
+        .admin-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 320px;
+            height: 100%;
+            background-color: #262626;
+            border-left: 3px solid #f97316;
+            padding: 20px;
+            overflow-y: auto;
+        }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--border-soft);
-      background: linear-gradient(to right, #020617, #0b1120);
-      position: relative;
-      z-index: 10;
-    }
+        .admin-panel h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+        .menu-btn {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            background-color: #333;
+            border: 1px solid #555;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-    .brand-title {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+        .menu-btn:hover {
+            background-color: #444;
+        }
 
-    .brand-subtitle {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
+        /* Modal Popup (Option A — centered) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+        }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        .modal-content {
+            background-color: #2d2d2d;
+            margin: 60px auto;
+            padding: 20px;
+            border: 2px solid #f97316;
+            width: 60%;
+            max-width: 900px;
+            border-radius: 8px;
+            text-align: center;
+        }
 
-    .session-indicator {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(15, 23, 42, 0.8);
-      color: var(--accent);
-    }
+        .modal h3 {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
 
-    .admin-button {
-      position: relative;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.95));
-      color: var(--text-main);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9), var(--shadow-strong);
-      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
+        .close-btn {
+            float: right;
+            font-size: 22px;
+            cursor: pointer;
+            color: #fff;
+        }
 
-    .admin-button::before {
-      content: "●";
-      font-size: 10px;
-      color: var(--accent);
-    }
+        .section-block {
+            background-color: #3a3a3a;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            text-align: left;
+        }
+    </style>
 
-    .admin-button:hover {
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 1));
-      transform: translateY(-1px);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4), var(--shadow-strong);
-    }
-
-    .admin-button:active {
-      transform: translateY(0);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25), 0 0 20px rgba(0, 0, 0, 0.7);
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      padding: 16px 20px;
-      gap: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dashboard-main {
-      flex: 1;
-      border-radius: var(--radius);
-      border: 1px solid var(--border-soft);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
-      box-shadow: var(--shadow-strong);
-      padding: 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .dashboard-title {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-main);
-    }
-
-    .dashboard-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .dashboard-grid {
-      margin-top: 8px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    .card {
-      border-radius: var(--radius);
-      border: 1px solid var(--border-soft);
-      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 1));
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .card-body {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .pill {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-muted);
-    }
-
-    .pill-accent {
-      border-color: rgba(56, 189, 248, 0.4);
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    /* ADMIN PANEL (RIGHT-SIDE SLIDE-IN) */
-
-    .admin-panel-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition-fast);
-      z-index: 40;
-    }
-
-    .admin-panel-backdrop.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .admin-panel {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 380px;
-      max-width: 100%;
-      height: 100vh;
-      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000000 100%);
-      border-left: 1px solid var(--border-soft);
-      box-shadow: -12px 0 40px rgba(0, 0, 0, 0.85);
-      transform: translateX(100%);
-      transition: transform var(--transition-fast);
-      z-index: 50;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .admin-panel.visible {
-      transform: translateX(0);
-    }
-
-    .admin-panel-header {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--border-soft);
-      background: linear-gradient(to left, #020617, #0b1120);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .admin-panel-title {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .admin-panel-title-main {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .admin-panel-title-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .admin-panel-close {
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-muted);
-      font-size: 11px;
-      padding: 4px 10px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
-    }
-
-    .admin-panel-close:hover {
-      background: rgba(15, 23, 42, 1);
-      border-color: rgba(56, 189, 248, 0.4);
-      color: var(--accent);
-    }
-
-    .admin-panel-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .admin-section {
-      border-radius: var(--radius);
-      border: 1px solid var(--border-soft);
-      background: var(--bg-panel);
-      padding: 8px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .admin-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-    }
-
-    .admin-section-title {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .admin-section-tag {
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-muted);
-    }
-
-    .admin-section-body {
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .admin-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .admin-field {
-      flex: 1 1 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .admin-label {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .admin-input,
-    .admin-select,
-    .admin-textarea {
-      width: 100%;
-      border-radius: 4px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-panel-alt);
-      color: var(--text-main);
-      font-size: 11px;
-      padding: 4px 6px;
-    }
-
-    .admin-textarea {
-      min-height: 60px;
-      resize: vertical;
-    }
-
-    .admin-select {
-      padding-right: 20px;
-    }
-
-    .admin-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .btn {
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-main);
-      font-size: 11px;
-      padding: 4px 10px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .btn-primary {
-      border-color: rgba(56, 189, 248, 0.6);
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .btn-danger {
-      border-color: rgba(239, 68, 68, 0.6);
-      color: var(--danger);
-    }
-
-    .btn-secondary {
-      border-color: var(--border-soft);
-      color: var(--text-muted);
-    }
-
-    .btn:hover {
-      transform: translateY(-0.5px);
-      background: rgba(15, 23, 42, 1);
-    }
-
-    .btn-primary:hover {
-      background: rgba(56, 189, 248, 0.2);
-    }
-
-    .btn-danger:hover {
-      background: rgba(239, 68, 68, 0.12);
-    }
-
-    .responsible-banner {
-      border-radius: var(--radius);
-      border: 1px dashed rgba(56, 189, 248, 0.5);
-      background: rgba(15, 23, 42, 0.95);
-      padding: 6px 8px;
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-
-    .responsible-banner strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 4px;
-    }
-
-    .badge {
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-muted);
-    }
-
-    .badge-success {
-      border-color: rgba(34, 197, 94, 0.6);
-      color: var(--success);
-    }
-
-    .badge-warning {
-      border-color: rgba(249, 115, 22, 0.6);
-      color: var(--warning);
-    }
-
-    .badge-info {
-      border-color: rgba(56, 189, 248, 0.6);
-      color: var(--accent);
-    }
-  </style>
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = "block";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+    </script>
 </head>
+
 <body>
-  <header>
-    <div class="brand">
-      <div class="brand-title">VERITAS ADMIN</div>
-      <div class="brand-subtitle">Governed operations • KALSIS catalog • VISL sensing • Immutable evidence</div>
-    </div>
-    <div class="header-right">
-      <div class="session-indicator" id="sessionIndicator">ADMIN SESSION</div>
-      <button class="admin-button" id="adminPanelButton">
-        Admin Panel
-      </button>
-    </div>
-  </header>
 
-  <main>
-    <!-- MAIN DASHBOARD AREA (NON-ADMIN VIEW, ADMIN CAN STILL SEE) -->
-    <section class="dashboard-main">
-      <div class="dashboard-title">Operations Console</div>
-      <div class="dashboard-subtitle">
-        Admin plans work, configures catalog, then uses the Admin Panel to action governed changes.
-      </div>
+    <!-- Top Bar -->
+    <div class="topbar">Vitium VERITAS — Admin Console</div>
 
-      <div class="dashboard-grid">
-        <article class="card">
-          <div class="card-title">Work Schedules</div>
-          <div class="card-body">
-            Plan and review upcoming work schedules, sector surveys, and work orders.
-            <div class="pill-row">
-              <span class="pill pill-accent">Sector surveys</span>
-              <span class="pill">VISL deployments</span>
-              <span class="pill">Operator assignments</span>
-            </div>
-          </div>
-        </article>
+    <!-- Vitium Emblem (always top-centered) -->
+    <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
 
-        <article class="card">
-          <div class="card-title">Evidence Overview</div>
-          <div class="card-body">
-            High-level view of immutable evidence bundles generated by VERITAS workflows.
-            <div class="pill-row">
-              <span class="pill">Work orders</span>
-              <span class="pill">Sensor logs</span>
-              <span class="pill">Machine usage</span>
-            </div>
-          </div>
-        </article>
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <h2>Admin Menu</h2>
 
-        <article class="card">
-          <div class="card-title">KALSIS Catalog Status</div>
-          <div class="card-body">
-            KALSIS-approved and tested products are used as the authoritative catalog for demo and operations.
-            <div class="pill-row">
-              <span class="pill pill-accent">Pipe products</span>
-              <span class="pill pill-accent">Roofline & cladding</span>
-              <span class="pill">MDPE & fittings</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-title">VISL & Machines</div>
-          <div class="card-body">
-            Overview of VISL sensors and machinery available for assignment to work schedules.
-            <div class="pill-row">
-              <span class="pill">VISL-TUBE™</span>
-              <span class="pill">VISL-BLANKET™</span>
-              <span class="pill">VISL-SLEEVE™</span>
-              <span class="pill">Robotics</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <!-- ADMIN PANEL BACKDROP -->
-  <div class="admin-panel-backdrop" id="adminPanelBackdrop"></div>
-
-  <!-- ADMIN PANEL (RIGHT-SIDE SLIDE-IN) -->
-  <aside class="admin-panel" id="adminPanel">
-    <div class="admin-panel-header">
-      <div class="admin-panel-title">
-        <div class="admin-panel-title-main">Admin Panel</div>
-        <div class="admin-panel-title-sub">Button-triggered • Right-side slide-in • Admin-only</div>
-      </div>
-      <button class="admin-panel-close" id="adminPanelClose">
-        ✕ Close
-      </button>
+        <button class="menu-btn" onclick="openModal('governanceModal')">Governance</button>
+        <button class="menu-btn" onclick="openModal('catalogModal')">Catalog</button>
+        <button class="menu-btn" onclick="openModal('operationsModal')">Operations</button>
+        <button class="menu-btn" onclick="openModal('intelligenceModal')">Intelligence</button>
+        <button class="menu-btn" onclick="openModal('notificationsModal')">Notifications</button>
+        <button class="menu-btn" onclick="openModal('importExportModal')">Import / Export</button>
+        <button class="menu-btn" onclick="openModal('supplierCatalogModal')">Supplier Catalogs</button>
     </div>
 
-    <div class="admin-panel-body">
-      <!-- USER MANAGEMENT -->
-      <section class="admin-section">
-        <div class="admin-section-header">
-          <div class="admin-section-title">User Management</div>
-          <div class="admin-section-tag">Governed</div>
+    <!-- Governance Modal -->
+    <div id="governanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('governanceModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Governance</h3>
+
+            <div class="section-block">User Management</div>
+            <div class="section-block">Roles & Permissions</div>
+            <div class="section-block">Audit Logs</div>
         </div>
-        <div class="admin-section-body">
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="userSelect">Select user</label>
-              <select class="admin-select" id="userSelect">
-                <option value="">— Select existing user —</option>
-                <!-- To be populated from VERITAS data layer -->
-              </select>
-            </div>
-          </div>
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="userName">Name</label>
-              <input class="admin-input" id="userName" type="text" placeholder="Full name" />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="userRole">Role</label>
-              <select class="admin-select" id="userRole">
-                <option value="">— Select role —</option>
-                <option value="field">Field Operator</option>
-                <option value="office">Office Operator</option>
-                <option value="unified">Unified Operator</option>
-                <option value="admin">Organisation Admin</option>
-              </select>
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="userOrg">Organisation</label>
-              <input class="admin-input" id="userOrg" type="text" placeholder="Organisation / client" />
-            </div>
-          </div>
-          <div class="admin-actions">
-            <button class="btn btn-primary" id="addUserBtn">＋ Add new user</button>
-            <button class="btn" id="editUserBtn">✎ Edit user</button>
-            <button class="btn btn-danger" id="archiveUserBtn">⛔ Archive user</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- CATALOG MANAGEMENT (KALSIS) -->
-      <section class="admin-section">
-        <div class="admin-section-header">
-          <div class="admin-section-title">Catalog Management (KALSIS)</div>
-          <div class="admin-section-tag">Authoritative</div>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="catalogType">Catalog type</label>
-              <select class="admin-select" id="catalogType">
-                <option value="">— Select catalog —</option>
-                <option value="pipe">Pipe products</option>
-                <option value="roofline">Roofline & cladding</option>
-                <option value="mdpe">MDPE pipe & fittings</option>
-                <option value="visl">VISL sensors</option>
-                <option value="machines">Machines</option>
-                <option value="fittings">Fittings & materials</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Example: Pipe product entry using KALSIS catalog -->
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="pipeCategory">Pipe category</label>
-              <select class="admin-select" id="pipeCategory">
-                <option value="">— Select category —</option>
-                <option value="soil">Soil / waste (e.g. 110mm, 150mm)</option>
-                <option value="water">Water (potable / mains / service)</option>
-                <option value="gas">Gas</option>
-                <option value="storm">Stormwater / surface water</option>
-                <option value="industrial">Industrial / process</option>
-                <option value="unknown">Unknown (requires survey)</option>
-              </select>
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="pipeDiameter">Pipe diameter</label>
-              <select class="admin-select" id="pipeDiameter">
-                <option value="">— Select diameter —</option>
-                <option value="63">63mm</option>
-                <option value="90">90mm</option>
-                <option value="110">110mm</option>
-                <option value="150">150mm</option>
-                <option value="160">160mm</option>
-                <option value="225">225mm</option>
-                <option value="300">300mm</option>
-                <option value="450">450mm</option>
-                <option value="600">600mm</option>
-              </select>
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="pipeMaterial">Pipe material</label>
-              <select class="admin-select" id="pipeMaterial">
-                <option value="">— Select material —</option>
-                <option value="pvc-u">PVC-U (e.g. roofline, soil)</option>
-                <option value="mdpe">MDPE (K-Blue range)</option>
-                <option value="hdpe">HDPE</option>
-                <option value="pe80">PE80</option>
-                <option value="pe100">PE100</option>
-                <option value="ductile">Ductile iron</option>
-                <option value="concrete">Concrete</option>
-                <option value="clay">Clay</option>
-                <option value="barrier">Barrier pipe</option>
-                <option value="liner">Trenchless liner</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="pipeProductCode">Product code (KALSIS)</label>
-              <input class="admin-input" id="pipeProductCode" type="text" placeholder="e.g. KF150*, KFB150*, MDPE code" />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="pipeDescription">Product description</label>
-              <input class="admin-input" id="pipeDescription" type="text" placeholder="e.g. 150mm Flat General Purpose Board 9mm x 5m" />
-            </div>
-          </div>
-
-          <div class="admin-actions">
-            <button class="btn btn-primary" id="addCatalogItemBtn">＋ Add catalog item</button>
-            <button class="btn" id="editCatalogItemBtn">✎ Edit catalog item</button>
-            <button class="btn btn-danger" id="archiveCatalogItemBtn">⛔ Archive catalog item</button>
-          </div>
-
-          <div class="badge-row">
-            <span class="badge badge-info">KALSIS: ISO 9001:2015</span>
-            <span class="badge badge-info">BSI Kitemark</span>
-            <span class="badge badge-info">BBA accredited</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- WORK SCHEDULE BUILDER -->
-      <section class="admin-section">
-        <div class="admin-section-header">
-          <div class="admin-section-title">Work Schedule Builder</div>
-          <div class="admin-section-tag">Sector & evidence</div>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleName">Schedule name</label>
-              <input class="admin-input" id="scheduleName" type="text" placeholder="e.g. Sector 14 – Pipe replacement" />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleSector">Sector / pipe run</label>
-              <input class="admin-input" id="scheduleSector" type="text" placeholder="e.g. Sector 14, Run A" />
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleGridRef">Grid reference</label>
-              <input class="admin-input" id="scheduleGridRef" type="text" placeholder="e.g. SJ 65432 76543" />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleNUAR">NUAR asset reference</label>
-              <input class="admin-input" id="scheduleNUAR" type="text" placeholder="NUAR asset ID" />
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleWeather">Weather context</label>
-              <input class="admin-input" id="scheduleWeather" type="text" placeholder="e.g. dry, light rain, frozen ground" />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleDates">Dates / time window</label>
-              <input class="admin-input" id="scheduleDates" type="text" placeholder="e.g. 2026-08-12 to 2026-08-14" />
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleOperators">Operators</label>
-              <input class="admin-input" id="scheduleOperators" type="text" placeholder="List of assigned operators" />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleMachines">Machines</label>
-              <input class="admin-input" id="scheduleMachines" type="text" placeholder="Excavators, trenchless rigs, robotics" />
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="scheduleVISL">VISL sensors</label>
-              <input class="admin-input" id="scheduleVISL" type="text" placeholder="VISL-TUBE™, VISL-BLANKET™, VISL-SLEEVE™, etc." />
-            </div>
-          </div>
-
-          <div class="admin-actions">
-            <button class="btn btn-primary" id="createScheduleBtn">＋ Create work schedule</button>
-            <button class="btn" id="exportScheduleBtn">⬇ Export schedule</button>
-            <button class="btn btn-secondary" id="issueWorkOrdersBtn">⇨ Issue work orders</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTOR SURVEY DATA & OCR -->
-      <section class="admin-section">
-        <div class="admin-section-header">
-          <div class="admin-section-title">Sector Survey Data & OCR</div>
-          <div class="admin-section-tag">Evidence</div>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="surveySource">Survey source</label>
-              <select class="admin-select" id="surveySource">
-                <option value="">— Select source —</option>
-                <option value="gpr">GPR scans</option>
-                <option value="nuar">NUAR extracts</option>
-                <option value="field-notes">Scanned field notes</option>
-                <option value="images">Scanned images / maps</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="surveyAttachment">Attachment reference</label>
-              <input class="admin-input" id="surveyAttachment" type="text" placeholder="File ID / reference" />
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="surveyOCR">OCR extracted text</label>
-              <textarea class="admin-textarea" id="surveyOCR" placeholder="OCR output to be attached to evidence bundle"></textarea>
-            </div>
-          </div>
-
-          <div class="admin-actions">
-            <button class="btn btn-primary" id="runOCRBtn">⚙ Run OCR</button>
-            <button class="btn" id="attachSurveyBtn">⇨ Attach to schedule / work order</button>
-            <button class="btn btn-secondary" id="exportSurveyBundleBtn">⬇ Export survey evidence bundle</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- VISL SENSORS & MACHINES -->
-      <section class="admin-section">
-        <div class="admin-section-header">
-          <div class="admin-section-title">VISL Sensors & Machines</div>
-          <div class="admin-section-tag">Deployment</div>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="vislType">VISL sensor type</label>
-              <select class="admin-select" id="vislType">
-                <option value="">— Select VISL type —</option>
-                <option value="tube">VISL-TUBE™</option>
-                <option value="blanket">VISL-BLANKET™</option>
-                <option value="sleeve">VISL-SLEEVE™</option>
-                <option value="tape">VISL-TAPE™</option>
-                <option value="patch">VISL-PATCH™</option>
-                <option value="node">VISL-NODE™</option>
-                <option value="custom">VISL-CUSTOM™</option>
-              </select>
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="vislSerial">Sensor serial</label>
-              <input class="admin-input" id="vislSerial" type="text" placeholder="Serial number" />
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="vislLocation">Deployment location</label>
-              <input class="admin-input" id="vislLocation" type="text" placeholder="Location / sector / pipe run" />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label" for="vislGridRef">Grid reference</label>
-              <input class="admin-input" id="vislGridRef" type="text" placeholder="Grid reference" />
-            </div>
-          </div>
-
-          <div class="admin-actions">
-            <button class="btn btn-primary" id="addSensorBtn">＋ Add sensor</button>
-            <button class="btn" id="editSensorBtn">✎ Edit sensor</button>
-            <button class="btn btn-danger" id="archiveSensorBtn">⛔ Archive sensor</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- COPILOT ASSISTANCE (ADMIN-ONLY) -->
-      <section class="admin-section">
-        <div class="admin-section-header">
-          <div class="admin-section-title">Copilot Assistance</div>
-          <div class="admin-section-tag">Patterns & evidence</div>
-        </div>
-        <div class="admin-section-body">
-          <div class="responsible-banner">
-            <strong>Responsible use:</strong> Copilot provides observational insights only. It does not recommend actions or override
-            human judgement. Insights must be interpreted and applied by qualified Admins.
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="copilotPrompt">Prompt</label>
-              <textarea class="admin-textarea" id="copilotPrompt" placeholder="e.g. Find patterns in VISL-TUBE anomalies for Sector 14 over last 48 hours."></textarea>
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="copilotOutput">Copilot insights (read-only)</label>
-              <textarea class="admin-textarea" id="copilotOutput" placeholder="Pattern detection, evidence correlation, sequence analysis, time-based anomalies." readonly></textarea>
-            </div>
-          </div>
-
-          <div class="admin-actions">
-            <button class="btn btn-primary" id="runCopilotBtn">⚙ Run pattern detection</button>
-            <button class="btn btn-secondary" id="exportCopilotCsvBtn">⬇ Export CSV</button>
-            <button class="btn btn-secondary" id="exportCopilotXlsxBtn">⬇ Export XLSX</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- NOTIFICATIONS -->
-      <section class="admin-section">
-        <div class="admin-section-header">
-          <div class="admin-section-title">Notifications</div>
-          <div class="admin-section-tag">Governed</div>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="notificationType">Notification type</label>
-              <select class="admin-select" id="notificationType">
-                <option value="">— Select type —</option>
-                <option value="operator">Operator notification</option>
-                <option value="organisation">Organisation notification</option>
-                <option value="evidence">Evidence notification</option>
-                <option value="device">Device notification</option>
-                <option value="schedule">Work schedule notification</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="admin-row">
-            <div class="admin-field">
-              <label class="admin-label" for="notificationMessage">Message</label>
-              <textarea class="admin-textarea" id="notificationMessage" placeholder="Notification content"></textarea>
-            </div>
-          </div>
-
-          <div class="admin-actions">
-            <button class="btn btn-primary" id="createNotificationBtn">＋ Create notification</button>
-          </div>
-        </div>
-      </section>
     </div>
-  </aside>
 
-  <script>
-    // Basic admin session validation placeholder.
-    // In production, this should be wired to VERITAS session logic.
-    (function () {
-      const indicator = document.getElementById("sessionIndicator");
-      const isAdmin = true; // Replace with real session check.
+    <!-- Catalog Modal -->
+    <div id="catalogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('catalogModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Vitium Internal Catalog</h3>
 
-      if (!isAdmin) {
-        indicator.textContent = "NO ADMIN SESSION";
-        indicator.style.color = "#ef4444";
-      }
-    })();
+            <div class="section-block">Product Families</div>
+            <div class="section-block">Variants</div>
+            <div class="section-block">Descriptions</div>
+        </div>
+    </div>
 
-    // Admin Panel toggle logic (button-triggered slide-in from the right).
-    (function () {
-      const panel = document.getElementById("adminPanel");
-      const backdrop = document.getElementById("adminPanelBackdrop");
-      const openBtn = document.getElementById("adminPanelButton");
-      const closeBtn = document.getElementById("adminPanelClose");
+    <!-- Operations Modal -->
+    <div id="operationsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('operationsModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Operations</h3>
 
-      function openPanel() {
-        panel.classList.add("visible");
-        backdrop.classList.add("visible");
-      }
+            <div class="section-block">Work Schedule Builder</div>
+            <div class="section-block">Sector Survey</div>
+            <div class="section-block">OCR Extraction</div>
+        </div>
+    </div>
 
-      function closePanel() {
-        panel.classList.remove("visible");
-        backdrop.classList.remove("visible");
-      }
+    <!-- Intelligence Modal -->
+    <div id="intelligenceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('intelligenceModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Copilot Intelligence</h3>
 
-      openBtn.addEventListener("click", openPanel);
-      closeBtn.addEventListener("click", closePanel);
-      backdrop.addEventListener("click", closePanel);
-    })();
+            <div class="section-block">Pattern Detection</div>
+            <div class="section-block">Evidence Correlation</div>
+            <div class="section-block">Anomaly Detection</div>
+        </div>
+    </div>
 
-    // Placeholder hooks for future VERITAS integration.
-    // These functions are intentionally minimal and non-destructive.
-    (function () {
-      const noop = (id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener("click", () => {
-          // Intentionally left blank: to be wired to VERITAS backend / data layer.
-          console.log("[VERITAS ADMIN] Clicked:", id);
-        });
-      };
+    <!-- Notifications Modal -->
+    <div id="notificationsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('notificationsModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Notifications</h3>
 
-      [
-        "addUserBtn",
-        "editUserBtn",
-        "archiveUserBtn",
-        "addCatalogItemBtn",
-        "editCatalogItemBtn",
-        "archiveCatalogItemBtn",
-        "createScheduleBtn",
-        "exportScheduleBtn",
-        "issueWorkOrdersBtn",
-        "runOCRBtn",
-        "attachSurveyBtn",
-        "exportSurveyBundleBtn",
-        "addSensorBtn",
-        "editSensorBtn",
-        "archiveSensorBtn",
-        "runCopilotBtn",
-        "exportCopilotCsvBtn",
-        "exportCopilotXlsxBtn",
-        "createNotificationBtn"
-      ].forEach(noop);
-    })();
-  </script>
+            <div class="section-block">Operator Alerts</div>
+            <div class="section-block">Organisation Alerts</div>
+            <div class="section-block">Device Alerts</div>
+        </div>
+    </div>
+
+    <!-- Import / Export Modal -->
+    <div id="importExportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('importExportModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Import / Export</h3>
+
+            <div class="section-block"><strong>Recommended Formats:</strong><br>Excel (.xlsx), Excel (.xls), CSV (.csv), PDF (.pdf)</div>
+            <div class="section-block">Import Catalog</div>
+            <div class="section-block">Export Catalog</div>
+            <div class="section-block">Import Evidence</div>
+            <div class="section-block">Export Evidence</div>
+        </div>
+    </div>
+
+    <!-- Supplier Catalogs Modal -->
+    <div id="supplierCatalogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('supplierCatalogModal')">&times;</span>
+            <img src="assets/logos/VITIUM-VERITAS_symbol_100-LOGO.png" class="emblem">
+            <h3>Supplier Catalogs</h3>
+
+            <div class="section-block"><strong>Supported Formats:</strong><br>Excel (.xlsx), Excel (.xls), CSV (.csv), PDF (.pdf)</div>
+            <div class="section-block">KALSIS (current + legacy)</div>
+            <div class="section-block">Panasonic</div>
+            <div class="section-block">Vitium Internal</div>
+            <div class="section-block">Third‑Party Suppliers</div>
+        </div>
+    </div>
+
 </body>
 </html>
