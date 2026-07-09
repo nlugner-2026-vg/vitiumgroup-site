@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Inter, sans-serif;
-    background-color: #0a0a0a; /* restored dark background */
+    background-color: #0a0a0a; /* DARK HOMEPAGE BACKGROUND */
     color: #e5e5e5;
 }
 
@@ -37,9 +37,19 @@ nav {
     text-align: center;
 }
 
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 8px;
+}
+
 nav a {
     color: #f97316;
-    margin: 0 10px;
     font-weight: 500;
 }
 
@@ -47,14 +57,32 @@ nav a {
    MAIN CONTENT
    ============================ */
 
-main {
-    padding: 40px;
+.container {
     max-width: 1000px;
     margin: 0 auto;
+    padding: 40px;
+}
+
+.brand-logo {
+    width: 100px;
+    display: block;
+    margin: 20px auto;
 }
 
 h1, h2, h3 {
     color: #f97316;
+}
+
+.text-block,
+.text-block-center {
+    margin-bottom: 20px;
+}
+
+.section-divider {
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    margin: 40px 0;
 }
 
 p {
@@ -65,7 +93,7 @@ p {
    FOOTER
    ============================ */
 
-.footer {
+footer {
     width: 100%;
     background-color: #111;
     color: #aaa;
@@ -73,11 +101,6 @@ p {
     padding: 10px 0;
     font-size: 12px;
     border-top: 1px solid #333;
-}
-
-.footer span {
-    color: #f97316;
-    font-weight: 600;
 }
 
 /* ============================
