@@ -1,16 +1,95 @@
 /* ============================
-   VITIUM GLOBAL BRANDING
+   GLOBAL SITE STYLES
    ============================ */
 
 body {
     margin: 0;
     font-family: "Segoe UI", Inter, sans-serif;
+    background-color: #fff;
+    color: #111;
+}
+
+a {
+    color: #f97316;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ============================
+   HEADER & NAVIGATION
+   ============================ */
+
+header {
+    background-color: #f97316;
+    color: #000;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+nav {
+    background-color: #111;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #f97316;
+    margin: 0 10px;
+    font-weight: 500;
+}
+
+/* ============================
+   MAIN CONTENT
+   ============================ */
+
+main {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    color: #000;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+
+.footer {
+    width: 100%;
+    background-color: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    border-top: 1px solid #333;
+}
+
+.footer span {
+    color: #f97316;
+    font-weight: 600;
+}
+
+/* ============================
+   ADMIN CONSOLE SCOPED STYLES
+   ============================ */
+
+body.admin {
     background-color: #1a1a1a;
     color: #e5e5e5;
 }
 
-/* Top Navigation Bar */
-.topbar {
+body.admin .topbar {
     width: 100%;
     background-color: #f97316;
     padding: 12px 0;
@@ -20,18 +99,13 @@ body {
     color: #000;
 }
 
-/* Vitium Emblem (always top-centered) */
-.emblem {
+body.admin .emblem {
     width: 100px;
     margin: 20px auto 10px auto;
     display: block;
 }
 
-/* ============================
-   ADMIN PANEL (RIGHT SLIDE-IN)
-   ============================ */
-
-.admin-panel {
+body.admin .admin-panel {
     position: fixed;
     right: 0;
     top: 0;
@@ -43,12 +117,12 @@ body {
     overflow-y: auto;
 }
 
-.admin-panel h2 {
+body.admin .admin-panel h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.menu-btn {
+body.admin .menu-btn {
     width: 100%;
     padding: 14px;
     margin: 8px 0;
@@ -59,15 +133,11 @@ body {
     cursor: pointer;
 }
 
-.menu-btn:hover {
+body.admin .menu-btn:hover {
     background-color: #444;
 }
 
-/* ============================
-   MODAL POPUPS (CENTERED)
-   ============================ */
-
-.modal {
+body.admin .modal {
     display: none;
     position: fixed;
     z-index: 9999;
@@ -78,7 +148,7 @@ body {
     background: rgba(0,0,0,0.75);
 }
 
-.modal-content {
+body.admin .modal-content {
     background-color: #2d2d2d;
     margin: 60px auto;
     padding: 20px;
@@ -89,45 +159,22 @@ body {
     text-align: center;
 }
 
-.modal h3 {
+body.admin .modal h3 {
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.close-btn {
+body.admin .close-btn {
     float: right;
     font-size: 22px;
     cursor: pointer;
     color: #fff;
 }
 
-/* Section Blocks */
-.section-block {
+body.admin .section-block {
     background-color: #3a3a3a;
     padding: 15px;
     margin: 10px 0;
     border-radius: 6px;
     text-align: left;
-}
-
-/* ============================
-   GLOBAL FOOTER
-   ============================ */
-
-.footer {
-    width: 100%;
-    background-color: #111;
-    color: #aaa;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 12px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    border-top: 1px solid #333;
-}
-
-.footer span {
-    color: #f97316;
-    font-weight: 600;
 }
