@@ -1,6 +1,6 @@
 /* =========================================================
-   VITIUM GROUP — SITEWIDE CORPORATE STYLESHEET
-   Full replacement. Audit‑ready. No drift.
+   VITIUM GROUP — FULL SITEWIDE CSS
+   Grey Top Bar / VERITAS Orange / White Text
    ========================================================= */
 
 /* ====== GLOBAL ====== */
@@ -13,11 +13,11 @@ body {
     line-height: 1.6;
 }
 
-/* ====== TOP GREY BAR ====== */
+/* ====== GREY TOP BAR ====== */
 .header-top {
     background-color: #3a3a3a;
     width: 100%;
-    padding: 10px 0;
+    height: 50px;
 }
 
 /* ====== EMBLEM BLOCK ====== */
@@ -33,11 +33,11 @@ body {
     display: inline-block;
 }
 
-/* ====== ORANGE NAVIGATION BAR ====== */
+/* ====== VERITAS ORANGE NAVIGATION BAR ====== */
 .nav-bar {
-    background-color: #973116;
+    background-color: #f57c00;
     width: 100%;
-    padding: 12px 0;
+    padding: 14px 0;
     text-align: center;
 }
 
@@ -49,14 +49,14 @@ body {
 
 .nav-bar li {
     display: inline-block;
-    margin: 0 25px;
+    margin: 0 30px;
 }
 
 .nav-bar a {
     color: #ffffff;          /* WHITE TEXT */
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
 }
 
 .nav-bar a:hover,
@@ -95,12 +95,12 @@ ul li {
     margin: 6px 0;
 }
 
-/* ====== ORANGE FOOTER BAR ====== */
+/* ====== VERITAS ORANGE FOOTER BAR ====== */
 .footer-bar {
-    background-color: #973116;
+    background-color: #f57c00;
     color: #ffffff;          /* WHITE TEXT */
     text-align: center;
-    padding: 20px 0;
+    padding: 25px 0;
     width: 100%;
     margin-top: 60px;
 }
